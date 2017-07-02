@@ -1,0 +1,553 @@
+/* ------------------ ############ RESETS ############ ------------------ */
+html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
+	box-sizing: border-box;
+	color: #222;
+    font-family: 'Raleway', sans-serif;
+	font-weight: 200;
+	margin: 0;
+	padding: 0;
+}
+
+ul, li {
+	list-style: none;
+}
+
+@font-face {
+  font-family: 'Raleway Thin';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Raleway Thin'), local('Raleway-Thin'), url(raleway-thin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(Raleway-Regular.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Alfa Slab One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Alfa Slab One Regular'), local('AlfaSlabOne-Regular'), url(alpha-slab.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* ------------------ ############ GENERAL ############ ------------------ */
+#perfect-app-wrapper {
+  background-color: #fff;
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: relative;
+	top: 0;
+  width: 100vw;
+}
+
+:root{
+  --scale-zoom-factor: 1.8;
+  --scale-zoom-factor-s: scale(calc( 2 * var(--scale-zoom-factor) ));
+}
+
+/* ------------------ ############ ROOM SCENE ############ ------------------ */
+.room__svg,
+.svg-defs-wrapper,
+.room__wrapper,
+.room-image,
+.color__details,
+.intro__wrapper,
+.navigation__wrapper {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.room__wrapper {
+  background-color: #abcdef;
+}
+
+.room-image {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+/*.room-image-solid-overlay {
+    background-color: #abcdef;
+    opacity: 0;
+    transition: opacity 2s;
+    will-change: opacity;
+}*/
+
+.room-title,
+.room-image-natural,
+.room-image-tinted {
+    background-image: url( './images/room-sofa.jpg' );64
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.room-title,
+.room-image-tinted {
+    mix-blend-mode: multiply;
+}
+
+.room-image-natural {
+    -webkit-mask-image: url( './images/room-sofa-mask.png' );
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    /*-webkit-mask: url( './images/room-sofa-mask.png' ) top left / cover;*/
+    /*mask-mode: luminance;
+    -webkit-mask-source-type: luminance;*/
+}
+
+.room__wrapper {
+    height: calc( 50% - 2px );
+    z-index: 2;
+}
+
+.room__wrapper--lower {
+  z-index: 1;
+}
+
+.room-b {
+    top: calc( 50% + 2px );
+}
+
+.room__image--furniture {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+/* ------------------ ############ PRIMING ANIMATED ELEMENTS ############ ------------------ */
+.room__svg--zoom {
+  /*height: 200%;*/
+  transition: transform 1s;
+  /*width: 200%;*/
+  will-change: transform;
+}
+
+.state-app-primed .room__svg--zoom {
+}
+
+.state-zoom-room .room__svg--zoom {
+  transform: var(--scale-zoom-factor-s);
+  /*transform: scale( 1.2 ) translateX( -25% );*/
+}
+
+.room__image--zoom {
+  /*height: 150%;
+  width: 150%;*/
+}
+
+/* ------------------ ############ COLOR DETAILS ############ ------------------ */
+/*.color__details {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    z-index: 2;
+}*/
+
+/*.color__details--solid-overlay {
+    background-color: #abcdef;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s;
+    transition-delay: 1s;
+    width: 100%;
+}*/
+
+.room-title {
+    align-items: center;
+    display: flex;
+    filter: brightness( 0.75 );
+    font-family: 'Alfa Slab One', sans-serif;
+    font-size: 30vw;
+    letter-spacing: -8vw;
+    line-height: 18vw;
+    justify-content: center;
+    opacity: 0;
+    text-align: center;
+    transition: font-size 2s, letter-spacing 2s, opacity 2s ease-out;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    will-change: font-size, letter-spacing, opacity;
+}
+
+.room-image-solid-overlay {
+    background-color: #abcdef;
+    opacity: 0;
+    transition: opacity 2s;
+    will-change: opacity;
+}
+
+.color__details--solid-overlay-2 {
+    background-color: #887766;
+}
+
+.color__details--solid-overlay-3 {
+    background-color: #feba66;
+}
+
+.color__details--solid-overlay-4 {
+    background-color: #234567;
+}
+/*
+.color__details--title {
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 2.2em;
+    opacity: 0;
+    position: relative;
+    text-align: center;
+    transition: opacity 0.5s;
+    transition-delay: 1.5s;
+    z-index: 2;
+}*/
+
+/*state-lower-room- state-zoom-room- state-detail- state-transition*/
+
+/* ------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
+.state-zoom-room {}
+
+/* ------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
+.state-lower-room .room__wrapper--lower {
+  z-index: 3;
+}
+
+/* ------------------ ############ APP STATE - ROOM DETAIL ############ ------------------ */
+.state-detail .room-image-solid-overlay {
+    opacity: 1;
+}
+
+.state-detail .room__image--furniture {
+    opacity: 0;
+}
+
+.state-detail .room-title {
+  font-size: 17vw;
+  letter-spacing: 0;
+  opacity: 1;
+}
+
+
+/*.state-detail .color__details--solid-overlay {
+    opacity: 1;
+}*/
+/*
+.state-detail .color__details--title {
+    opacity: 1;
+}*/
+
+.state-transition .color__details--solid-overlay {
+    transition: opacity 0.5s;
+    transition-delay: 0.5s;
+}
+
+.state-transition .color__details--title {
+    transition-delay: 0s;
+}
+
+.state-transition .room__image--furniture {
+    transition: opacity 1s;
+    transition-delay: 1s;
+}
+
+
+/* ------------------ ############ App Intro ############ ------------------ */
+.intro__wrapper,
+.navigation__wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 6vw;
+  min-height: 30px;
+}
+
+.intro__wrapper {
+  background-color: #eee;
+  display: none;
+  padding: calc( 3px + 1% );
+  z-index: 4;
+}
+
+.intro__message{}
+
+.intro__hue{}
+
+.intro__luminosity{}
+
+.intro__saturation{}
+
+
+/* ------------------ ############ Navigation Controls ############ ------------------ */
+.navigation__wrapper {
+  background-color: rgba( 0, 0, 0, .5 );
+  color: #fff;
+  font-size: calc( 6px + 1.25vw);
+  z-index: 4;
+}
+
+.app-title {
+  text-shadow:
+    /*0 6px 1px rgba(0,0,0,.5),
+    0 0 5px rgba(0,0,0,.5),
+    0 1px 3px rgba(0,0,0,.7),*/
+    0.06vw 0.06vw 0.12vw rgba(0,0,0,.6),
+    -0.06vw 0.06vw 0.12vw rgba(0,0,0,.6),
+    0.06vw -0.06vw 0.12vw rgba(0,0,0,.6),
+    -0.06vw -0.06vw 0.12vw rgba(0,0,0,.6);
+
+  color: #ffa541;
+  font-size: calc( 6px + 1.5vw);
+  font-size: 5vw;
+  margin: 0 10vw;
+}
+
+.navigation__controls--title {
+  color: #c0f1f7;
+  line-height: 6vw;
+  margin-right: 1.5vw;
+  vertical-align: middle;
+}
+
+.navigation__controls {
+  align-items: center;
+  background: rgba( 20, 10, 40, 0.7 );
+  border-radius: 3vw;
+  display: none;
+  flex-direction: row;
+  height: 80%;
+  justify-content: space-around;
+  padding: 0 2vw;
+}
+
+.navigation__favorites {
+  display: flex;
+}
+
+.state-favorites .navigation__favorites {
+  display: none;
+}
+
+.state-favorites .navigation__compare {
+  display: flex;
+}
+
+.navigation__favorites .navigation__controls-color {
+}
+
+.navigation__compare {
+  /*width: 40%;*/
+}
+
+.navigation__controls-colors {
+  /*width: 100%;*/
+}
+
+.navigation__controls-color {
+  border-radius: 50%;
+  display: inline-block;
+  height: 2vw;
+  width: 2vw;
+}
+
+
+/* ------------------ ############ VIEWPORT ORIENTATION ADJUSTMENTS ############ ------------------ */
+@media screen and ( orientation: landscape ) { /* landscape viewport, vertical rooms */
+    .room__wrapper {
+        height: 100%;
+        width: calc( 50% - 2px );
+    }
+
+    .room-b {
+        left: calc( 50% + 2px );
+        top: 0;
+    }
+
+    .color__details--title {
+      font-size: 1.2em;
+    }
+}
+
+@media screen and ( max-width: 800px ) {
+  .room__svg--zoom {
+    /*height: 150%;
+    width: 150%;*/
+  }
+}
+
+@media screen and ( max-width: 800px ) {
+  .room__svg--zoom {
+  }
+}
+
+@media screen and ( max-width: 800px ) {
+  .intro__wrapper,
+  .navigation__wrapper {
+    /*height: 10vw;*/
+  }
+
+  .navigation__controls--title {
+    /*font-size: 7vw;*/
+    /*line-height: 10vw;*/
+  }
+
+  .intro__wrapper {
+  }
+
+  .app-title {
+    /*font-size: 9vw;*/
+    margin: 0 5vw;
+  }
+
+  .navigation__controls-color {
+    height: 3vw;
+    width: 3vw;
+  }
+}
+
+@media screen and ( max-width: 800px ) {
+  .room__svg--zoom {
+  }
+}
+
+@media screen and ( max-width: 800px ) {
+  .room__svg--zoom {
+  }
+}
+
+@media screen and ( max-width: 800px ) and ( orientation: landscape ) {
+  .room__svg--zoom {
+    height: 150%;
+    width: 150%;
+  }
+}
+
+
+/* ------------------ ############ wwwwwww ############ ------------------ */
+
+
+
+/* ------------------ ############ wwwwwww ############ ------------------ */
+
+
+
+
+/* ------------------ ############ wwwwwww ############ ------------------ */
+
+
+
+
+/* ------------------ ############ wwwwwww ############ ------------------ */
+/* ------------------ ############ wwwwwww ############ ------------------ */
+/* ------------------ ############ wwwwwww ############ ------------------ */
+/* ------------------ ############ wwwwwww ############ ------------------ */
+/* ------------------ ############ jjjjjjjj ############ ------------------ */
+/* --------- pppppppp ----------- */
+/* --------- pppppppp ----------- */
+
+
+
+/*
+------------------ ############ ANIMATION EXAMPLE ############ ------------------
+@keyframes pan-scene {
+  0 {
+      transform: translate3d(0px, 0px, 0px);
+  }
+  50% {
+      transform: translate3d(-10vw, -100vh, 0px);
+  }
+  100% {
+      transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+
+------------------ ############ OLD STUFF ############ ------------------
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) and (min-aspect-ratio: 1 / 1) {
+}
+
+.scene-grid__scene:nth-child(n+5) {
+  display: none; }
+
+@media screen and (orientation: portrait) {
+    .room__wrapper svg {
+        border: 2px solid #ccccff;
+        height: 140vh;
+        width: calc( 140vh * 1.43582);
+    }
+
+    @media screen and (max-aspect-ratio: 3/4) {
+        .room__wrapper svg {
+            border: 2px solid #9999cc;
+            height: 125vh;
+            width: calc( 125vh * 1.43582);
+        }
+    }
+
+    @media screen and (max-aspect-ratio: 2/3) {
+        .room__wrapper svg {
+            border: 2px solid #666699;
+            height: 110vh;
+            width: calc( 110vh * 1.43582);
+        }
+    }
+
+    @media screen and (max-aspect-ratio: 1/2) {
+        .room__wrapper svg {
+            border: 2px solid #333366;
+        }
+    }
+}
+
+
+
+.text-3d- {
+    color: #999;
+    text-shadow: 0 1px 0 #666,
+       0 2px 0 #646464,
+       0 3px 0 #555,
+       0 4px 0 #515151,
+       0 5px 0 #444,
+       0 6px 1px rgba(0,0,0,.5),
+       0 0 5px rgba(0,0,0,.5),
+       0 1px 3px rgba(0,0,0,.7),
+       0 3px 5px rgba(0,0,0,.6),
+       0 5px 10px rgba(0,0,0,.65),
+       0 10px 10px rgba(0,0,0,.6),
+       0 20px 20px rgba(0,0,0,.55);
+}
+
+.text-3d--light- {
+    color: #fff;
+    text-shadow: 0 1px 0 #ccc,
+       0 2px 0 #c9c9c9,
+       0 3px 0 #bbb,
+       0 4px 0 #b9b9b9,
+       0 5px 0 #aaa,
+       0 6px 1px rgba(0,0,0,.1),
+       0 0 5px rgba(0,0,0,.1),
+       0 1px 3px rgba(0,0,0,.3),
+       0 3px 5px rgba(0,0,0,.2),
+       0 5px 10px rgba(0,0,0,.25),
+       0 10px 10px rgba(0,0,0,.2),
+       0 20px 20px rgba(0,0,0,.15);
+}
+*/

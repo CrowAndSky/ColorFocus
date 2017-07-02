@@ -1,0 +1,293 @@
+<html>
+  <head>
+    <title>Color &rang;&rang;&rang; Focus</title> <!-- &#9678; -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style type="text/css">
+html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
+    box-sizing: border-box;
+    color: #222;
+    font-family: 'Alfa Slab One', sans-serif;
+    font-weight: 200;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+  font-family: 'Alfa Slab One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Alfa Slab One Regular'), local('AlfaSlabOne-Regular'), url(alpha-slab.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+#perfect-app-wrapper {
+    background-color: #444355;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    width: 100vw;
+}
+
+.room-wrapper {
+    background-color: #abcdef;
+    display: none;
+    height: 80%;
+    left: 20%;
+    position: absolute;
+    top: 20%;
+    width: 80%;
+    z-index: 1;
+}
+
+.room-image {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.room-image-flat {
+    background-color: #abcdef;
+    opacity: 0;
+    transition: opacity 2s;
+    will-change: opacity;
+}
+
+.room-image-text,
+.room-image-natural,
+.room-image-tinted {
+    background-image: url( './images/room3.jpg' );
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.room-image-text,
+.room-image-tinted {
+    mix-blend-mode: multiply;
+}
+
+.room-image-natural {
+    /*linear-gradient(black 25%, transparent 50%)*/
+    /*-webkit-mask-image: url( './images/room-mask-inverted.png' );*/
+    -webkit-mask: url( './images/room-mask-inverted.png' ) top left / cover;
+    /*mask-mode: luminance;
+    -webkit-mask-source-type: luminance;*/
+}
+
+.room-image-text {
+    align-items: center;
+    display: flex;
+    filter: brightness( 0.75 );
+    font-size: 30vw;
+    letter-spacing: -8vw;
+    line-height: 18vw;
+    justify-content: center;
+    opacity: 0;
+    text-align: center;
+    transition: font-size 2s, letter-spacing 2s, opacity 2s ease-out;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    will-change: font-size, letter-spacing, opacity;
+}
+
+.state-app-primed .room-image-text {
+    font-size: 17vw;
+    letter-spacing: 0;
+    opacity: 1;
+}
+
+.state-app-primed .room-image-flat {
+    opacity: 1;
+}
+.room-image-tinted {}
+
+.logo-wrapper {
+    background: #def;
+    height: 20vw;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 20vw;
+    z-index: 1;
+}
+/*
+.circle,
+.circle::after,
+.circle::before {
+    background-color: #555;
+    border-radius: 50%;
+    display: block;
+    left: 25%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    width: 50%;
+    z-index: 2;
+}
+
+.circle::after {
+    background-color: #888;
+    content: " ";
+    font-size: 0;
+    height: 100% !important;
+    left: -5%;
+    top: -5%;
+    width: 100% !important;
+    z-index: 3;
+}
+
+.circle::before {
+    border-radius: 0;
+    content: " ";
+    font-size: 0;
+    left: 0;
+    height: 9.5%;
+    left: -2.75% !important;
+    top: 20% !important;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    width: 100% !important;
+    z-index: 1;
+}
+
+
+
+.circle-2,
+.circle-2::after,
+.circle-2::before {
+    background-color: #6c9193;
+    left: 27%;
+    height: 38%;
+    top: 27%;
+    width: 38%;
+    z-index: 5;
+}
+
+.circle-2::after {
+    background-color: #9fc4c6;
+    left: -10%;
+    top: -10%;
+    z-index: 6;
+}
+
+.circle-2::before {
+    height: 19%;
+    left: -5.5%;
+    top: 20%;
+    z-index: 4;
+}
+
+
+
+.circle-3,
+.circle-3::after,
+.circle-3::before {
+    background-color: #6c9193;
+    left: 25%;
+    height: 26%;
+    top: 25%;
+    width: 26%;
+    z-index: 8;
+}
+
+.circle-3::after {
+    background-color: #8edfe5;
+    left: -20%;
+    top: -20%;
+    z-index: 9;
+}
+
+.circle-3::before {
+    height: 38%;
+    left: -11%;
+    top: 20%;
+    z-index: 7;
+}*/
+
+.circle {
+    background-color: #555;
+    border-radius: 50%;
+    box-shadow: 0vw 0.1vw 0.2vw 0.1vw rgba(0,0,0,0.9);
+    left: 25%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    width: 50%;
+}
+
+.circle-2 {
+    background-color: #95a0b2;
+    box-shadow: 0.1vw 0.2vw 0.3vw 0.2vw rgba(0,0,0,0.6);
+    left: 27%;
+    height: 38%;
+    top: 27%;
+    width: 38%;
+}
+
+.circle-3 {
+    background-color: #8edfe5;
+    box-shadow: 0.1vw 0.2vw 0.3vw 0.2vw rgba(0,0,0,0.7);
+    left: 29%;
+    height: 26%;
+    top: 29%;
+    width: 26%;
+}
+
+
+</style>
+
+<body>
+<div id="perfect-app-wrapper" class="">
+
+<div class="wrapper logo-wrapper">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+</div>
+
+<div class="wrapper room-wrapper">
+    <div class="room-image room-image-tinted"></div>
+    <div class="room-image room-image-natural"></div>
+    <div class="room-image room-image-flat"></div>
+    <div class="room-image room-image-text">
+        House Atriedes
+    </div>
+</div>
+
+</div>
+
+<script src="jquery.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready( function(){
+    var $appWrapper = $( '#perfect-app-wrapper' );
+
+    window.setTimeout( function(){
+        $appWrapper.addClass( 'state-app-primed' );
+    }, 1000);
+});
+</script>
+
+<!--
+0.1vw 0.1vw 0 0.2vw rgba(0,0,0,0.5)
+.circle-4 {
+    background-color: rgba(0,0,0,0.5);
+    box-shadow: none;
+    left: 39%;
+    height: 33%;
+    top: 39%;
+    width: 33%;
+}
+<div class="circle circle-4"></div>
+text-shadow: 0 0 10px rgba(0,0,0,0.6);
+ -->
+</body>
+</html>

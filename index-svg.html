@@ -1,0 +1,168 @@
+<html>
+  <head>
+	<title>ColorWise</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="perfect-app-wrapper" class="state-lower-room- state-zoom-room state-detail state-transition">
+
+<div class="intro__wrapper">
+	<div class="intro__message">
+		This is going to be fun!
+	</div>
+
+	<div class="intro__hue">
+		Which color should we begin with?
+	</div>
+
+	<div class="intro__luminosity">
+		How dark should we make our colors?
+	</div>
+
+	<div class="intro__saturation">
+		How much color should we begin with?
+	</div>
+</div>
+
+<div class="navigation__wrapper">
+	<div class="navigation__controls navigation__favorites">
+		<h2 class="navigation__controls--title">View Favorites</h2>
+		<ul class="navigation__controls-colors">
+			<li class="navigation__controls-color" style="background:#678"></li>
+			<li class="navigation__controls-color" style="background:#dbe"></li>
+			<li class="navigation__controls-color" style="background:#ab9"></li>
+		</ul>
+	</div>
+
+	<div class="navigation__controls navigation__compare">
+		<h2 class="navigation__controls--title">Choose More Colors</h2>
+		<ul class="navigation__controls-colors">
+			<li class="navigation__controls-color" style="background:#acd"></li>
+			<li class="navigation__controls-color" style="background:#cdf"></li>
+		</ul>
+	</div>
+
+	<h1 class="app-title">Color Wise</h1>
+</div>
+
+<div class="room__wrapper svg-defs-wrapper">
+	<svg class="room__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1280 1149">
+		<defs class="svg-defs-wrapper">
+			<mask id="room-mask-inverted" x="0" y="0" width="100" height="100">
+				<image class="room__image" xlink:href="./images/room-mask-inverted.png"  />
+			</mask>
+			<mask id="color-title" x="0" y="0" width="100" height="100">
+				<text x="50%" y="50%" stroke="none" fill="#999999">
+			    	Masking Text String
+				</text>
+			</mask>
+			<!-- <mask id="room-mask-inverted-zoom" x="0" y="0" width="100" height="100">
+				<image class="room__image room__image--zoom " xlink:href="./images/room-mask-inverted.png"  />
+			</mask> -->
+			<filter id="room-filter-1">
+				<feFlood id="stain-sample__filter--tint" flood-color="#abcdef" result="tintHue" />
+				<feBlend mode="multiply" in="tintHue" in2="SourceGraphic" result="darkenedSample" />
+			</filter>
+			<filter id="room-filter-2">
+				<feFlood id="stain-sample__filter--tint-2" flood-color="#887766" result="tintHue2" />
+				<feBlend mode="multiply" in="tintHue2" in2="SourceGraphic" result="darkenedSample2" />
+			</filter>
+			<filter id="room-filter-3">
+				<feFlood id="stain-sample__filter--tint-3" flood-color="#feba66" result="tintHue3" />
+				<feBlend mode="multiply" in="tintHue3" in2="SourceGraphic" />
+			</filter>
+			<filter id="room-filter-4">
+				<feFlood id="stain-sample__filter--tint-4" flood-color="#234567" result="tintHue4" />
+				<feBlend mode="multiply" in="tintHue2" in2="SourceGraphic" />
+			</filter>
+			 <filter id="hue3">
+		        <feColorMatrix in = "SourceGraphic" type = "hueRotate" values = "270"/>
+		    </filter>
+		    <!-- color-interpolation-filters:  sRGB | linearRGB  -->
+		</defs>
+	</svg>
+</div>
+
+<div class="room__wrapper">
+	<svg class="room__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1280 1149">
+		<image x="0" y="0"  class="room__image" xlink:href="./images/room3.jpg" filter="url(#room-filter-1)" />
+		<image class="room__image room__image--furniture" xlink:href="./images/room3.jpg" mask="url(#room-mask-inverted)" />
+	</svg>
+	<div class="color__details">
+		<div class="color__details--solid-overlay color__details--solid-overlay-1"></div>
+		<h1 class="color__details--title color__details--title-1 text-3d ">House Atriedes</h1>
+	</div>
+	<svg class="room__svg room__svg--zoom" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1280 1149">
+		<image class="room__image" xlink:href="./images/room3.jpg" filter="url(#room-filter-1)" />
+		<image class="room__image room__image--furniture" xlink:href="./images/room3.jpg" mask="url(#room-mask-inverted)" />
+	</svg>
+</div>
+
+<div class="room__wrapper room-b">
+	<svg class="room__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1280 1149">
+		<image x="0" y="0"  class="room__image" xlink:href="./images/room3.jpg" filter="url(#room-filter-2)" />
+		<image class="room__image room__image--furniture" xlink:href="./images/room3.jpg" mask="url(#room-mask-inverted)" />
+	</svg>
+	<div class="color__details">
+		<div class="color__details--solid-overlay color__details--solid-overlay-2"></div>
+		<svg class="room__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1280 1149">
+			<image class="room__image" xlink:href="./images/room3.jpg" filter="url(#room-filter-2)"  mask="url(#color-title)" />
+		</svg>
+		<!-- <h1 class="color__details--title color__details--title-2 text-3d text-3d--light">Bauhaus Buff</h1> -->
+	</div>
+</div>
+
+<!-- /*  ######################## LOWER ROOMS ######################## */ -->
+
+<div class="room__wrapper room__wrapper--lower">
+	<svg class="room__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1280 1149">
+		<image x="0" y="0"  class="room__image" xlink:href="./images/room3.jpg" filter="url(#room-filter-3)" />
+		<image class="room__image room__image--furniture" xlink:href="./images/room3.jpg" mask="url(#room-mask-inverted)" />
+	</svg>
+	<div class="color__details">
+		<div class="color__details--solid-overlay color__details--solid-overlay-3"></div>
+		<h1 class="color__details--title color__details--title-1 text-3d ">House Atriedes</h1>
+	</div>
+</div>
+
+<div class="room__wrapper room-b room__wrapper--lower">
+	<svg class="room__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1280 1149">
+		<image x="0" y="0"  class="room__image" xlink:href="./images/room3.jpg" filter="url(#room-filter-4)" />
+		<image class="room__image room__image--furniture" xlink:href="./images/room3.jpg" mask="url(#room-mask-inverted)" />
+	</svg>
+	<div class="color__details">
+		<div class="color__details--solid-overlay color__details--solid-overlay-4"></div>
+		<h1 class="color__details--title color__details--title-2 text-3d text-3d--light">Bauhaus Buff</h1>
+	</div>
+</div>
+
+</div>  <!-- CLOSE perfect-app-wrapper -->
+
+<script src="color-utils.js" type="text/javascript"></script>
+<script src="jquery.js" type="text/javascript"></script>
+<script src="app.js" type="text/javascript"></script>
+
+<!--
+
+<svg class="room__svg room__svg--flat-overlay" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1280 1149">
+		<rect x="0" y="0" width="100%" height="100%" fill="#bada55" clip-path="url(#myClip)" />
+	</svg>
+
+<filter ng-repeat="color in appState.historyColors" id="scene__filter--{{$index}}">
+		<feFlood id="stain-sample__filter--tint" flood-color="#{{color}}" result="tintHue" />
+		<feBlend mode="multiply" in="tintHue" in2="SourceGraphic" result="darkenedSample" />
+</filter>
+
+
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway+Dots" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nixie+One" rel="stylesheet">
+ -->
+
+</body>
+</html>
