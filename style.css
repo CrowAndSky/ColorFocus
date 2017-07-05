@@ -1,15 +1,15 @@
 /* ------------------ ############ RESETS ############ ------------------ */
 html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
-	box-sizing: border-box;
-	color: #222;
+  box-sizing: border-box;
+  color: #222;
     font-family: 'Raleway', sans-serif;
-	font-weight: 200;
-	margin: 0;
-	padding: 0;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
 }
 
 ul, li {
-	list-style: none;
+  list-style: none;
 }
 
 @font-face {
@@ -39,11 +39,11 @@ ul, li {
 /* ------------------ ############ GENERAL ############ ------------------ */
 #perfect-app-wrapper {
   background-color: #fff;
-	height: 100%;
-	left: 0;
-	overflow: hidden;
-	position: relative;
-	top: 0;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: relative;
+  top: 0;
   width: 100vw;
 }
 
@@ -88,13 +88,25 @@ ul, li {
     will-change: opacity;
 }*/
 
-.room-title,
-.room-image-natural,
-.room-image-tinted {
+/*.room-title,*/
+/*.room-image-natural {
     background-image: url( './images/room-sofa.jpg' );64
     background-position: 50% 50%;
     background-size: cover;
+}*/
+
+/*.room-title,*/
+.room-image-natural,
+.room-image-tinted {
+    object-fit: cover;
 }
+
+.room-image-natural {
+  /*display: none;*/
+}
+
+
+
 
 .room-title,
 .room-image-tinted {
@@ -104,6 +116,7 @@ ul, li {
 .room-image-natural {
     -webkit-mask-image: url( './images/room-sofa-mask.png' );
     -webkit-mask-size: cover;
+    -webkit-mask-position: 50% 50%;
     mask-size: cover;
     /*-webkit-mask: url( './images/room-sofa-mask.png' ) top left / cover;*/
     /*mask-mode: luminance;
@@ -158,7 +171,7 @@ ul, li {
     z-index: 2;
 }*/
 
-/*.color__details--solid-overlay {
+/*.solid-overlay {
     background-color: #abcdef;
     height: 100%;
     left: 0;
@@ -170,7 +183,7 @@ ul, li {
     width: 100%;
 }*/
 
-.room-title {
+.color-info {
     align-items: center;
     display: flex;
     filter: brightness( 0.75 );
@@ -189,24 +202,27 @@ ul, li {
 
 .room-image-solid-overlay {
     background-color: #abcdef;
+}
+
+.room-image-solid-overlay--top {
     opacity: 0;
     transition: opacity 2s;
     will-change: opacity;
 }
 
-.color__details--solid-overlay-2 {
+.solid-overlay-2 {
     background-color: #887766;
 }
 
-.color__details--solid-overlay-3 {
+.solid-overlay-3 {
     background-color: #feba66;
 }
 
-.color__details--solid-overlay-4 {
+.solid-overlay-4 {
     background-color: #234567;
 }
 /*
-.color__details--title {
+.color-name {
     font-family: 'Alfa Slab One', cursive;
     font-size: 2.2em;
     opacity: 0;
@@ -228,7 +244,7 @@ ul, li {
 }
 
 /* ------------------ ############ APP STATE - ROOM DETAIL ############ ------------------ */
-.state-detail .room-image-solid-overlay {
+.state-detail .solid-overlay--top {
     opacity: 1;
 }
 
@@ -236,27 +252,27 @@ ul, li {
     opacity: 0;
 }
 
-.state-detail .room-title {
+.state-detail .color-info {
   font-size: 17vw;
   letter-spacing: 0;
   opacity: 1;
 }
 
 
-/*.state-detail .color__details--solid-overlay {
+/*.state-detail .solid-overlay {
     opacity: 1;
 }*/
 /*
-.state-detail .color__details--title {
+.state-detail .color-name {
     opacity: 1;
 }*/
 
-.state-transition .color__details--solid-overlay {
+.state-transition .solid-overlay--top {
     transition: opacity 0.5s;
     transition-delay: 0.5s;
 }
 
-.state-transition .color__details--title {
+.state-transition .color-name {
     transition-delay: 0s;
 }
 
@@ -377,7 +393,7 @@ ul, li {
         top: 0;
     }
 
-    .color__details--title {
+    .color-name {
       font-size: 1.2em;
     }
 }
@@ -477,6 +493,8 @@ ul, li {
 
 
 ------------------ ############ OLD STUFF ############ ------------------
+
+linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0))
 
 @media screen and (min-width: 768px) {
 }
