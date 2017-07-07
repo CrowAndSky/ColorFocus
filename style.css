@@ -2,7 +2,7 @@
 html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
   box-sizing: border-box;
   color: #222;
-    font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 200;
   margin: 0;
   padding: 0;
@@ -72,45 +72,13 @@ ul, li {
   background-color: #abcdef;
 }
 
-.room-image {
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-}
-
-/*.room-image-solid-overlay {
-    background-color: #abcdef;
-    opacity: 0;
-    transition: opacity 2s;
-    will-change: opacity;
-}*/
-
-/*.room-title,*/
-/*.room-image-natural {
-    background-image: url( './images/room-sofa.jpg' );64
-    background-position: 50% 50%;
-    background-size: cover;
-}*/
-
-/*.room-title,*/
 .room-image-natural,
 .room-image-tinted {
     object-fit: cover;
 }
 
-.room-image-natural {
-  /*display: none;*/
-}
-
-
-
-
-.room-title,
 .room-image-tinted {
-    mix-blend-mode: multiply;
+  mix-blend-mode: multiply;
 }
 
 .room-image-natural {
@@ -118,9 +86,6 @@ ul, li {
     -webkit-mask-size: cover;
     -webkit-mask-position: 50% 50%;
     mask-size: cover;
-    /*-webkit-mask: url( './images/room-sofa-mask.png' ) top left / cover;*/
-    /*mask-mode: luminance;
-    -webkit-mask-source-type: luminance;*/
 }
 
 .room__wrapper {
@@ -139,6 +104,45 @@ ul, li {
 .room__image--furniture {
     opacity: 1;
     transition: opacity 1s;
+}
+
+/* ------------------ ############ COLOR DETAILS ############ ------------------ */
+
+.color-info {
+  background-color: red;
+  background-image: url( './images/room-sofa.jpg' );
+  background-position: 50% 50%;
+  background-size: cover;
+  mix-blend-mode: multiply;
+
+  align-items: center;
+  display: flex;
+  filter: brightness( 0.75 );
+  font-size: 30vw;
+  letter-spacing: -8vw;
+  line-height: 18vw;
+  justify-content: center;
+  opacity: 0;
+  text-align: center;
+  transition: font-size 2s, letter-spacing 2s, opacity 2s ease-out;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  will-change: font-size, letter-spacing, opacity;
+}
+
+.color-name {
+  font-family: 'Alfa Slab One', sans-serif;
+}
+
+/*.solid-overlay {
+    background-color: #abcdef;
+}*/
+
+.solid-overlay--top {
+  background-color: #abcdef;
+  opacity: 0;
+  transition: opacity 2s;
+  will-change: opacity;
 }
 
 /* ------------------ ############ PRIMING ANIMATED ELEMENTS ############ ------------------ */
@@ -161,77 +165,6 @@ ul, li {
   /*height: 150%;
   width: 150%;*/
 }
-
-/* ------------------ ############ COLOR DETAILS ############ ------------------ */
-/*.color__details {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    z-index: 2;
-}*/
-
-/*.solid-overlay {
-    background-color: #abcdef;
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transition: opacity 0.5s;
-    transition-delay: 1s;
-    width: 100%;
-}*/
-
-.color-info {
-    align-items: center;
-    display: flex;
-    filter: brightness( 0.75 );
-    font-family: 'Alfa Slab One', sans-serif;
-    font-size: 30vw;
-    letter-spacing: -8vw;
-    line-height: 18vw;
-    justify-content: center;
-    opacity: 0;
-    text-align: center;
-    transition: font-size 2s, letter-spacing 2s, opacity 2s ease-out;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    will-change: font-size, letter-spacing, opacity;
-}
-
-.room-image-solid-overlay {
-    background-color: #abcdef;
-}
-
-.room-image-solid-overlay--top {
-    opacity: 0;
-    transition: opacity 2s;
-    will-change: opacity;
-}
-
-.solid-overlay-2 {
-    background-color: #887766;
-}
-
-.solid-overlay-3 {
-    background-color: #feba66;
-}
-
-.solid-overlay-4 {
-    background-color: #234567;
-}
-/*
-.color-name {
-    font-family: 'Alfa Slab One', cursive;
-    font-size: 2.2em;
-    opacity: 0;
-    position: relative;
-    text-align: center;
-    transition: opacity 0.5s;
-    transition-delay: 1.5s;
-    z-index: 2;
-}*/
 
 /*state-lower-room- state-zoom-room- state-detail- state-transition*/
 
@@ -258,14 +191,9 @@ ul, li {
   opacity: 1;
 }
 
-
-/*.state-detail .solid-overlay {
+.state-detail .solid-overlay {
     opacity: 1;
-}*/
-/*
-.state-detail .color-name {
-    opacity: 1;
-}*/
+}
 
 .state-transition .solid-overlay--top {
     transition: opacity 0.5s;
@@ -312,30 +240,25 @@ ul, li {
 .navigation__wrapper {
   background-color: rgba( 0, 0, 0, .5 );
   color: #fff;
-  font-size: calc( 6px + 1.25vw);
+  font-family: 'Raleway Thin', sans-serif;
+  justify-content: space-between;
   z-index: 4;
 }
 
 .app-title {
-  text-shadow:
-    /*0 6px 1px rgba(0,0,0,.5),
-    0 0 5px rgba(0,0,0,.5),
-    0 1px 3px rgba(0,0,0,.7),*/
-    0.06vw 0.06vw 0.12vw rgba(0,0,0,.6),
-    -0.06vw 0.06vw 0.12vw rgba(0,0,0,.6),
-    0.06vw -0.06vw 0.12vw rgba(0,0,0,.6),
-    -0.06vw -0.06vw 0.12vw rgba(0,0,0,.6);
-
   color: #ffa541;
-  font-size: calc( 6px + 1.5vw);
-  font-size: 5vw;
-  margin: 0 10vw;
+  font-family: 'Raleway Thin', sans-serif;
+  font-size: calc( 6px + 3.5vw);
+  /*font-size: 4vw;*/
+  margin-left: 5vw;
 }
 
 .navigation__controls--title {
-  color: #c0f1f7;
+  color: #8edfe5; /*#c0f1f7 is lighter*/
+  font-family: 'Raleway Thin', sans-serif;
+  font-size: calc( 6px + 2.2vw);
   line-height: 6vw;
-  margin-right: 1.5vw;
+  margin-right: 1vw;
   vertical-align: middle;
 }
 
@@ -343,10 +266,13 @@ ul, li {
   align-items: center;
   background: rgba( 20, 10, 40, 0.7 );
   border-radius: 3vw;
+  cursor: pointer;
   display: none;
   flex-direction: row;
-  height: 80%;
+  font-family: 'Raleway Thin', sans-serif;
+  height: 74%;
   justify-content: space-around;
+  margin-right: 5vw;
   padding: 0 2vw;
 }
 
@@ -360,17 +286,6 @@ ul, li {
 
 .state-favorites .navigation__compare {
   display: flex;
-}
-
-.navigation__favorites .navigation__controls-color {
-}
-
-.navigation__compare {
-  /*width: 40%;*/
-}
-
-.navigation__controls-colors {
-  /*width: 100%;*/
 }
 
 .navigation__controls-color {
@@ -399,62 +314,111 @@ ul, li {
 }
 
 @media screen and ( max-width: 800px ) {
-  .room__svg--zoom {
-    /*height: 150%;
-    width: 150%;*/
-  }
-}
-
-@media screen and ( max-width: 800px ) {
-  .room__svg--zoom {
-  }
-}
-
-@media screen and ( max-width: 800px ) {
-  .intro__wrapper,
-  .navigation__wrapper {
-    /*height: 10vw;*/
-  }
-
-  .navigation__controls--title {
-    /*font-size: 7vw;*/
-    /*line-height: 10vw;*/
-  }
-
-  .intro__wrapper {
-  }
-
-  .app-title {
-    /*font-size: 9vw;*/
-    margin: 0 5vw;
-  }
-
   .navigation__controls-color {
     height: 3vw;
     width: 3vw;
   }
 }
 
-@media screen and ( max-width: 800px ) {
-  .room__svg--zoom {
-  }
+
+
+/* ------------------ ############ Logo Mark ############ ------------------ */
+.logo-wrapper {
+  display: inline-block;
+  height: 4vw;
+  position: relative;
+  width: 4vw;
 }
 
-@media screen and ( max-width: 800px ) {
-  .room__svg--zoom {
-  }
+.logo-circle,
+.logo-circle::before,
+.logo-circle::after {
+    border-radius: 50%;
+    left: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
-@media screen and ( max-width: 800px ) and ( orientation: landscape ) {
-  .room__svg--zoom {
-    height: 150%;
-    width: 150%;
-  }
+.logo-circle::before,
+.logo-circle::after {
+    content: '';
+    display: block;
 }
 
+.logo-circle::after,
+.logo-circle::before {
+    background-color: #555;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
 
-/* ------------------ ############ wwwwwww ############ ------------------ */
+.logo-circle::after {
+    opacity: 0;
+    transition: opacity 0.5s, transform 1s;
+}
 
+:root{
+  --shadow-transition-delay: 0.7s;
+  --solid-transition-delay: 0.7s;
+}
+
+.logo-circle::before {
+    background-color: transparent;
+    box-shadow: 0.5vw 0.5vw 0.5vw rgb( 40, 40, 40 );
+    opacity: 0;
+    transition: opacity 2s, transform 2s;
+    transition-delay: var( --shadow-transition-delay ), var( --shadow-transition-delay );
+    transform: scale( 0.75 );
+}
+
+.state-app-primed .logo-circle::before {
+    opacity: 1;
+    transform: scale( 0.99 );
+}
+
+.state-app-primed .logo-circle::after {
+    opacity: 1;
+}
+
+.state-app-primed {}
+
+.state-app-primed {}
+
+.logo-circle-2 {
+    left: 4%;
+    height: 76%;
+    top: 4%;
+    width: 76%;
+}
+
+.logo-circle-2::after {
+    background-color: #95a0b2;
+}
+
+.logo-circle-2::before {
+    transition-delay: calc( 2 * var( --shadow-transition-delay ) ), calc( 2 * var( --shadow-transition-delay ) );
+}
+
+.logo-circle-3 {
+    color: #8edfe5;
+    background-color: currentColor;
+    left: 7%;
+    height: 52%;
+    top: 7%;
+    width: 52%;
+}
+
+.logo-circle-3::after {
+    background-color: #8edfe5;
+}
+
+.logo-circle-2::before {
+    transition-delay: calc( 3 * var( --shadow-transition-delay ) ), calc( 3 * var( --shadow-transition-delay ) );
+}
 
 
 /* ------------------ ############ wwwwwww ############ ------------------ */
@@ -494,13 +458,45 @@ ul, li {
 
 ------------------ ############ OLD STUFF ############ ------------------
 
+TO MAKE A MASK FROM MULTIPLE IMAGES
 linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0))
+.el {
+    mask-image: url(mask-image.png), linear-gradient(black, transparent);
+    mask-position: center, top left;
+    mask-repeat: no-repeat, no-repeat;
+}
+
+https://aclaes.com/responsive-background-images-with-srcset-and-sizes/
+
 
 @media screen and (min-width: 768px) {
 }
 
 @media screen and (min-width: 1024px) and (min-aspect-ratio: 1 / 1) {
 }
+
+
+.solid-overlay-2 {
+    background-color: #887766;
+}
+
+.solid-overlay-3 {
+    background-color: #feba66;
+}
+
+.solid-overlay-4 {
+    background-color: #234567;
+}
+
+
+  text shadow for title
+    0 6px 1px rgba(0,0,0,.5),
+    0 0 5px rgba(0,0,0,.5),
+    0 1px 3px rgba(0,0,0,.7),
+    0.06vw 0.06vw 0.12vw rgba(0,0,0,.6),
+    -0.06vw 0.06vw 0.12vw rgba(0,0,0,.6),
+    0.06vw -0.06vw 0.12vw rgba(0,0,0,.6),
+    -0.06vw -0.06vw 0.12vw rgba(0,0,0,.6);
 
 .scene-grid__scene:nth-child(n+5) {
   display: none; }

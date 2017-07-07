@@ -36,7 +36,6 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
 
 .room-wrapper {
     background-color: #abcdef;
-    display: none;
     height: 80%;
     left: 20%;
     position: absolute;
@@ -119,9 +118,9 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
     z-index: 1;
 }
 /*
-.circle,
-.circle::after,
-.circle::before {
+.logo-circle,
+.logo-circle::after,
+.logo-circle::before {
     background-color: #555;
     border-radius: 50%;
     display: block;
@@ -133,7 +132,7 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
     z-index: 2;
 }
 
-.circle::after {
+.logo-circle::after {
     background-color: #888;
     content: " ";
     font-size: 0;
@@ -144,7 +143,7 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
     z-index: 3;
 }
 
-.circle::before {
+.logo-circle::before {
     border-radius: 0;
     content: " ";
     font-size: 0;
@@ -160,9 +159,9 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
 
 
 
-.circle-2,
-.circle-2::after,
-.circle-2::before {
+.logo-circle-2,
+.logo-circle-2::after,
+.logo-circle-2::before {
     background-color: #6c9193;
     left: 27%;
     height: 38%;
@@ -171,14 +170,14 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
     z-index: 5;
 }
 
-.circle-2::after {
+.logo-circle-2::after {
     background-color: #9fc4c6;
     left: -10%;
     top: -10%;
     z-index: 6;
 }
 
-.circle-2::before {
+.logo-circle-2::before {
     height: 19%;
     left: -5.5%;
     top: 20%;
@@ -187,9 +186,9 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
 
 
 
-.circle-3,
-.circle-3::after,
-.circle-3::before {
+.logo-circle-3,
+.logo-circle-3::after,
+.logo-circle-3::before {
     background-color: #6c9193;
     left: 25%;
     height: 26%;
@@ -198,24 +197,27 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
     z-index: 8;
 }
 
-.circle-3::after {
+.logo-circle-3::after {
     background-color: #8edfe5;
     left: -20%;
     top: -20%;
     z-index: 9;
 }
 
-.circle-3::before {
+.logo-circle-3::before {
     height: 38%;
     left: -11%;
     top: 20%;
     z-index: 7;
 }*/
 
-.circle {
-    background-color: #555;
+.logo-circle,
+.logo-circle::before,
+.logo-circle::after {
+    /*color: #555;
+    background-color: currentColor;*/
     border-radius: 50%;
-    box-shadow: 0vw 0.1vw 0.2vw 0.1vw rgba(0,0,0,0.9);
+    /*box-shadow: 0vw 0.1vw 0.2vw 0.1vw rgba(0,0,0,0.9);*/
     left: 25%;
     height: 50%;
     position: absolute;
@@ -223,22 +225,116 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
     width: 50%;
 }
 
-.circle-2 {
-    background-color: #95a0b2;
-    box-shadow: 0.1vw 0.2vw 0.3vw 0.2vw rgba(0,0,0,0.6);
+.logo-circle::before,
+.logo-circle::after {
+    content: '';
+    display: block;
+}
+
+.logo-circle::after,
+.logo-circle::before {
+    background-color: #555;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.logo-circle::after {
+    opacity: 0;
+    transition: opacity 0.5s, transform 1s;
+}
+
+:root{
+  --shadow-transition-delay: 0.7s;
+  --solid-transition-delay: 0.7s;
+}
+
+.logo-circle::before {
+    background-color: transparent;
+    box-shadow: 0.5vw 0.5vw 0.5vw rgb( 40, 40, 40 );
+    /*content: '';
+    display: block;*/
+    /*height: 50%;*/
+    /*left: -25%;
+    top: -25%;*/
+    opacity: 0;
+    transition: opacity 2s, transform 2s;
+    transition-delay: var( --shadow-transition-delay ), var( --shadow-transition-delay );
+    transform: scale( 0.75 );
+    /*width: 50%;*/
+}
+
+.state-app-primed .logo-circle::before {
+    opacity: 1;
+    transform: scale( 0.99 );
+}
+
+.state-app-primed .logo-circle::after {
+    opacity: 1;
+}
+
+.state-app-primed {}
+
+.state-app-primed {}
+
+.logo-circle-2 {
+    /*color: #95a0b2;
+    background-color: currentColor;*/
+    /*box-shadow: 0.1vw 0.2vw 0.3vw 0.2vw rgba(0,0,0,0.6);*/
     left: 27%;
     height: 38%;
     top: 27%;
     width: 38%;
 }
 
-.circle-3 {
-    background-color: #8edfe5;
-    box-shadow: 0.1vw 0.2vw 0.3vw 0.2vw rgba(0,0,0,0.7);
+.logo-circle-2::after {
+    background-color: #95a0b2;
+}
+
+.logo-circle-2::before {
+    transition-delay: calc( 2 * var( --shadow-transition-delay ) ), calc( 2 * var( --shadow-transition-delay ) );
+}
+
+.logo-circle-3 {
+    color: #8edfe5;
+    background-color: currentColor;
+    /*box-shadow: 0.1vw 0.2vw 0.3vw 0.2vw rgba(0,0,0,0.7);*/
     left: 29%;
     height: 26%;
     top: 29%;
     width: 26%;
+}
+
+.logo-circle-3::after {
+    background-color: #8edfe5;
+}
+
+.logo-circle-2::before {
+    transition-delay: calc( 3 * var( --shadow-transition-delay ) ), calc( 3 * var( --shadow-transition-delay ) );
+}
+
+.room-wrapper {
+    background-color: #bada55;
+}
+
+.masked-circle {
+    height: 20vw;
+    overflow: hidden;
+    position: relative;
+    width: 20vw;
+}
+
+.masked-circle::after {
+    border: 10vw solid #fff;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 100%;
+    left: -50%;
+    position: absolute;
+    top: -50%;
+    width: 100%;
 }
 
 
@@ -248,18 +344,21 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
 <div id="perfect-app-wrapper" class="">
 
 <div class="wrapper logo-wrapper">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
-    <div class="circle circle-3"></div>
+    <div class="logo-circle logo-circle-1"></div>
+    <div class="logo-circle logo-circle-2"></div>
+    <div class="logo-circle logo-circle-3"></div>
 </div>
 
 <div class="wrapper room-wrapper">
-    <div class="room-image room-image-tinted"></div>
+    <div class="masked-circle"></div>
+    <div class="masked-circle"></div>
+    <div class="masked-circle"></div>
+    <!-- <div class="room-image room-image-tinted"></div>
     <div class="room-image room-image-natural"></div>
     <div class="room-image room-image-flat"></div>
     <div class="room-image room-image-text">
         House Atriedes
-    </div>
+    </div> -->
 </div>
 
 </div>
@@ -278,7 +377,7 @@ $(document).ready( function(){
 
 <!--
 0.1vw 0.1vw 0 0.2vw rgba(0,0,0,0.5)
-.circle-4 {
+.logo-circle-4 {
     background-color: rgba(0,0,0,0.5);
     box-shadow: none;
     left: 39%;
@@ -286,7 +385,7 @@ $(document).ready( function(){
     top: 39%;
     width: 33%;
 }
-<div class="circle circle-4"></div>
+<div class="logo-circle logo-circle-4"></div>
 text-shadow: 0 0 10px rgba(0,0,0,0.6);
  -->
 </body>
