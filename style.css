@@ -68,43 +68,56 @@ ul, li {
     z-index: 1;
 }
 
+/* NEXT STEPS
+TO TEST:
+save large, low quality JPG versions of images, use sizes: 200vw to request large and have browsers shrink them;
+
+assign "site blue" and background colors via CSS vars
+*/
+
 .room__wrapper {
   background-color: #abcdef;
+  height: calc( 50% - 2px );
+  z-index: 2;
+}
+
+.room-b.room__wrapper {
+  background-color: #887766;
 }
 
 .room-image-natural,
 .room-image-tinted {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .room-image-tinted {
   mix-blend-mode: multiply;
+  will-change: opacity;
+  z-index: 2;
 }
 
-.room-image-natural {
-    -webkit-mask-image: url( './images/room-sofa-mask.png' );
-    -webkit-mask-size: cover;
-    -webkit-mask-position: 50% 50%;
-    mask-size: cover;
-}
-
-.room__wrapper {
-    height: calc( 50% - 2px );
-    z-index: 2;
-}
-
-.room__wrapper--lower {
+.room-image-tinted--lower {
+  opacity: 0;
+  transition: opacity 1s;
   z-index: 1;
 }
 
-.room-b {
-    top: calc( 50% + 2px );
+.room-image-natural {
+  -webkit-mask-image: url( './images/room-sofa-mask.png' );
+  -webkit-mask-size: cover;
+  -webkit-mask-position: 50% 50%;
+  mask-size: cover;
+  z-index: 3;
 }
 
-.room__image--furniture {
+.room-b {
+  top: calc( 50% + 2px );
+}
+
+/*.room__image--furniture {
     opacity: 1;
     transition: opacity 1s;
-}
+}*/
 
 /* ------------------ ############ COLOR DETAILS ############ ------------------ */
 
@@ -134,10 +147,6 @@ ul, li {
   font-family: 'Alfa Slab One', sans-serif;
 }
 
-/*.solid-overlay {
-    background-color: #abcdef;
-}*/
-
 .solid-overlay--top {
   background-color: #abcdef;
   opacity: 0;
@@ -145,70 +154,9 @@ ul, li {
   will-change: opacity;
 }
 
-/* ------------------ ############ PRIMING ANIMATED ELEMENTS ############ ------------------ */
-.room__svg--zoom {
-  /*height: 200%;*/
-  transition: transform 1s;
-  /*width: 200%;*/
-  will-change: transform;
+.room-b .solid-overlay--top {
+  background-color: #887766;
 }
-
-.state-app-primed .room__svg--zoom {
-}
-
-.state-zoom-room .room__svg--zoom {
-  transform: var(--scale-zoom-factor-s);
-  /*transform: scale( 1.2 ) translateX( -25% );*/
-}
-
-.room__image--zoom {
-  /*height: 150%;
-  width: 150%;*/
-}
-
-/*state-lower-room- state-zoom-room- state-detail- state-transition*/
-
-/* ------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
-.state-zoom-room {}
-
-/* ------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
-.state-lower-room .room__wrapper--lower {
-  z-index: 3;
-}
-
-/* ------------------ ############ APP STATE - ROOM DETAIL ############ ------------------ */
-.state-detail .solid-overlay--top {
-    opacity: 1;
-}
-
-.state-detail .room__image--furniture {
-    opacity: 0;
-}
-
-.state-detail .color-info {
-  font-size: 17vw;
-  letter-spacing: 0;
-  opacity: 1;
-}
-
-.state-detail .solid-overlay {
-    opacity: 1;
-}
-
-.state-transition .solid-overlay--top {
-    transition: opacity 0.5s;
-    transition-delay: 0.5s;
-}
-
-.state-transition .color-name {
-    transition-delay: 0s;
-}
-
-.state-transition .room__image--furniture {
-    transition: opacity 1s;
-    transition-delay: 1s;
-}
-
 
 /* ------------------ ############ App Intro ############ ------------------ */
 .intro__wrapper,
@@ -242,7 +190,7 @@ ul, li {
   color: #fff;
   font-family: 'Raleway Thin', sans-serif;
   justify-content: space-between;
-  z-index: 4;
+  z-index: 3;
 }
 
 .app-title {
@@ -295,6 +243,70 @@ ul, li {
   width: 2vw;
 }
 
+/* ------------------ ############ PRIMING ANIMATED ELEMENTS ############ ------------------ */
+.room__svg--zoom {
+  /*height: 200%;*/
+  transition: transform 1s;
+  /*width: 200%;*/
+  will-change: transform;
+}
+
+.state-app-primed .room__svg--zoom {
+}
+
+.state-zoom-room .room__svg--zoom {
+  transform: var(--scale-zoom-factor-s);
+  /*transform: scale( 1.2 ) translateX( -25% );*/
+}
+
+.room__image--zoom {
+  /*height: 150%;
+  width: 150%;*/
+}
+
+/*state-lower-room- state-zoom-room- state-detail- state-transition*/
+
+/* ------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
+.state-zoom-room {}
+
+/* ------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
+.state-lower-room .room-image-tinted--lower {
+  opacity: 1;
+  z-index: 3;
+}
+
+/* ------------------ ############ APP STATE - ROOM DETAIL ############ ------------------ */
+.state-detail .solid-overlay--top {
+  opacity: 1;
+}
+
+.state-detail .room__image--furniture {
+  opacity: 0;
+}
+
+.state-detail .color-info {
+  font-size: 17vw;
+  letter-spacing: 0;
+  opacity: 1;
+}
+
+.state-detail .solid-overlay {
+  opacity: 1;
+}
+
+.state-transition .solid-overlay--top {
+  transition: opacity 0.5s;
+  transition-delay: 0.5s;
+}
+
+.state-transition .color-name {
+  transition-delay: 0s;
+}
+
+.state-transition .room__image--furniture {
+  transition: opacity 1s;
+  transition-delay: 1s;
+}
 
 /* ------------------ ############ VIEWPORT ORIENTATION ADJUSTMENTS ############ ------------------ */
 @media screen and ( orientation: landscape ) { /* landscape viewport, vertical rooms */
