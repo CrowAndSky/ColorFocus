@@ -19,6 +19,12 @@ chipStyleSheet = document.styleSheets[0],
 
 191, 210, 201
 110, 194, 196  SW 6766 Mariner
+
+body.style.setProperty('--foo-bar', newValue);
+var fooBar = bodyStyles.getPropertyValue('--foo-bar');
+
+
+will-change: transform, opacity;
 */
 
 /*--------------------- ### App State ### ---------------------*/
@@ -93,13 +99,14 @@ state-lower-room
 
 $appWrapper.click( function(){
     if ( !inDetailView ) {
-        $appWrapper.addClass( 'state-detail' );
+        $appWrapper.addClass( 'state-lower-room' );
         window.setTimeout( function(){
             $appWrapper.addClass( 'state-transition' );
         }, 2050);
         inDetailView = true;
     } else {
-        $appWrapper.removeClass( 'state-detail' );
+        $appWrapper.removeClass( 'state-lower-room' );
+        //$appWrapper.removeClass( 'state-detail' );
         window.setTimeout( function(){
             $appWrapper.removeClass( 'state-transition' );
         }, 2050);
