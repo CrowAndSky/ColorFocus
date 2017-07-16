@@ -2,10 +2,19 @@
 TO TEST:
 save large, low quality JPG versions of images, use sizes: 200vw to request large and have browsers shrink them;
 
-Reduce size of split between panes
+Reduce size of split between panes to be a function of vw
 
 SMALL VIEWPORT ADJUSTMENTS:
 change font to regular weight raleway
+
+Change height of nav bar to be a function of vw multiplied by proportion of vw/bh\
+
+
+Deep Forest Brown 393437 R: 57 G: 52 B: 55
+Brandywine R: 165 G: 108 B: 74 Hex Value: #a56c4a
+Emotional R: 198 G: 95 B: 71  Hex Value: #c65f47
+Gale Force R: 53 G: 69 B: 78 Hex Value: #35454e
+Stardew R: 166 G: 178 B: 181  Hex Value: #a6b2b5
 */
 
 /* ------------------ ############ RESETS ############ ------------------ */
@@ -61,14 +70,16 @@ ul, li {
   --blue-bright: #8edfe5;
   --blue-gray: #95a0b2;
   --gray-dark: #555;
+  --color-title: #ffa541;
+  --blue-nav: #8edfe5; /*#c0f1f7 is lighter*/
 
   --shadow-transition-delay: 0.7s;
   --solid-transition-delay: 0.7s;
 
-  --room-color-left: #abcdef;
-  --room-color-right: #887766;
-  --room-color-left-bottom: #feba66;
-  --room-color-right-bottom: #234567;
+  --room-color-left: #c65f47;
+  --room-color-right: #a56c4a;
+  --room-color-left-bottom: #35454e;
+  --room-color-right-bottom: #393437;
 
   --scale-zoom-factor: 1.8;
   --scale-zoom-factor-s: scale(calc( 2 * var(--scale-zoom-factor) ));
@@ -92,7 +103,7 @@ ul, li {
 
 .room__wrapper {
   background-color: var( --room-color-left );
-  height: calc( 50% - 2px );
+  height: calc( 50% - 1px );
   opacity: 1;
   transition: opacity 1s;
   will-change: opacity;
@@ -127,7 +138,7 @@ ul, li {
 }
 
 .room-b {
-  top: calc( 50% + 2px );
+  top: calc( 50% + 1px );
 }
 
 /*.room__image--furniture {
@@ -220,7 +231,7 @@ ul, li {
 }
 
 .app-title {
-  color: #ffa541;
+  color: var( --color-title );
   font-family: 'Raleway Thin', sans-serif;
   font-size: calc( 6px + 3.5vw);
   /*font-size: 4vw;*/
@@ -228,7 +239,7 @@ ul, li {
 }
 
 .navigation__controls--title {
-  color: #8edfe5; /*#c0f1f7 is lighter*/
+  color: var( --blue-nav );
   font-family: 'Raleway Thin', sans-serif;
   font-size: calc( 6px + 2.2vw);
   line-height: 6vw;
@@ -340,11 +351,11 @@ ul, li {
 @media screen and ( orientation: landscape ) { /* landscape viewport, vertical rooms */
     .room__wrapper {
         height: 100%;
-        width: calc( 50% - 2px );
+        width: calc( 50% - 1px );
     }
 
     .room-b {
-        left: calc( 50% + 2px );
+        left: calc( 50% + 1px );
         top: 0;
     }
 
@@ -408,7 +419,7 @@ ul, li {
 
 .logo-circle::before {
     background-color: transparent;
-    box-shadow: 0.5vw 0.5vw 0.5vw rgb( 40, 40, 40 );
+    box-shadow: 0.2vw 0.2vw 0.2vw  rgba( 0, 0, 0, 0.75 );  /*rgb( 40, 40, 40 )*/
     opacity: 0;
     transition: opacity 2s, transform 2s;
     transition-delay: var( --shadow-transition-delay ), var( --shadow-transition-delay );
