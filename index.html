@@ -8,22 +8,42 @@
 
 <body>
 
-<div id="perfect-app-wrapper" class="state-lower-room- state-color-preference state-zoom-room- state-detail- state-transition">
+<div id="perfect-app-wrapper" class="state-intro-hue state-lower-room- state-intro state-color-preference state-zoom-room- state-detail- state-transition">
 
 <div class="intro__wrapper">
-	<div class="intro__message">
+	<div class="intro-pane intro__message">
 		This is going to be fun!
 	</div>
 
-	<div class="intro__hue">
-		Which color should we begin with?
+	<div class="intro-pane intro__hue">
+		<div class="intro-pane__header">
+			Which color should we begin with?
+		</div>
+		<div class="intro-pane__content">
+			<ul class="intro-pane-colors">
+				<li class="intro-pane-color intro-color--color-1"></li>
+				<li class="intro-pane-color intro-color--color-2"></li>
+				<li class="intro-pane-color intro-color--color-3"></li>
+				<li class="intro-pane-color intro-color--color-4"></li>
+				<li class="intro-pane-color intro-color--color-5"></li>
+			</ul>
+			<ul class="intro-pane-colors intro-pane-colors__mask">
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+			</ul>
+		</div>
+		<div class="intro-pane__footer">
+		</div>
 	</div>
 
-	<div class="intro__luminosity">
+	<div class="intro-pane intro__luminosity">
 		How dark should we make our colors?
 	</div>
 
-	<div class="intro__saturation">
+	<div class="intro-pane intro__saturation">
 		How much color should we begin with?
 	</div>
 </div>

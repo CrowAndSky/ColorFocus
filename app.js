@@ -94,29 +94,38 @@ state-transition
 state-favorites
 state-detail
 state-lower-room
+state-intro
 .state-app-primed
 */
 
-$appWrapper.click( function(){
-    if ( !inDetailView ) {
-        $appWrapper.addClass( 'state-lower-room' );
-        window.setTimeout( function(){
-            $appWrapper.addClass( 'state-transition' );
-        }, 2050);
-        inDetailView = true;
-    } else {
-        $appWrapper.removeClass( 'state-lower-room' );
-        //$appWrapper.removeClass( 'state-detail' );
-        window.setTimeout( function(){
-            $appWrapper.removeClass( 'state-transition' );
-        }, 2050);
-        inDetailView = false;
-    }
+// $appWrapper.click( function(){
+//     if ( !inDetailView ) {
+//         $appWrapper.addClass( 'state-lower-room' );
+//         window.setTimeout( function(){
+//             $appWrapper.addClass( 'state-transition' );
+//         }, 2050);
+//         inDetailView = true;
+//     } else {
+//         $appWrapper.removeClass( 'state-lower-room' );
+//         //$appWrapper.removeClass( 'state-detail' );
+//         window.setTimeout( function(){
+//             $appWrapper.removeClass( 'state-transition' );
+//         }, 2050);
+//         inDetailView = false;
+//     }
+// });
+
+$( '.app-title' ).click( function(){
+    $appWrapper.toggleClass( 'state-lower-room' );
+});
+
+$( '.intro-pane-color-mask' ).click( function(){
+    $appWrapper.toggleClass( 'state-test1' );
 });
 
 window.setTimeout( function(){
     $appWrapper.addClass( 'state-app-primed' );
-}, 1000);
+}, 100);
 
 $( window ).resize(function() {
   handleResize();

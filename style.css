@@ -92,6 +92,7 @@ ul, li {
 .room-image,
 .color__details,
 .intro__wrapper,
+.intro-pane,
 .navigation__wrapper {
     height: 100%;
     left: 0;
@@ -157,7 +158,6 @@ ul, li {
 }
 
 /* ------------------ ############ COLOR DETAILS ############ ------------------ */
-
 .color-info {
   background-color: red;
   background-image: url( './images/room-sofa.jpg' );
@@ -205,16 +205,114 @@ ul, li {
   min-height: 30px;
 }
 
+.intro__wrapper,
+.intro-pane {
+  opacity: 0;
+  transition: opacity 1s;
+  will-change: opacity;
+}
+
 .intro__wrapper {
   background-color: #eee;
-  display: none;
+  height: 100%;
   padding: calc( 3px + 1% );
-  z-index: 4;
+  z-index: -1;
+}
+
+.intro-pane,
+.intro-pane__content,
+.intro-pane-colors,
+.intro-pane__header,
+.intro-pane__footer {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/*.intro-pane__content,
+.intro-pane__header,
+.intro-pane__footer {
+  background-color: #fff;
+}*/
+
+.intro-pane__header {}
+
+.intro-pane__content {
+  background-color: #ddd;
+  height: 30vw;
+  overflow: hidden;
+}
+
+.intro-pane__footer {
+  background-color: #bada55;
+}
+
+.intro-pane-colors {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.intro-pane-color,
+.intro-pane-mask {
+  display: block;
+  float: left;
+  height: 18vw;
+  position: relative;
+  width: 18vw;
+}
+
+.intro-pane-mask {
+  overflow: hidden;
+}
+
+.intro-pane-color::after,
+.intro-pane-mask::after {
+  box-sizing: content-box;
+  content: '';
+  display: block;
+  height: 76%;
+  left: -38%;
+  position: absolute;
+  top: -38%;
+  width: 76%;
+}
+
+.intro-pane-color::after {
+  transition: transform 1s;
+  will-change: transform;
+}
+
+.intro-pane-mask::after {
+  border-radius: 50%;
+  box-sizing: content-box;
+  height: 76%;
+  left: -38%;
+  top: -38%;
+  width: 76%;
+}
+
+.intro-pane-color--color-1::after {
+  background-color: magenta;
+}
+
+.state-test1 .intro-pane-color--color-1::after {
+  transform: scale( 5 );
+  transform-origin: center;
 }
 
 .intro__message{}
 
-.intro__hue{}
+.intro__hue {
+  background-color: #acf;
+}
+
+.state-intro-hue .intro__hue {
+  opacity: 1;
+}
 
 .intro__luminosity{}
 
@@ -301,7 +399,7 @@ ul, li {
   width: 150%;*/
 }
 
-/*state-lower-room- state-zoom-room- state-detail- state-transition*/
+/*state-lower-room- state-zoom-room- state-detail- state-transition state-color-preference */
 
 /* ------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
 .state-lower-room .room__wrapper:not( .room__wrapper--lower ) {
@@ -312,7 +410,19 @@ ul, li {
   opacity: 1;
 }*/
 
-/* ------------------ ############ APP STATE - MOVIE ############ ------------------ */
+/* ------------------ ############ APP STATE - INTRO ############ ------------------ */
+.state-intro .intro__wrapper {
+  opacity: 1;
+  z-index: 5;
+}
+
+/* ------------------ ############ APP STATE - COLOR PREFERENCE ############ ------------------ */
+.state-color-preference {
+  opacity: 1;
+  z-index: 5;
+}
+
+
 
 /* ------------------ ############ APP STATE - ROOM DETAIL ############ ------------------ */
 .state-detail .solid-overlay--top {
