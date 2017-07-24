@@ -69,9 +69,14 @@ ul, li {
 :root{
   --blue-bright: #8edfe5;
   --blue-gray: #95a0b2;
-  --gray-dark: #555;
-  --color-title: #ffa541;
   --blue-nav: #8edfe5; /*#c0f1f7 is lighter*/
+
+  --gray-dark: #555;
+
+  --color-background-dark: #393437;
+  --color-background-dark-rgba: rgba( 57, 52, 55, .5 );
+  --color-title: #c65f47;  /*#ffa541*/
+
 
   --shadow-transition-delay: 0.7s;
   --solid-transition-delay: 0.7s;
@@ -230,77 +235,112 @@ ul, li {
   flex: 1 1 0;
   flex-direction: column;
   justify-content: center;
-}
-
-/*.intro-pane__content,
-.intro-pane__header,
-.intro-pane__footer {
-  background-color: #fff;
-}*/
-
-.intro-pane__header {}
-
-.intro-pane__content {
-  background-color: #ddd;
-  height: 30vw;
-  overflow: hidden;
-}
-
-.intro-pane__footer {
-  background-color: #bada55;
-}
-
-.intro-pane-colors {
-  height: 100%;
-  position: absolute;
   width: 100%;
 }
 
-.intro-pane-color,
-.intro-pane-mask {
-  display: block;
-  float: left;
-  height: 18vw;
-  position: relative;
-  width: 18vw;
+.intro-pane__header {
+  font-size: 5vw;
+  justify-content: flex-end;
+  padding-bottom: 3vw;
 }
 
-.intro-pane-mask {
+.intro-pane__content {
+  height: 30vw;
+  flex-direction: row;
+  justify-content: space-around;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.intro-pane__footer {}
+
+
+:root{
+  --intro-color-dot-size: 18vw;
+  --intro-color-dot-border-size: 7vw;
+}
+
+.intro-pane-colors {
+  background-color: #fff;
+  flex-direction: row;
+  overflow: hidden;
+  position: absolute;
+  width: 90vw;
+}
+
+.intro-pane-colors__mask {
+  background-color: transparent;
+}
+
+.intro-pane-color,
+.intro-pane-color-mask {
+  display: block;
+  height: var( --intro-color-dot-size );
+  position: relative;
+  width: var( --intro-color-dot-size );
+}
+
+.intro-pane-color {
+  background-color: #cde;
+}
+
+.intro-pane-color-mask {
   overflow: hidden;
 }
 
 .intro-pane-color::after,
-.intro-pane-mask::after {
-  box-sizing: content-box;
+.intro-pane-color-mask::after {
   content: '';
   display: block;
-  height: 76%;
-  left: -38%;
+  height: 100%;
+  /*left: -38%;*/
   position: absolute;
-  top: -38%;
-  width: 76%;
+  /*top: -38%;*/
+  width: 100%;
 }
 
 .intro-pane-color::after {
-  transition: transform 1s;
+  transform: scale( 1 );
+  transition: transform 3s;
   will-change: transform;
 }
 
-.intro-pane-mask::after {
+.intro-pane-color-mask::after {
+  border: var( --intro-color-dot-border-size ) solid #00f;
   border-radius: 50%;
-  box-sizing: content-box;
-  height: 76%;
-  left: -38%;
-  top: -38%;
-  width: 76%;
+  box-sizing: border-box;
+  height: calc( var( --intro-color-dot-size ) + ( var( --intro-color-dot-border-size ) * 2 ) );
+  /*left: calc( ( var( --intro-color-dot-size ) + var( --intro-color-dot-border-size ) ) / ( 2 * var( --intro-color-dot-size ) ) * -1 );*/
+  left: calc( -1 * var( --intro-color-dot-border-size ) );
+  /*top: calc( ( var( --intro-color-dot-size ) + var( --intro-color-dot-border-size ) ) / ( 2 * var( --intro-color-dot-size ) ) * -1 );*/
+      /*left: -25%;*/
+    top: calc( -1 * var( --intro-color-dot-border-size ) );
+  width: calc( var( --intro-color-dot-size ) + ( var( --intro-color-dot-border-size ) * 2 ) );
 }
 
-.intro-pane-color--color-1::after {
-  background-color: magenta;
+/*.intro-color--color-2 {
+  background-color: var( --color-intro-v2 );
 }
 
-.state-test1 .intro-pane-color--color-1::after {
-  transform: scale( 5 );
+.intro-color--color-3 {
+  background-color: var( --color-intro-v3 );
+}
+
+.intro-color--color-4 {
+  background-color: var( --color-intro-v4 );
+}*/
+
+.intro-color--color-5 {
+  background-color: rgba( 30, 144, 255, 255 );
+}
+
+.intro-color--color-5::after {
+  background: radial-gradient( rgba( 30, 144, 255, 255 ), rgba( 30, 144, 255, 255 ) 35%, rgba( 30, 144, 255, 0 ) 70%);
+}
+
+.state-test1 .intro-color--color-5::after {
+  transform: scale( 16 );
   transform-origin: center;
 }
 
@@ -314,14 +354,18 @@ ul, li {
   opacity: 1;
 }
 
-.intro__luminosity{}
+.intro__luminosity{
+  display: none;
+}
 
-.intro__saturation{}
+.intro__saturation{
+  display: none;
+}
 
 
 /* ------------------ ############ Navigation Controls ############ ------------------ */
 .navigation__wrapper {
-  background-color: rgba( 0, 0, 0, .5 );
+  background-color: var( --color-background-dark-rgba );
   color: #fff;
   font-family: 'Raleway Thin', sans-serif;
   justify-content: space-between;
@@ -582,7 +626,12 @@ ul, li {
 }
 
 
-/* ------------------ ############ wwwwwww ############ ------------------ */
+/* ------------------ ############ UTILITY CLASSES ############ ------------------ */
+.background-white {
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+}
 
 
 

@@ -338,28 +338,82 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
 }
 
 
+/*img:hover {
+  clip-path: polygon(0px 208px, 146.5px 207px, 147px 141.2px, ...);
+  animate: star 3s;
+}
+
+@keyframes star {
+  0% {
+    clip-path: polygon(0px 208px, 146.5px 207px, 147px 141.2px, ...);
+  },
+  100% {
+    clip-path: polygon(0px 208px, 146.5px 207px, 147px 141.2px, ...);
+  }
+
+
+img:hover {
+  clip-path: polygon(0px 208px, 146.5px 207px, 147px 141.2px, ...);
+  animate: star 3s;
+}
+
+@keyframes star {
+  0% {
+    clip-path: polygon(0px 208px, 146.5px 207px, 147px 141.2px, ...);
+  },
+  100% {
+    clip-path: polygon(0px 208px, 146.5px 207px, 147px 141.2px, ...);
+  }
+}
+
+/*  M0 0 C4 32 0 52 42 64 L54 64 C34 32 2 42 14 0 Z    */
+}*/
+
+
+.clipped {
+    background-color: #bada55;
+    clip-path: url(#clipping-path-1);
+    height: 60vw;
+    width: 60vw;
+}
+
+/* M0 0 C4 32 0 52 42 64 L54 64 C34 32 2 42 14 0 Z */
+
 </style>
 
 <body>
+
+<svg height="0" viewBox="0 0 10 10">
+  <clipPath id="clipping-path-1" >
+    <path d="M0 0 C4 32 0 52 42 64 L54 64 C34 32 2 42 14 0 Z" fill="#999999" />
+    <!-- <circle cx="0.25" cy="0.25" r="0.25" id="circle"/>
+    <rect x="0.5" y="0.2" width="0.5" height="0.8"/> -->
+  </clipPath>
+</svg>
+
+<!-- clipPathUnits="objectBoundingBox" -->
+
 <div id="perfect-app-wrapper" class="">
 
-<div class="wrapper logo-wrapper">
+<div class="clipped"></div>
+
+<!-- <div class="wrapper logo-wrapper">
     <div class="logo-circle logo-circle-1"></div>
     <div class="logo-circle logo-circle-2"></div>
     <div class="logo-circle logo-circle-3"></div>
-</div>
+</div> -->
 
-<div class="wrapper room-wrapper">
+<!-- <div class="wrapper room-wrapper">
     <div class="masked-circle"></div>
     <div class="masked-circle"></div>
     <div class="masked-circle"></div>
-    <!-- <div class="room-image room-image-tinted"></div>
+    <div class="room-image room-image-tinted"></div>
     <div class="room-image room-image-natural"></div>
     <div class="room-image room-image-flat"></div>
     <div class="room-image room-image-text">
         House Atriedes
-    </div> -->
-</div>
+    </div>
+</div> -->
 
 </div>
 
