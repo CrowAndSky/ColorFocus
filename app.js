@@ -124,7 +124,7 @@ $( '.intro-pane-color-mask' ).click( function(){
 });
 
 window.setTimeout( function(){
-    $appWrapper.addClass( 'state-app-primed state-test1' );
+    $appWrapper.addClass( 'state-app-primed state-detail' );
 }, 100);
 
 $( window ).resize(function() {

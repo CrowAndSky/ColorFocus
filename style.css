@@ -2,8 +2,6 @@
 TO TEST:
 save large, low quality JPG versions of images, use sizes: 200vw to request large and have browsers shrink them;
 
-Reduce size of split between panes to be a function of vw
-
 SMALL VIEWPORT ADJUSTMENTS:
 change font to regular weight raleway
 
@@ -75,7 +73,8 @@ ul, li {
 
   --color-background-dark: #393437;
   --color-background-dark-rgba: rgba( 57, 52, 55, .5 );
-  --color-title: #c65f47;  /*#ffa541*/
+  --color-title: #ffa541;  /*#c65f47*/
+  --color-white: #fff;
 
 
   --shadow-transition-delay: 0.7s;
@@ -98,6 +97,7 @@ ul, li {
 .color__details,
 .intro__wrapper,
 .intro-pane,
+.solid-overlay,
 .navigation__wrapper {
     height: 100%;
     left: 0;
@@ -262,7 +262,8 @@ ul, li {
 }
 
 .intro-pane-colors {
-  background-color: #fff;
+  background-color: var( --color-white );
+  border: 2px solid var( --color-white );
   flex-direction: row;
   overflow: hidden;
   position: absolute;
@@ -307,16 +308,16 @@ ul, li {
 }
 
 .intro-pane-color-mask::after {
-  border: var( --intro-color-dot-border-size ) solid #00f;
+  border: var( --intro-color-dot-border-size ) solid var( --color-white );
   border-radius: 50%;
   box-sizing: border-box;
-  height: calc( var( --intro-color-dot-size ) + ( var( --intro-color-dot-border-size ) * 2 ) );
+  height: calc( var( --intro-color-dot-size ) + ( var( --intro-color-dot-border-size ) * 1.5 ) );
   /*left: calc( ( var( --intro-color-dot-size ) + var( --intro-color-dot-border-size ) ) / ( 2 * var( --intro-color-dot-size ) ) * -1 );*/
-  left: calc( -1 * var( --intro-color-dot-border-size ) );
+  left: calc( -.75 * var( --intro-color-dot-border-size ) );
   /*top: calc( ( var( --intro-color-dot-size ) + var( --intro-color-dot-border-size ) ) / ( 2 * var( --intro-color-dot-size ) ) * -1 );*/
       /*left: -25%;*/
-    top: calc( -1 * var( --intro-color-dot-border-size ) );
-  width: calc( var( --intro-color-dot-size ) + ( var( --intro-color-dot-border-size ) * 2 ) );
+    top: calc( -.75 * var( --intro-color-dot-border-size ) );
+  width: calc( var( --intro-color-dot-size ) + ( var( --intro-color-dot-border-size ) * 1.5 ) );
 }
 
 /*.intro-color--color-2 {
@@ -481,6 +482,7 @@ ul, li {
   font-size: 17vw;
   letter-spacing: 0;
   opacity: 1;
+  z-index: 9;
 }
 
 .state-detail .solid-overlay {
