@@ -8,6 +8,10 @@ change font to regular weight raleway
 Change height of nav bar to be a function of vw multiplied by proportion of vw/bh\
 
 
+TO DO:
+;
+
+
 Deep Forest Brown 393437 R: 57 G: 52 B: 55
 Brandywine R: 165 G: 108 B: 74 Hex Value: #a56c4a
 Emotional R: 198 G: 95 B: 71  Hex Value: #c65f47
@@ -59,7 +63,6 @@ ul, li {
   height: 100%;
   left: 0;
   overflow: hidden;
-  position: relative;
   top: 0;
   width: 100vw;
 }
@@ -89,7 +92,17 @@ ul, li {
   --scale-zoom-factor-s: scale(calc( 2 * var(--scale-zoom-factor) ));
 }
 
-/* ------------------ ############ ROOM SCENE ############ ------------------ */
+
+
+/* 
+    ......`                                    .-:-`                                                                                                  
+    yMdhhdNh`                                `dNysdNs                                                                                                 
+    yMo.-:MN. +ddddo` :hdhds. hdyhmhyhmh.    .NNs+/+: `odhdh/ /hddh/ :mhydms `sdhdy.                                                                  
+    yMdhNMh- +My``oMs-Nm.`:Nd`mM:`hM+`sM+     .+sydNh`+Ms``+:-MN++mM-/Mh``mM`yMh+sMh                                                                  
+    yM/ :mNs`/Mh..sMo-Nm-.+Mh`mN. hM: oM+    +Nh-.:NM-+My.-yo-NN+/yy./Ms  mM`sMh/oy+                                                                  
+    oh:  `yh+ /yhhy/` -yhyho` yh` oh- /h:     /yhhhy: `+hhhy: :yyyy/ :h+  yh``ohyhs.                                                                  
+                ``      ``                      ```      ``     ``              ``    
+------------------ ############ 111 ROOM SCENE ############ ------------------ */
 .room__svg,
 .svg-defs-wrapper,
 .room__wrapper,
@@ -147,11 +160,6 @@ ul, li {
   top: calc( 50% + 1px );
 }
 
-/*.room__image--furniture {
-    opacity: 1;
-    transition: opacity 1s;
-}*/
-
 
 /* ------------------ ############ LOWER ROOM ############ ------------------ */
 .room__wrapper--lower {
@@ -159,6 +167,36 @@ ul, li {
 }
 
 .room__wrapper--lower.room-b {
+  background-color: var( --room-color-right-bottom );
+}
+
+/* 
+       `.`            ``                   `````                        ``  `                                                                         
+    `odhhdh+          hh`                 `ddhhhdo.         /s`        .ho /m+                                                                        
+    yMo.`-ys. -osss: `mN` :osso- `sosy-   `Mm...oMh `+sss: oNNs`-osss/ .ho +Mo                                                                        
+   .NN.   `  :Nd::hN+`mN`/Nd::hN/.MN//`   `Mm`  .MM`hMs/dN/:NN:`/y+oNM--Mh +Mo                                                                        
+   `hMo``.yy.+My``+Ms`mN`oMo``sMs.Mm      `Mm.``+Md`mMsoyh/`mm``yms+mM--Mh +Mo                                                                        
+    .sdhhdd+ `sdhydy. dd`.ydyyds..mh      `mmhhhdy. /dhsdy.`hmh-hmssdm:.my /m+                                                                        
+      `...`    `..`   ..   `..`   ..       .....`    `...   `..` ..``.` .` `.`     
+
+------------------ ############ SOLID COLOR OVERLAYS ############ ------------------ */
+.solid-overlay {
+  background-color: var( --room-color-left );
+  opacity: 0;
+  transition: opacity 2s;
+  will-change: opacity;
+  z-index: 1;
+}
+
+.room-b .solid-overlay {
+  background-color: var( --room-color-right );
+}
+
+.room__wrapper--lower .solid-overlay {
+  background-color: var( --room-color-left-bottom );
+}
+
+.room__wrapper--lower.room-b .solid-overlay {
   background-color: var( --room-color-right-bottom );
 }
 
@@ -173,9 +211,10 @@ ul, li {
   align-items: center;
   display: flex;
   filter: brightness( 0.75 );
+  flex-direction: column;
   font-size: 30vw;
   letter-spacing: -8vw;
-  line-height: 18vw;
+  line-height: 16vw;
   justify-content: center;
   opacity: 0;
   text-align: center;
@@ -185,22 +224,27 @@ ul, li {
   will-change: font-size, letter-spacing, opacity;
 }
 
+.color-number {
+  font-family: 'Raleway Thin';
+  font-size: 10vw;
+  letter-spacing: -1vw;
+}
+
 .color-name {
   font-family: 'Alfa Slab One', sans-serif;
+  letter-spacing: -0.2vw;
 }
 
-.solid-overlay--top {
-  background-color: var( --room-color-left );
-  opacity: 0;
-  transition: opacity 2s;
-  will-change: opacity;
-}
+/* 
+      `++.                       `+/          `-                                                                                                      
+     `yMMm`   ```..`  ```..`     .MN  ```..` .Nd. ```.` ``..`                                                                                         
+     +My+Mh  -MNhyNm-`mMdymN+    .MN /MmyhMd`hMNy`hMmdo:dNydNs`                                                                                       
+    :MMsoNMo -Mm  /My`mN. .Nm`   .MN /My  mN.`Md  hM:  dM:  yM/                                                                                       
+   .mN+///mM/-MN+:hM+`mMs:sMy    .MN /Ms  mN.`Mm/`hM-  sMy:+Nm.                                                                                       
+   :o/    -o+-Mm+so: `mN+oo/     `o+ -o:  +o` /oo./o.   -+so/`                                                                                        
+             .dy      hh`                                         
 
-.room-b .solid-overlay--top {
-  background-color: var( --room-color-right );
-}
-
-/* ------------------ ############ App Intro ############ ------------------ */
+------------------ ############ App Intro ############ ------------------ */
 .intro__wrapper,
 .navigation__wrapper {
   align-items: center;
@@ -312,32 +356,9 @@ ul, li {
   border-radius: 50%;
   box-sizing: border-box;
   height: calc( var( --intro-color-dot-size ) + ( var( --intro-color-dot-border-size ) * 1.5 ) );
-  /*left: calc( ( var( --intro-color-dot-size ) + var( --intro-color-dot-border-size ) ) / ( 2 * var( --intro-color-dot-size ) ) * -1 );*/
   left: calc( -.75 * var( --intro-color-dot-border-size ) );
-  /*top: calc( ( var( --intro-color-dot-size ) + var( --intro-color-dot-border-size ) ) / ( 2 * var( --intro-color-dot-size ) ) * -1 );*/
-      /*left: -25%;*/
-    top: calc( -.75 * var( --intro-color-dot-border-size ) );
+  top: calc( -.75 * var( --intro-color-dot-border-size ) );
   width: calc( var( --intro-color-dot-size ) + ( var( --intro-color-dot-border-size ) * 1.5 ) );
-}
-
-/*.intro-color--color-2 {
-  background-color: var( --color-intro-v2 );
-}
-
-.intro-color--color-3 {
-  background-color: var( --color-intro-v3 );
-}
-
-.intro-color--color-4 {
-  background-color: var( --color-intro-v4 );
-}*/
-
-.intro-color--color-5 {
-  background-color: rgba( 30, 144, 255, 255 );
-}
-
-.intro-color--color-5::after {
-  background: radial-gradient( rgba( 30, 144, 255, 255 ), rgba( 30, 144, 255, 255 ) 35%, rgba( 30, 144, 255, 0 ) 70%);
 }
 
 .state-test1 .intro-color--color-5::after {
@@ -364,7 +385,83 @@ ul, li {
 }
 
 
-/* ------------------ ############ Navigation Controls ############ ------------------ */
+/* 
+    .-`                                `-::-           `-`                                                                                            
+    hN:         om.          `        omdyymm:    `    +N+    `                                                                                       
+    dM:`ddyydh.+NMd:+mhdy`odhhd+`    +Mh`  -+- -ydhdy- oM+ :ydhdy- sdhds/dyyds`                                                                       
+    dM:`NM-`sM/`dM:`oMy.`oMs``sMo    sMo   `.``mN-`-Nm`oM+.NN-`:Nm hMo.`sNdyyo`                                                                       
+    dM:`NN  oM+ hM/`oMo  +My..yM+    -Nm/.-ymo`mN/./Nm`oM+`NN:./Mm hM:  /yoomM+                                                                       
+    sh-`hy  /h: /hh//h/  `+yyyy/`     -ohyhy/` -shyhs. /h: -shyho. oh-  :yyyhs.     
+
+------------------ ############ Intro Colors ############ ------------------ */
+.intro__hue .intro-color--color-1 {
+  color: var( --color-intro-hue-v1 );
+  background-color: var( --color-intro-hue-v1 );
+}
+
+.intro__hue .intro-color--color-2 {
+  color: var( --color-intro-hue-v2 );
+  background-color: var( --color-intro-hue-v2 );
+}
+
+.intro__hue .intro-color--color-3 {
+  color: var( --color-intro-hue-v3 );
+  background-color: var( --color-intro-hue-v3 );
+}
+
+.intro__hue .intro-color--color-4 {
+  color: var( --color-intro-hue-v4 );
+  background-color: var( --color-intro-hue-v4 );
+  background-color: rgba( 230, 144, 255, 255 );
+  z-index: 999;
+}
+
+.intro__hue .intro-color--color-5 {
+  color: var( --color-intro-hue-v5 );
+  background-color: var( --color-intro-hue-v5 );
+  background-color: rgba( 30, 144, 255, 255 );
+}
+
+/* .intro__hue .intro-color--color-1 {
+  color: var( --color-intro-hue-v1 );
+  background-color: var( --color-intro-hue-v1 );
+}
+
+.intro__hue .intro-color--color-2 {
+  color: var( --color-intro-hue-v2 );
+  background-color: var( --color-intro-hue-v2 );
+}
+
+.intro__hue .intro-color--color-3 {
+  color: var( --color-intro-hue-v3 );
+  background-color: var( --color-intro-hue-v3 );
+}
+
+.intro__hue .intro-color--color-4 {
+  color: var( --color-intro-hue-v4 );
+  background-color: var( --color-intro-hue-v4 );
+}
+
+.intro__hue .intro-color--color-5 {
+  color: var( --color-intro-hue-v5 );
+  background-color: var( --color-intro-hue-v5 );
+} */
+
+.intro-color--color-4::after {
+  background: radial-gradient( rgba( 30, 144, 255, 255 ), rgba( 30, 144, 255, 255 ) 35%, rgba( 30, 144, 255, 0 ) 70%);
+}
+
+
+/* 
+    +yo`  yy`               .y+                 .+` :y:                      :syyys:                  ./-              `sy                            
+    yMMy` NN` -/++:`./:  ./-.y+ `-++-/:  -/+/:`-mM+.:y: `-/+/-` -/-/+/.     oMh:-/dd. `:++/.  :/-/+:`.hMs-`/://``:++/. `mM `-/+/:`                    
+    yMyNd-NN`.hy+hMo`dN-`dN:-Mh sMy/yMm`-hy+dM/:NMs-oM+ yNy+yNy`yMd/sMh     NM-      .dNo+dN/ mMy/hMo-dMy::MNso-mNo+dN/`mM /Mdoyh-                    
+    yM-:mmNN`-yhshMy -mdsM+ -Mh mN- .Nm`:hysdMo dM. oM+`Mm` `NM.yM/ .Md     dM/  `+o.+My  /Mh mM. /Ms sM/ :My  /My  :Mh`mM -ydddd+                    
+    yN- -dMN`+Nh+hMy  :NMy  -My +NdshMm`sNy+dMo yMy:oM+ sNhohNo sM/ .Md     -hmyshNh`.hmysdm: dN. /Ns oNh+:My  .dmysdm:`mN /dy+hNs                    
+    -:`  `::  -::.:-   -:`  `:- /yy++Nd `-::.:- `::..:.  .:::.  .:`  :-       .:::.    -::-`  -:  `:. `::-`:.    -::-`  -:  .:::-                     
+                                .osyso.         
+
+------------------ ############ Navigation Controls ############ ------------------ */
 .navigation__wrapper {
   background-color: var( --color-background-dark-rgba );
   color: #fff;
@@ -377,8 +474,11 @@ ul, li {
   color: var( --color-title );
   font-family: 'Raleway Thin', sans-serif;
   font-size: calc( 6px + 3.5vw);
-  /*font-size: 4vw;*/
   margin-left: 5vw;
+  text-shadow: 0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
+    -0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
+    0.06vw -0.06vw 0.12vw rgba(0,0,0,.2),
+    -0.06vw -0.06vw 0.12vw rgba(0,0,0,.2);
 }
 
 .navigation__controls--title {
@@ -423,30 +523,19 @@ ul, li {
   width: 2vw;
 }
 
-/* ------------------ ############ PRIMING ANIMATED ELEMENTS ############ ------------------ */
-.room__svg--zoom {
-  /*height: 200%;*/
-  transition: transform 1s;
-  /*width: 200%;*/
-  will-change: transform;
-}
-
-.state-app-primed .room__svg--zoom {
-}
-
-.state-zoom-room .room__svg--zoom {
-  transform: var(--scale-zoom-factor-s);
-  /*transform: scale( 1.2 ) translateX( -25% );*/
-}
-
-.room__image--zoom {
-  /*height: 150%;
-  width: 150%;*/
-}
 
 /*state-lower-room- state-zoom-room- state-detail- state-transition state-color-preference */
 
-/* ------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
+/* 
+      -yy/                        :yyyys-  -+          -+                                                                                             
+     `dNNN-  `/:://.  :/-/+-     .NN/-+dy`/MN/``:+//. +Nm/``:++:`                                                                                     
+     yMo/Mm` -MNs+dN/`mMy+yMs    `omNdhs: +MNo`odooNN`oMNo.dNooNd`                                                                                    
+    +MNhyNMh`-Md  /My`mN. .Nm`   -+/.-+mM:`Mm``ohysNM`.Nd :MNssdd-                                                                                    
+   -Nm-...hMo-MMyomN:`mMdodNo    .dNyshNd. mNs:mN+sNM..mNs-hNsody`                                                                                    
+   .:.    `::-Md-::` `mN-::.       .:::-   .::``::--:` .::` -::-                                                                                      
+             .o+      oo` 
+
+------------------ ############ APP STATE - LOWER ROOM ############ ------------------ */
 .state-lower-room .room__wrapper:not( .room__wrapper--lower ) {
   opacity: 0;
 }
@@ -470,8 +559,9 @@ ul, li {
 
 
 /* ------------------ ############ APP STATE - ROOM DETAIL ############ ------------------ */
-.state-detail .solid-overlay--top {
+.state-detail .solid-overlay {
   opacity: 1;
+  z-index: 9;
 }
 
 .state-detail .room__image--furniture {
@@ -482,11 +572,7 @@ ul, li {
   font-size: 17vw;
   letter-spacing: 0;
   opacity: 1;
-  z-index: 9;
-}
-
-.state-detail .solid-overlay {
-  opacity: 1;
+  z-index: 10;
 }
 
 .state-transition .solid-overlay--top {
@@ -498,12 +584,22 @@ ul, li {
   transition-delay: 0s;
 }
 
-.state-transition .room__image--furniture {
+/*.state-transition .room__image--furniture {
   transition: opacity 1s;
   transition-delay: 1s;
-}
+}*/
 
-/* ------------------ ############ VIEWPORT ORIENTATION ADJUSTMENTS ############ ------------------ */
+/*
+   ```    `` ``                                                    ``         ``  ``                                                                  
+   /mh`  -md.hs                                         /h`       /mmo        om:`hy                 :y-                             :y-              
+   `hMo `hM/`hs `/ysy/`/y- +y/ :y:/yosys-  /syys- `yoyyoNMy-     -NmdN/   /yysdM:`hy -y+  os``ossyo.:mMh/-yooys/oyy: `+ysy/` os+syo.:mMh:.ossy+`      
+    .mN-+My .Md sMy/yMo-Nh-NNm.mN.sMy-:mN.+My-:dN/.MN::-mM:`    `dM+:MN- +Mh--mM:`Nm :My  dN./Mmsss-`hM+./Md-/MN::Nm`sMy/yMo`mM+.sMo.hM+.oMdoss.      
+     /MmNm` .Md`hMyosh+ oMmN/NdM/ sMo``dM-sMo``yM+.Mh   mM.     yMdyydMd`oMs``hM:`Nm :Mh`.mN.-syydNy sM/`/Ms .Md `Nm`hMyosh+`mM` +Mo yM/`-syymNo      
+      smm:  `mh -hdshh- `hmo ymy` sMdyhdo .ydyhdo`.my   smh:   /mh````smo.ymyydm:.Nm .hmyydm.:hhshd+ +md+:mo .my `dh`-hdshh-`hm` /m+ +md+/dhshd/      
+      `.`    .`   ...    `.` `.`  sM/..`    `..`   .`    ..`   `.`    `.`  ..``.:yMd   ..``.   ...`   ..``.`  .`  .`   ...   `.  `.`  ..` `...        
+                                  .:`                                           .//.                                                            
+
+------------------ ############ VIEWPORT ORIENTATION ADJUSTMENTS ############ ------------------ */
 @media screen and ( orientation: landscape ) { /* landscape viewport, vertical rooms */
     .room__wrapper {
         height: 100%;
@@ -527,9 +623,29 @@ ul, li {
   }
 }
 
+.color-number {
+  font-family: 'Raleway Thin';
+  font-size: 10vw;
+  letter-spacing: -1vw;
+}
+
+.color-name {
+  font-family: 'Alfa Slab One', sans-serif;
+  letter-spacing: -0.2vw;
+}
 
 
-/* ------------------ ############ Logo Mark ############ ------------------ */
+
+/*
+    :/.                                                                                                                                               
+    yM/       ...    `..```   `..`                                                                                                                    
+    yM/     /mmydNo /mmshNN..hNhhNh.                                                                                                                  
+    yM/    `mN. `dM-dM- `NN.sMo  +Ms                                                                                                                  
+    yMy////`yMs:oNd`sMh/sMN./Nd//dN/                                                                                                                  
+    /oooooo` :ooo/` -sho/Nm` .+oo+.                                                                                                                   
+                    -yhhhh/                                                                                                                           
+                      ```     
+------------------ ############ Logo Mark ############ ------------------ */
 .logo-wrapper {
   display: inline-block;
   height: 4vw;
@@ -669,6 +785,20 @@ ul, li {
 
 
 ------------------ ############ OLD STUFF ############ ------------------
+
+
+/* ------------------ ############ PRIMING ANIMATED ELEMENTS ############ ------------------ 
+.room__svg--zoom {
+  transition: transform 1s;
+  will-change: transform;
+}
+
+.state-app-primed .room__svg--zoom {
+}
+
+.state-zoom-room .room__svg--zoom {
+  transform: var(--scale-zoom-factor-s);
+}
 
 TO MAKE A MASK FROM MULTIPLE IMAGES
 linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0))

@@ -20,6 +20,11 @@ chipStyleSheet = document.styleSheets[0],
 191, 210, 201
 110, 194, 196  SW 6766 Mariner
 
+
+var styles = getComputedStyle(document.documentElement);
+var colorValue = styles.getPropertyValue('--color');
+document.documentElement.style.setProperty('--color', 'green');
+OR
 body.style.setProperty('--foo-bar', newValue);
 var fooBar = bodyStyles.getPropertyValue('--foo-bar');
 
@@ -124,7 +129,7 @@ $( '.intro-pane-color-mask' ).click( function(){
 });
 
 window.setTimeout( function(){
-    $appWrapper.addClass( 'state-app-primed state-detail' );
+    $appWrapper.addClass( 'state-app-primed state-detail-' );
 }, 100);
 
 $( window ).resize(function() {
