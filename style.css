@@ -208,7 +208,7 @@ ul, li {
   background-size: cover;
   mix-blend-mode: multiply;
 
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   filter: brightness( 0.75 );
   flex-direction: column;
@@ -216,8 +216,9 @@ ul, li {
   letter-spacing: -8vw;
   line-height: 16vw;
   justify-content: center;
+  margin: 0 1%;
   opacity: 0;
-  text-align: center;
+  text-align: left;
   transition: font-size 2s, letter-spacing 2s, opacity 2s ease-out;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -516,10 +517,15 @@ ul, li {
   display: flex;
 }
 
+.navigation__controls-colors {
+  display: flex;
+}
+
 .navigation__controls-color {
   border-radius: 50%;
   display: inline-block;
   height: 2vw;
+  margin-right: 3%;
   width: 2vw;
 }
 
@@ -611,8 +617,16 @@ ul, li {
         top: 0;
     }
 
+    .color-info {
+      line-height: 10vw;
+    }
+
+    .color-number {
+      font-size: 7vw;
+    }
+
     .color-name {
-      font-size: 1.2em;
+      font-size: 10vw;
     }
 }
 
@@ -623,15 +637,10 @@ ul, li {
   }
 }
 
-.color-number {
-  font-family: 'Raleway Thin';
-  font-size: 10vw;
-  letter-spacing: -1vw;
-}
-
-.color-name {
-  font-family: 'Alfa Slab One', sans-serif;
-  letter-spacing: -0.2vw;
+@media screen and ( max-width: 800px ) and ( orientation: landscape ){
+  .color-number {
+    font-size: 8vw;
+  }
 }
 
 

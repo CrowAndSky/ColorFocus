@@ -129,7 +129,7 @@ $( '.intro-pane-color-mask' ).click( function(){
 });
 
 window.setTimeout( function(){
-    $appWrapper.addClass( 'state-app-primed state-detail-' );
+    $appWrapper.addClass( 'state-app-primed state-detail' );
 }, 100);
 
 $( window ).resize(function() {
