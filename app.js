@@ -8,6 +8,15 @@ chipStyleSheet = document.styleSheets[0],
 
 
 /*--------------------- ### wwwwwww ### ---------------------
+IDEAS:
+Slide slow mdoe uses the same layers (lower room and details) with the addition of the controller
+
+Pro version is the same app with the addition of the color picker layer - start working on UI for that while coding main app logic?
+
+
+TO DO:
+
+
 1, 132, 152
 90, 158, 192
 
@@ -129,7 +138,7 @@ $( '.intro-pane-color-mask' ).click( function(){
 });
 
 window.setTimeout( function(){
-    $appWrapper.addClass( 'state-app-primed state-detail' );
+    $appWrapper.addClass( 'state-app-primed state-detail-' );
 }, 100);
 
 $( window ).resize(function() {

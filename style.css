@@ -19,6 +19,44 @@ Gale Force R: 53 G: 69 B: 78 Hex Value: #35454e
 Stardew R: 166 G: 178 B: 181  Hex Value: #a6b2b5
 */
 
+:root{
+  --blue-bright: #8edfe5;
+  --blue-gray: #95a0b2;
+  --blue-nav: #8edfe5; /*#c0f1f7 is lighter*/
+
+  --gray-dark: #555;
+
+  --color-background-dark: #393437;
+  --color-background-dark-rgba: rgba( 57, 52, 55, .5 );
+  --color-title: #ffa541;  /*#c65f47*/
+  --color-white: #fff;
+
+
+  --shadow-transition-delay: 0.7s;
+  --solid-transition-delay: 0.7s;
+
+  --room-color-left: #c65f47;
+  --room-color-right: #a56c4a;
+  --room-color-left-bottom: #35454e;
+  --room-color-right-bottom: #393437;
+
+  --shadow-transition-delay: 0.7s;
+  --solid-transition-delay: 0.7s;
+
+  --intro-color-dot-size: 18vw;
+  --intro-color-dot-border-size: 7vw;
+  --color-intro-hue-v1: #a66255;
+  --color-intro-hue-v2: #369f47;
+  --color-intro-hue-v3: #462295;
+  --color-intro-hue-v4: #fd45ca;
+  --color-intro-hue-v5: #459aed;
+
+  --scale-zoom-factor: 1.8;
+  --scale-zoom-factor-s: scale(calc( 2 * var(--scale-zoom-factor) ));
+
+  /* rgba( 30, 144, 255, 255 ), rgba( 30, 144, 255, 255 ) 35%, rgba( 30, 144, 255, 0 ) 70% */
+}
+
 /* ------------------ ############ RESETS ############ ------------------ */
 html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
   box-sizing: border-box;
@@ -66,33 +104,6 @@ ul, li {
   top: 0;
   width: 100vw;
 }
-
-:root{
-  --blue-bright: #8edfe5;
-  --blue-gray: #95a0b2;
-  --blue-nav: #8edfe5; /*#c0f1f7 is lighter*/
-
-  --gray-dark: #555;
-
-  --color-background-dark: #393437;
-  --color-background-dark-rgba: rgba( 57, 52, 55, .5 );
-  --color-title: #ffa541;  /*#c65f47*/
-  --color-white: #fff;
-
-
-  --shadow-transition-delay: 0.7s;
-  --solid-transition-delay: 0.7s;
-
-  --room-color-left: #c65f47;
-  --room-color-right: #a56c4a;
-  --room-color-left-bottom: #35454e;
-  --room-color-right-bottom: #393437;
-
-  --scale-zoom-factor: 1.8;
-  --scale-zoom-factor-s: scale(calc( 2 * var(--scale-zoom-factor) ));
-}
-
-
 
 /* 
     ......`                                    .-:-`                                                                                                  
@@ -203,7 +214,7 @@ ul, li {
 /* ------------------ ############ COLOR DETAILS ############ ------------------ */
 .color-info {
   background-color: red;
-  background-image: url( './images/room-sofa.jpg' );
+  background-image: url( './images/room-sofa-lowres.jpg' );
   background-position: 50% 50%;
   background-size: cover;
   mix-blend-mode: multiply;
@@ -284,8 +295,9 @@ ul, li {
 }
 
 .intro-pane__header {
-  font-size: 5vw;
+  font-size: calc( 16px + 3vw );
   justify-content: flex-end;
+  text-align: center;
   padding-bottom: 3vw;
 }
 
@@ -299,12 +311,6 @@ ul, li {
 }
 
 .intro-pane__footer {}
-
-
-:root{
-  --intro-color-dot-size: 18vw;
-  --intro-color-dot-border-size: 7vw;
-}
 
 .intro-pane-colors {
   background-color: var( --color-white );
@@ -344,9 +350,11 @@ ul, li {
   position: absolute;
   /*top: -38%;*/
   width: 100%;
+  z-index: 999999;
 }
 
 .intro-pane-color::after {
+  background-color: currentColor;
   transform: scale( 1 );
   transition: transform 3s;
   will-change: transform;
@@ -413,14 +421,14 @@ ul, li {
 .intro__hue .intro-color--color-4 {
   color: var( --color-intro-hue-v4 );
   background-color: var( --color-intro-hue-v4 );
-  background-color: rgba( 230, 144, 255, 255 );
-  z-index: 999;
+  /* background-color: rgba( 230, 144, 255, 255 ); */
+  /* z-index: 999; */
 }
 
 .intro__hue .intro-color--color-5 {
   color: var( --color-intro-hue-v5 );
   background-color: var( --color-intro-hue-v5 );
-  background-color: rgba( 30, 144, 255, 255 );
+  /* background-color: rgba( 30, 144, 255, 255 ); */
 }
 
 /* .intro__hue .intro-color--color-1 {
@@ -448,7 +456,7 @@ ul, li {
   background-color: var( --color-intro-hue-v5 );
 } */
 
-.intro-color--color-4::after {
+.intro-color--color-5::after {
   background: radial-gradient( rgba( 30, 144, 255, 255 ), rgba( 30, 144, 255, 255 ) 35%, rgba( 30, 144, 255, 0 ) 70%);
 }
 
@@ -691,11 +699,6 @@ ul, li {
 .logo-circle::after {
     opacity: 0;
     transition: opacity 0.5s, transform 1s;
-}
-
-:root{
-  --shadow-transition-delay: 0.7s;
-  --solid-transition-delay: 0.7s;
 }
 
 .logo-circle::before {
