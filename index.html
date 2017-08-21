@@ -8,11 +8,19 @@
 
 <body>
 
-<div id="perfect-app-wrapper" class="state-intro-hue- state-lower-room- state-intro- state-color-preference state-zoom-room- state-detail- state-transition">
+<div id="app-wrapper" class="state-intro state-intro-message">
 
 <div class="intro__wrapper">
 	<div class="intro-pane intro__message">
-		This is going to be fun!
+		<div class="intro-pane__header">
+			This is going to be fun!
+		</div>
+		<div class="intro-pane__content">
+			Some more insturctions.
+			<a class="button-link" href="">I'm ready!</a>
+		</div>
+		<div class="intro-pane__footer">
+		</div>
 	</div>
 
 	<div class="intro-pane intro__hue">
@@ -41,10 +49,52 @@
 
 	<div class="intro-pane intro__luminosity">
 		How dark should we make our colors?
+		<div class="intro-pane__header">
+			Which color family do you prefer?
+		</div>
+		<div class="intro-pane__content">
+			<ul class="intro-pane-colors">
+				<li class="intro-pane-color intro-color--color-1"></li>
+				<li class="intro-pane-color intro-color--color-2"></li>
+				<li class="intro-pane-color intro-color--color-3"></li>
+				<li class="intro-pane-color intro-color--color-4"></li>
+				<li class="intro-pane-color intro-color--color-5"></li>
+			</ul>
+			<ul class="intro-pane-colors intro-pane-colors__mask">
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+			</ul>
+		</div>
+		<div class="intro-pane__footer">
+		</div>
 	</div>
 
 	<div class="intro-pane intro__saturation">
 		How much color should we begin with?
+		<div class="intro-pane__header">
+			Which color family do you prefer?
+		</div>
+		<div class="intro-pane__content">
+			<ul class="intro-pane-colors">
+				<li class="intro-pane-color intro-color--color-1"></li>
+				<li class="intro-pane-color intro-color--color-2"></li>
+				<li class="intro-pane-color intro-color--color-3"></li>
+				<li class="intro-pane-color intro-color--color-4"></li>
+				<li class="intro-pane-color intro-color--color-5"></li>
+			</ul>
+			<ul class="intro-pane-colors intro-pane-colors__mask">
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+				<li class="intro-pane-color-mask"></li>
+			</ul>
+		</div>
+		<div class="intro-pane__footer">
+		</div>
 	</div>
 </div>
 
@@ -58,7 +108,7 @@
 		</div>
 		Focus
 	</h1>
-	<a class="navigation__controls navigation__favorites">
+	<a class="button-link navigation__controls navigation__favorites">
 		<h2 class="navigation__controls--title">View Favorites</h2>
 		<ul class="navigation__controls-colors">
 			<li class="navigation__controls-color" style="background:#678"></li>
@@ -67,7 +117,7 @@
 		</ul>
 	</a>
 
-	<div class="navigation__controls navigation__compare">
+	<div class="button-link navigation__controls navigation__compare">
 		<h2 class="navigation__controls--title">Choose More Colors</h2>
 		<ul class="navigation__controls-colors">
 			<li class="navigation__controls-color" style="background:#acd"></li>
@@ -117,7 +167,7 @@
 
 </div>  <!-- CLOSE perfect-app-wrapper -->
 
-<script src="color-utils.js" type="text/javascript"></script>
+<script src="tinycolor-min.js" type="text/javascript"></script>
 <script src="jquery.js" type="text/javascript"></script>
 <script src="app.js" type="text/javascript"></script>
 

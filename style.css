@@ -105,6 +105,20 @@ ul, li {
   width: 100vw;
 }
 
+.button-link {
+  align-items: center;
+  background: rgba( 20, 10, 40, 0.7 );
+  border-radius: 3vw;
+  cursor: pointer;
+  display: none;
+  flex-direction: row;
+  font-family: 'Raleway Thin', sans-serif;
+  height: 74%;
+  justify-content: space-around;
+  margin-right: 5vw;
+  padding: 0 2vw;
+}
+
 /* 
     ......`                                    .-:-`                                                                                                  
     yMdhhdNh`                                `dNysdNs                                                                                                 
@@ -484,10 +498,12 @@ ul, li {
   font-family: 'Raleway Thin', sans-serif;
   font-size: calc( 6px + 3.5vw);
   margin-left: 5vw;
-  text-shadow: 0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
+
+  text-shadow: 0.06vw 0.06vw 0.22vw rgba(0,0,0,.6), -0.06vw 0.06vw 0.22vw rgba(0,0,0,.6), 0.06vw -0.06vw 0.22vw rgba(0,0,0,.6), -0.06vw -0.06vw 0.22vw rgba(0,0,0,.6);
+  /* text-shadow: 0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
     -0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
     0.06vw -0.06vw 0.12vw rgba(0,0,0,.2),
-    -0.06vw -0.06vw 0.12vw rgba(0,0,0,.2);
+    -0.06vw -0.06vw 0.12vw rgba(0,0,0,.2); */
 }
 
 .navigation__controls--title {
@@ -500,17 +516,6 @@ ul, li {
 }
 
 .navigation__controls {
-  align-items: center;
-  background: rgba( 20, 10, 40, 0.7 );
-  border-radius: 3vw;
-  cursor: pointer;
-  display: none;
-  flex-direction: row;
-  font-family: 'Raleway Thin', sans-serif;
-  height: 74%;
-  justify-content: space-around;
-  margin-right: 5vw;
-  padding: 0 2vw;
 }
 
 .navigation__favorites {
@@ -559,15 +564,22 @@ ul, li {
 }*/
 
 /* ------------------ ############ APP STATE - INTRO ############ ------------------ */
-.state-intro .intro__wrapper {
+.state-intro .intro__wrapper,
+.state-intro.state-intro-message .intro__message,
+.state-intro.state-intro-message .intro__hue,
+.state-intro.state-intro-hue .intro__hue,
+.state-intro.state-intro-hue .intro__luminosity,
+.state-intro.state-intro-luminosity .intro__luminosity,
+.state-intro.state-intro-saturation .intro__saturation {
   opacity: 1;
-  z-index: 5;
 }
 
+.intro__message .button-link {
+  display: block;
+}
 /* ------------------ ############ APP STATE - COLOR PREFERENCE ############ ------------------ */
 .state-color-preference {
   opacity: 1;
-  z-index: 5;
 }
 
 
