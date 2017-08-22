@@ -30,16 +30,16 @@ $introColor = $( '.wwwwwww' ),
 chipStyleSheet = document.styleSheets[0],
 
 
-$color-family-red: #ff0000;
-$color-family-orange: #FFA500;
-$color-family-yellow: #FFFF00;
-$color-family-green: #339935;
-$color-family-blue: #4D4AFD;
-$color-family-purple: #800080;
-$color-family-white: #F5F5F5;
-$color-family-neutral: #B9A796;
-$color-family-historic: #C08F80;
-$color-family-timeless: #703229;
+// $color-family-red: #ff0000;
+// $color-family-orange: #FFA500;
+// $color-family-yellow: #FFFF00;
+// $color-family-green: #339935;
+// $color-family-blue: #4D4AFD;
+// $color-family-purple: #800080;
+// $color-family-white: #F5F5F5;
+// $color-family-neutral: #B9A796;
+// $color-family-historic: #C08F80;
+// $color-family-timeless: #703229;
 
 /*--------------------- ### App State ### ---------------------*/
 appState,    // state-intro    state-intro-hue   state-lower-room  state-color-preference   state-detail  state-transition state-app-primed

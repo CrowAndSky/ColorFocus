@@ -119,6 +119,13 @@ ul, li {
   padding: 0 2vw;
 }
 
+.text-shadow {
+  text-shadow: 0.06vw 0.06vw 0.22vw rgba(0,0,0,.6), -0.06vw 0.06vw 0.22vw rgba(0,0,0,.6), 0.06vw -0.06vw 0.22vw rgba(0,0,0,.6), -0.06vw -0.06vw 0.22vw rgba(0,0,0,.6);
+}
+
+.box-shadow {
+  box-shadow: 0px 0 10px rgba(0,0,0,.6), 0 0 10px rgba(0,0,0,.6), 0 0 10px rgba(0,0,0,.6), -0 0 10px rgba(0,0,0,.6);
+}
 /* 
     ......`                                    .-:-`                                                                                                  
     yMdhhdNh`                                `dNysdNs                                                                                                 
@@ -130,6 +137,7 @@ ul, li {
 ------------------ ############ 111 ROOM SCENE ############ ------------------ */
 .room__svg,
 .svg-defs-wrapper,
+.room-set__wrapper,
 .room__wrapper,
 .room-image,
 .color__details,
@@ -143,6 +151,10 @@ ul, li {
     top: 0;
     width: 100%;
     z-index: 1;
+}
+
+.room-set__wrapper {
+  background-color: var( --color-white );
 }
 
 .room__wrapper {
@@ -185,6 +197,24 @@ ul, li {
   top: calc( 50% + 1px );
 }
 
+:root{
+  --timer-size: 40px;
+}
+
+#timer {
+  align-items: center;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  font-size: calc( 14px + 2vw );
+  height: calc( var(--timer-size) + 5vw);
+  justify-content: center;
+  left: calc( 50% - ( ( var(--timer-size) + 5vw ) / 2 ) );
+  position: absolute;
+  top: calc( 50% - ( ( var(--timer-size) + 5vw ) / 2 ) );
+  width: calc( var(--timer-size) + 5vw);
+  z-index: 999;
+}
 
 /* ------------------ ############ LOWER ROOM ############ ------------------ */
 .room__wrapper--lower {
@@ -498,12 +528,6 @@ ul, li {
   font-family: 'Raleway Thin', sans-serif;
   font-size: calc( 6px + 3.5vw);
   margin-left: 5vw;
-
-  text-shadow: 0.06vw 0.06vw 0.22vw rgba(0,0,0,.6), -0.06vw 0.06vw 0.22vw rgba(0,0,0,.6), 0.06vw -0.06vw 0.22vw rgba(0,0,0,.6), -0.06vw -0.06vw 0.22vw rgba(0,0,0,.6);
-  /* text-shadow: 0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
-    -0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
-    0.06vw -0.06vw 0.12vw rgba(0,0,0,.2),
-    -0.06vw -0.06vw 0.12vw rgba(0,0,0,.2); */
 }
 
 .navigation__controls--title {
@@ -897,6 +921,13 @@ https://aclaes.com/responsive-background-images-with-srcset-and-sizes/
     }
 }
 
+
+
+  text-shadow: 0.06vw 0.06vw 0.22vw rgba(0,0,0,.6), -0.06vw 0.06vw 0.22vw rgba(0,0,0,.6), 0.06vw -0.06vw 0.22vw rgba(0,0,0,.6), -0.06vw -0.06vw 0.22vw rgba(0,0,0,.6);
+  /* text-shadow: 0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
+    -0.06vw 0.06vw 0.12vw rgba(0,0,0,.2),
+    0.06vw -0.06vw 0.12vw rgba(0,0,0,.2),
+    -0.06vw -0.06vw 0.12vw rgba(0,0,0,.2); */
 
 
 .text-3d- {
