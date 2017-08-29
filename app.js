@@ -17,29 +17,29 @@ $appWrapper = $( '#app-wrapper' ),
 $compareLink = $( '.navigation__compare' ),
 $favoritesLink = $( '.navigation__favorites' ),
 $introReadyCTA = $( '.intro__message .button-link' ),
+$introMessage = $( '.intro__message' ),
+$introHue = $( '.intro__hue' ),
+$introLuminosity = $( '.intro__luminosity' ),
+$introSaturation = $( '.intro-pane intro__saturation' ),
 $introColorMasks = $( '.intro-pane-color-mask' ),
 $introColorsHue = $( '.intro__hue .intro-pane-color-mask' ),
 $introColorsLuminosity = $( '.intro__luminosity .intro-pane-color-mask' ),
 $introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 $roomB = $( '.room-b' ),
 $roomLower = $( '.room__wrapper--lower' ),
-$roomLowerB = $( '.room__wrapper--lower.room-b' ),
-$introColor = $( '.wwwwwww' ),
-$introColor = $( '.wwwwwww' ),
+$roomLowerB = $( '.room__wrapper--lower.room-b' )
+$wwwwwww = $( '.wwwwwww' ),
 
 chipStyleSheet = document.styleSheets[0],
 
 
-// $color-family-red: #ff0000;
-// $color-family-orange: #FFA500;
-// $color-family-yellow: #FFFF00;
-// $color-family-green: #339935;
-// $color-family-blue: #4D4AFD;
-// $color-family-purple: #800080;
-// $color-family-white: #F5F5F5;
-// $color-family-neutral: #B9A796;
-// $color-family-historic: #C08F80;
-// $color-family-timeless: #703229;
+// colorFamilyred: #ff0000,
+// colorFamilyorange: #FFA500,
+// colorFamilyyellow: #FFFF00,
+// colorFamilygreen: #339935,
+// colorFamilyblue: #4D4AFD,
+// colorFamilypurple: #800080,
+// colorFamilyneutral: #B9A796,
 
 /*--------------------- ### App State ### ---------------------*/
 appState,    // state-intro    state-intro-hue   state-lower-room  state-color-preference   state-detail  state-transition state-app-primed
@@ -71,27 +71,73 @@ var funfunfun = function( event ) {
     }
 };
 
+/* ------------------ ### changeActive ### ------------------ */
+const updateState = function( el, classString, expireCurrent, duration, appClass ) {
+    const thisDuration = duration ? duration : 500,
+        thisEl = el,
+        thisExpiringEl;
 
-// state-lower-room state-detail state-transition">
+    if ( expireCurrent ) {
+        thisExpiringEl = $( '.' + classString );
+        thisExpiringEl.addClass( 'changing-from' ); 
+    }
+
+    thisEl.removeClass().addClass( 'changing-to' + appClass );
+    
+    if ( appClass ) {
+        $appWrapper.removeClass().addClass( appClass );
+    }
+
+    window.setTimeout( function(){
+        thisEl.removeClass( 'changing-to' );
+
+        if ( expireCurrent ) {
+            thisExpiringEl.removeClass( classString + ' changing-from' ); 
+        }
+     }, thisDuration );
+};
+
+
+/* state-lower-room state-detail state-transition
+const updateState = function( el, classString, expireCurrent, duration, appClass ) {
+
+$appWrapper = $( '#app-wrapper' ),
+$compareLink = $( '.navigation__compare' ),
+$favoritesLink = $( '.navigation__favorites' ),
+$introReadyCTA = $( '.intro__message .button-link' ),
+$introMessage = $( '.intro__message' ),
+$introHue = $( '.intro__hue' ),
+$introLuminosity = $( '.intro__luminosity' ),
+$introSaturation = $( '.intro-pane intro__saturation' ),
+$introColorMasks = $( '.intro-pane-color-mask' ),
+$introColorsHue = $( '.intro__hue .intro-pane-color-mask' ),
+$introColorsLuminosity = $( '.intro__luminosity .intro-pane-color-mask' ),
+$introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
+*/
+
 /* ------------------ ### initDOM ### ------------------ */
 var initDOM = function( event ) {
-    $introReadyCTA.click( function(){ $appWrapper.class( 'state-intro-hue' ); } );
+//wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
+//wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 
-    introColorsHue.click( function(){
-        $appWrapper.class( 'state-intro-luminosity' );
-    } );
+    $introReadyCTA.click( updateState ( wwww, 'wwww', true, 500 ) );
+//     $introReadyCTA.click( function(){ $appWrapper.class( 'state-intro-hue' ); } );
 
-    introColorsLuminosity.click( function(){
-        $appWrapper.class( 'state-intro-saturation' );
-    } );
+//     introColorsHue.click( function(){
+//         $appWrapper.class( 'state-intro-luminosity' );
+//     } );
 
-    introColorsSaturation.click( function(){
-        $appWrapper.class( 'xxxxxx' );
-    } );
+//     introColorsLuminosity.click( function(){
+//         $appWrapper.class( 'state-intro-saturation' );
+//     } );
 
-    wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
-    wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
-    wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
+//     introColorsSaturation.click( function(){
+//         $appWrapper.class( 'xxxxxx' );
+//     } );
+
+//     wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
+//     wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
+//     wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
     return true;
 };
 
@@ -147,8 +193,25 @@ state-intro
 //     }
 // });
 
+/*
+
+$introMessage = $( '.intro__message' ),
+$introHue = $( '.intro__hue' ),
+$introLuminosity = $( '.intro__luminosity' ),
+$introSaturation = $( '.intro-pane intro__saturation' ),
+$introColorMasks = $( '.intro-pane-color-mask' ),
+$introColorsHue = $( '.intro__hue .intro-pane-color-mask' ),
+$introColorsLuminosity = $( '.intro__luminosity .intro-pane-color-mask' ),
+$introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
+
+*/
+
 $( '.app-title' ).click( function(){
-    $appWrapper.toggleClass( 'state-lower-room' );
+    $appWrapper.addClass( 'losing-active' );
+    $appWrapper.addClass( 'losing-active' );
+    window.setTimeout( function(){
+        $appWrapper.removeClass( 'losing-active' );
+     }, 500)
 });
 
 // $( '.intro-pane-color-mask' ).click( function(){
@@ -156,7 +219,7 @@ $( '.app-title' ).click( function(){
 // });
 
 window.setTimeout( function(){
-    $appWrapper.addClass( 'state-app-primed state-detail-' );
+    //$appWrapper.addClass( 'state-app-primed state-detail-' );
 }, 100);
 
 $( window ).resize(function() {

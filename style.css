@@ -321,7 +321,7 @@ ul, li {
   background-color: #eee;
   height: 100%;
   padding: calc( 3px + 1% );
-  z-index: -1;
+  z-index: 10;
 }
 
 .intro-pane,
@@ -336,6 +336,10 @@ ul, li {
   flex-direction: column;
   justify-content: center;
   width: 100%;
+}
+
+.intro-pane {
+  /* z-index: 1; */
 }
 
 .intro-pane__header {
@@ -390,9 +394,7 @@ ul, li {
   content: '';
   display: block;
   height: 100%;
-  /*left: -38%;*/
   position: absolute;
-  /*top: -38%;*/
   width: 100%;
   z-index: 999999;
 }
@@ -419,7 +421,8 @@ ul, li {
   transform-origin: center;
 }
 
-.intro__message{}
+.intro__message{
+}
 
 .intro__hue {
   background-color: #acf;
@@ -588,7 +591,21 @@ ul, li {
 }*/
 
 /* ------------------ ############ APP STATE - INTRO ############ ------------------ */
-.state-intro .intro__wrapper,
+.state-intro .intro__wrapper {
+  opacity: 1;
+  z-index: 5;
+}
+
+.intro-pane.active {
+  opacity: 1;
+  z-index: 10;
+}
+
+.intro-pane.active.changing-from {
+  opacity: 1;
+  z-index: 5;
+}
+/* .state-intro .intro__wrapper,
 .state-intro.state-intro-message .intro__message,
 .state-intro.state-intro-message .intro__hue,
 .state-intro.state-intro-hue .intro__hue,
@@ -596,7 +613,19 @@ ul, li {
 .state-intro.state-intro-luminosity .intro__luminosity,
 .state-intro.state-intro-saturation .intro__saturation {
   opacity: 1;
+  z-index: 5;
 }
+
+.state-intro .intro__wrapper,
+.state-intro.state-intro-message .intro__message,
+
+.state-intro.state-intro-hue .intro__hue,
+.state-intro.state-intro-hue .intro__luminosity,
+.state-intro.state-intro-luminosity .intro__luminosity,
+.state-intro.state-intro-saturation .intro__saturation {
+  opacity: 1;
+  z-index: 10
+} */
 
 .intro__message .button-link {
   display: block;
