@@ -27,8 +27,8 @@ $introColorsLuminosity = $( '.intro__luminosity .intro-pane-color-mask' ),
 $introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 $roomB = $( '.room-b' ),
 $roomLower = $( '.room__wrapper--lower' ),
-$roomLowerB = $( '.room__wrapper--lower.room-b' )
-$wwwwwww = $( '.wwwwwww' ),
+$roomLowerB = $( '.room__wrapper--lower.room-b' ),
+//$wwwwwww = $( '.wwwwwww' ),
 
 chipStyleSheet = document.styleSheets[0],
 
@@ -74,11 +74,14 @@ var funfunfun = function( event ) {
 /* ------------------ ### changeActive ### ------------------ */
 const updateState = function( el, classString, expireCurrent, duration, appClass ) {
     const thisDuration = duration ? duration : 500,
-        thisEl = el,
-        thisExpiringEl;
+        thisEl = el;
+
+    let thisExpiringEl;
 
     if ( expireCurrent ) {
         thisExpiringEl = $( '.' + classString );
+        console.log('########## thisExpiringEl');
+        console.log(thisExpiringEl);
         thisExpiringEl.addClass( 'changing-from' ); 
     }
 
@@ -116,11 +119,13 @@ $introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 */
 
 /* ------------------ ### initDOM ### ------------------ */
-var initDOM = function( event ) {
+const initDOM = function( event ) {
 //wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 //wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 
-    $introReadyCTA.click( updateState ( wwww, 'wwww', true, 500 ) );
+    $introReadyCTA.click( function() {
+        updateState ( $introHue, 'active', true, 500 );
+    } );
 //     $introReadyCTA.click( function(){ $appWrapper.class( 'state-intro-hue' ); } );
 
 //     introColorsHue.click( function(){
@@ -141,16 +146,7 @@ var initDOM = function( event ) {
     return true;
 };
 
-/* ------------------ ### Handle Resize ### ------------------ */
-var handleResize = function( event ) {
-    colorDetails.each( function(){
-        //var calcFontSize = $(this).text().length >
-        var adjustedFontSize = ( ( $( window ).width() * 1.2 ) / $(this).text().length ) ; // 72 7.75
-        adjustedFontSize = adjustedFontSize > 40 ? adjustedFontSize : 40;
-        $( this ).css( 'font-size', adjustedFontSize + 'px' );
-    })
-    return true;
-};
+
 
 var cssVar = "display:block";
 chipStyleSheet.insertRule( "body {"  + cssVar + "}", 1 );
@@ -222,16 +218,15 @@ window.setTimeout( function(){
     //$appWrapper.addClass( 'state-app-primed state-detail-' );
 }, 100);
 
-$( window ).resize(function() {
-  handleResize();
-});
+// $( window ).resize(function() {
+//   handleResize();
+// });
 
 //class="state-intro-hue- state-lower-room- state-intro- state-color-preference state-zoom-room- state-detail- state-transition">
 
 initDOM();
-handleResize();
 
-//DOMmutationObserver.observe( $chipWrapper, DOMmutationObserverConfig);
+
 
 
 
@@ -246,6 +241,8 @@ handleResize();
 });
 
 /*
+
+//DOMmutationObserver.observe( $chipWrapper, DOMmutationObserverConfig);
 
 changeHue(rgb, degree)
 hslToRgb(h, s, l)
@@ -299,4 +296,17 @@ var fooBar = bodyStyles.getPropertyValue('--foo-bar');
 
 
 will-change: transform, opacity;
+
+
+
+ ------------------ ### Handle Resize ### ------------------ 
+var handleResize = function( event ) {
+    colorDetails.each( function(){
+        //var calcFontSize = $(this).text().length >
+        var adjustedFontSize = ( ( $( window ).width() * 1.2 ) / $(this).text().length ) ; // 72 7.75
+        adjustedFontSize = adjustedFontSize > 40 ? adjustedFontSize : 40;
+        $( this ).css( 'font-size', adjustedFontSize + 'px' );
+    })
+    return true;
+};
 */

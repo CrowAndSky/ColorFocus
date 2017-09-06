@@ -1,10 +1,11 @@
 "use strict";
 
-var $parserWrapper = $( '#parser-wrapper' ),
-    allColors = [],
-    allColorsRGB = [],
-    chips = '',
-    colorInHSL,
+let allColors = [],
+allColorsRGB = [],
+chips = '',
+colorInHSL;
+
+const $parserWrapper = $( '#parser-wrapper' ),
     parse = function() {
         _.each ( allColorsLong, function( color, index ){
             if ( !color.archived) {
@@ -12,8 +13,8 @@ var $parserWrapper = $( '#parser-wrapper' ),
                 var g = Math.floor( ( color.rgb % 65536 ) / 256 );
                 var b = color.rgb - r * 65536 - g * 256;
                 chips = chips + '<div class="chip" style="background:rgb(' + r + ',' + g + ',' + b + ')"></div>';
-                colorInHSL = rgbToHsl( r, g, b );
-                allColors[ index ] = [ color.colorNumber, color.name, colorInHSL ];
+                //colorInHSL = rgbToHsl( r, g, b );
+                //allColors[ index ] = [ color.colorNumber, color.name, colorInHSL ];
             }
         });
         $parserWrapper.append(chips);
