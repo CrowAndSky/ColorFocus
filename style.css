@@ -186,7 +186,8 @@ ul, li {
 }
 
 .room-image-natural {
-  -webkit-mask-image: url( './images/room-sofa-mask.png' );
+  /* room-chair-mask-flat */
+  -webkit-mask-image: url( './images/room-chair-mask-clean.png' );
   -webkit-mask-size: cover;
   -webkit-mask-position: 50% 50%;
   mask-size: cover;
@@ -258,7 +259,7 @@ ul, li {
 /* ------------------ ############ COLOR DETAILS ############ ------------------ */
 .color-info {
   background-color: red;
-  background-image: url( './images/room-sofa-lowres.jpg' );
+  background-image: url( './images/room-chair.jpg' );
   background-position: 50% 50%;
   background-size: cover;
   mix-blend-mode: multiply;
@@ -858,6 +859,29 @@ ul, li {
   100% {
       transform: translate3d(0px, 0px, 0px);
   }
+}
+
+ribbon1
+0% 28%, 27.1% 2%, 49.7% 38.75%, 74.3% 10%, 100% 16%, 100% 30%, 65.7% 78%, 55% 60.4%, 0% 100%
+ % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %,
+  % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %, % %,
+
+------------------ ############ SETTING CUSTOM PROPERTY VALUES WITHIN AN ANIMATION LOOP ############ ------------------
+-webkit-clip-path: ;
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+
+-webkit-clip-path: polygon(44% 26%, 58% 38%, 58% 38%, 44% 81%, 44% 81%, 25% 49%);
+clip-path: polygon(44% 26%, 58% 38%, 58% 38%, 44% 81%, 44% 81%, 25% 49%);
+
+a {
+  animation: ribbon 1s infinite; 
+  --bounce-distance: 2.5px;
+}
+
+@keyframes ribbon {
+  from { --ribbonPath: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%) }
+  to { transform: translateY(0px); … }
 }
 
 

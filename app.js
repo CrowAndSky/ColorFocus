@@ -119,7 +119,24 @@ $introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 */
 
 /* ------------------ ### initDOM ### ------------------ */
+let loopState = "top";
+
 const initDOM = function( event ) {
+    window.setTimeout( function(){
+        $appWrapper.addClass( 'state-lower-room' );
+        state-detail
+        switch loopState {
+        case "top":
+            break;
+        }
+
+        //$appWrapper.removeClass( 'state-transition' );
+    }, 2000);
+
+    $appWrapper.addClass( 'state-lower-room' );
+    
+
+
 //wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 //wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 
@@ -202,21 +219,21 @@ $introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 
 */
 
-$( '.app-title' ).click( function(){
-    $appWrapper.addClass( 'losing-active' );
-    $appWrapper.addClass( 'losing-active' );
-    window.setTimeout( function(){
-        $appWrapper.removeClass( 'losing-active' );
-     }, 500)
-});
+// $( '.app-title' ).click( function(){
+//     $appWrapper.addClass( 'losing-active' );
+//     $appWrapper.addClass( 'losing-active' );
+//     window.setTimeout( function(){
+//         $appWrapper.removeClass( 'losing-active' );
+//      }, 500)
+// });
 
 // $( '.intro-pane-color-mask' ).click( function(){
 //     $appWrapper.toggleClass( 'state-test1' );
 // });
 
-window.setTimeout( function(){
-    //$appWrapper.addClass( 'state-app-primed state-detail-' );
-}, 100);
+// window.setTimeout( function(){
+//     $appWrapper.addClass( 'state-app-primed state-detail-' );
+// }, 100);
 
 // $( window ).resize(function() {
 //   handleResize();

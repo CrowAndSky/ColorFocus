@@ -1,9 +1,33 @@
 "use strict";
 
 let allColors = [],
-allColorsRGB = [],
+//allColorsRGB = [],
+colorsByH = [],
+colorsByS = [],
+colorsByL = [],
 chips = '',
 colorInHSL;
+
+class ColorDetail {
+    constructor( number, name, index ) {
+        this._name = name;
+        this._number = number;
+        this._index = index;
+    }
+
+    get name() {
+        return this._name;
+    }
+}
+
+const sortByFirst = function( a, b ) {
+    if (a[0] === b[0]) {
+        return 0;
+    }
+    else {
+        return (a[0] < b[0]) ? -1 : 1;
+    }
+}
 
 const $parserWrapper = $( '#parser-wrapper' ),
     parse = function() {
@@ -12,12 +36,38 @@ const $parserWrapper = $( '#parser-wrapper' ),
                 var r = Math.floor( color.rgb / 65536 );
                 var g = Math.floor( ( color.rgb % 65536 ) / 256 );
                 var b = color.rgb - r * 65536 - g * 256;
-                chips = chips + '<div class="chip" style="background:rgb(' + r + ',' + g + ',' + b + ')"></div>';
+                //chips = chips + '<div class="chip" style="background:rgb(' + r + ',' + g + ',' + b + ')"></div>';
+                let colorInHSL = tinycolor( "rgb " + r + " " + g + " " + b).toHsl();
+                // console.log('########## colorInHSL: ');
+                // console.log(colorInHSL);
+
+                colorsByH.push( [ colorInHSL.h, index ] );
+                colorsByS.push( [ colorInHSL.s, index ] );
+                colorsByL.push( [ colorInHSL.l, index ] );
+                // var thisRGB = r + ',' + g + ',' + b;
+                // console.log('########## thisRGB: ' + thisRGB);
+
                 //colorInHSL = rgbToHsl( r, g, b );
-                //allColors[ index ] = [ color.colorNumber, color.name, colorInHSL ];
+                allColors[ index ] = [ color.colorNumber, color.name, r + ',' + g + ',' + b, index ];
             }
         });
+
+        colorsByH.sort( sortByFirst );
+        colorsByS.sort( sortByFirst );
+        colorsByL.sort( sortByFirst );
+
+        _.each ( colorsByL, function( color, index ){
+            chips = chips + '<div class="chip" style="background:rgb(' + allColors[ color[1] ][ 2 ] + ')"></div>';
+        });
+        
+        
+
         $parserWrapper.append(chips);
+
+        console.log('########## H, S, L');
+        console.log(colorsByH);
+        console.log(colorsByS);
+        console.log(colorsByL);
     };
 
 $(document).ready( function(){

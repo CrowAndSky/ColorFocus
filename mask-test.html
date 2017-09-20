@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>Canvas Mask</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<style type="text/css">
+html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
+  box-sizing: border-box;
+  color: #222;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper, #mask {
+    height: 820px;
+    width: 1476px;
+}
+#wrapper, #mask {
+    background: #ff4789;
+    border: 2px solid #334488;
+}
+</style>
+
+<script>
+var img = new Image();
+//img.crossOrigin = "Anonymous";
+img.onload = function() {
+  draw(this);
+};
+img.src = "./images/green-entryway.jpg";
+
+//$ open -a Google\ Chrome --args --disable-web-security --user-data-dir
+
+function draw(img) {
+    var canvas = document.getElementById('mask');
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    img.style.display = 'none';
+    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    var data = imageData.data;
+    var goalH = tinycolor("rgb 66 96 60").toHsl().h;
+    var goalS = tinycolor("rgb 66 96 60").toHsl().s;
+    var currentH = '';
+    console.log('########## goalS: ' + goalS );
+    
+    for (var i = 0; i < data.length; i += 4) {
+        // data[i]     = 255 - data[i];     // red
+        // data[i + 1] = 255 - data[i + 1]; // green
+        // data[i + 2] = 255 - data[i + 2]; // blue
+
+        // currentH = tinycolor("rgb " + data[i] + data[i + 1] + data[i + 2] ).toHsl().h;
+        //if ( i < 40000 ) {
+            var currentColor = tinycolor( "rgb " + data[i] + " " + data[i + 1] + " " + data[i + 2] );
+            currentHSL = currentColor.toHsl();
+
+            if ( Math.abs( currentHSL.h - goalH ) > 40 ) {
+                data[i]     = 0;// red
+                data[i + 1] = 0; // green
+                data[i + 2] = 0; // blue
+            } else {
+                //console.log('########## matches: ' + data[i] + "  " + data[i + 1] + "  " + data[i + 2]);
+            }
+            // console.log('########## RGBstring: ' + RGBstring);
+            // console.log('########## currentH: ' + currentH);
+        //}
+    }
+    ctx.putImageData(imageData, 0, 0);
+
+}
+</script>
+
+<body>
+
+<div id="wrapper">
+    <canvas id="mask" height="820px" width="1476px"></canvas>
+</div>  <!-- CLOSE perfect-app-wrapper -->
+
+<script src="tinycolor-min.js" type="text/javascript"></script>
+<script src="jquery.js" type="text/javascript"></script>
+<script src="underscore.js" type="text/javascript"></script>
+<script src="all-colors.js" type="text/javascript"></script>
+
+</body>
+</html>

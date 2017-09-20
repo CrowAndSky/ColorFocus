@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Blend Modes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<style type="text/css">
+    #wrapper {
+        background: #ff4789;
+        /* background: #999; */
+        /* background-blend-mode: lighten;
+        background-image: url( "./images/water.jpg" );
+        background-position: center center;
+        background-size: cover; */
+        height: 100%;
+        width: 100%;
+    }
+
+    .color-fill {
+        background: #ff4789;
+        height: 80%;
+        left: 40%;
+        position: absolute;
+        top: 10%;
+        width: 20%;
+        z-index: 2
+    }
+
+    .photo {
+        filter: saturate( 0 );
+        height: 100%;
+        left: 0;
+        mix-blend-mode: lighten;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .photo-dark {
+        mix-blend-mode: hard-light;
+    }
+</style>
+
+<body>
+
+<div id="wrapper">
+    <div class="color-fill"></div>
+    <!-- <img class="photo" src="./images/water.jpg" alt=""> -->
+    <img class="photo photo-dark" src="./images/water.jpg" alt="">
+</div>  <!-- CLOSE perfect-app-wrapper -->
+
+<script src="tinycolor-min.js" type="text/javascript"></script>
+<script src="jquery.js" type="text/javascript"></script>
+<script src="underscore.js" type="text/javascript"></script>
+<script src="all-colors.js" type="text/javascript"></script>
+<script src="chip-parsing.js" type="text/javascript"></script>
+
+</body>
+</html>
