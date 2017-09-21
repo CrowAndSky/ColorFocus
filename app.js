@@ -122,18 +122,30 @@ $introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 let loopState = "top";
 
 const initDOM = function( event ) {
-    window.setTimeout( function(){
-        $appWrapper.addClass( 'state-lower-room' );
-        state-detail
-        switch loopState {
+    window.setInterval( function(){
+        switch ( loopState ) {
         case "top":
+            $appWrapper.attr( 'class', 'state-detail' );
+            loopState = 'detail';
+            break;
+        case "detail":
+            $appWrapper.attr( 'class', 'state-lower-room' );
+            loopState = 'lower';
+            break;
+        case "lower":
+            $appWrapper.attr( 'class', 'state-lower-room state-detail' );
+            loopState = 'bottomDetail';
+            break;
+        case "bottomDetail":
+            $appWrapper.attr( 'class', '' );
+            loopState = 'top';
             break;
         }
 
         //$appWrapper.removeClass( 'state-transition' );
     }, 2000);
 
-    $appWrapper.addClass( 'state-lower-room' );
+    
     
 
 

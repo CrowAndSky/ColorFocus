@@ -176,6 +176,7 @@ ul, li {
 }
 
 .room-image-tinted {
+  filter: grayscale(100) brightness(0.85) contrast(1.75);
   mix-blend-mode: multiply;
   z-index: 2;
 }
@@ -206,7 +207,8 @@ ul, li {
   align-items: center;
   background-color: var(--color-white);
   border-radius: 50%;
-  display: flex;
+  display: none;
+  /* display: flex; */
   font-size: calc( 14px + 2vw );
   height: calc( var(--timer-size) + 5vw);
   justify-content: center;
@@ -522,6 +524,7 @@ ul, li {
 .navigation__wrapper {
   background-color: var( --color-background-dark-rgba );
   color: #fff;
+  display: none;
   font-family: 'Raleway Thin', sans-serif;
   justify-content: space-between;
   z-index: 3;
