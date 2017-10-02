@@ -155,11 +155,13 @@ ul, li {
 
 .room-set__wrapper {
   background-color: var( --color-white );
+  overflow: hidden;
 }
 
 .room__wrapper {
   background-color: var( --room-color-left );
   height: calc( 50% - 1px );
+  overflow: hidden;
   opacity: 1;
   transition: opacity 1s;
   will-change: opacity;

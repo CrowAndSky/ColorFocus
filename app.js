@@ -155,23 +155,6 @@ const initDOM = function( event ) {
     $introReadyCTA.click( function() {
         updateState ( $introHue, 'active', true, 500 );
     } );
-//     $introReadyCTA.click( function(){ $appWrapper.class( 'state-intro-hue' ); } );
-
-//     introColorsHue.click( function(){
-//         $appWrapper.class( 'state-intro-luminosity' );
-//     } );
-
-//     introColorsLuminosity.click( function(){
-//         $appWrapper.class( 'state-intro-saturation' );
-//     } );
-
-//     introColorsSaturation.click( function(){
-//         $appWrapper.class( 'xxxxxx' );
-//     } );
-
-//     wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
-//     wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
-//     wwwwwwww.click( function(){ $appWrapper.class( 'xxxxxxxx' ) } );
     return true;
 };
 

@@ -13,16 +13,31 @@
 html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
   box-sizing: border-box;
   color: #222;
-  font-family: 'Raleway Dots', cursive;
+  font-family: 'Raleway Thin', cursive;
   font-weight: 200;
   margin: 0;
   padding: 0;
 }
+
+@font-face {
+  font-family: 'Raleway Thin';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Raleway Thin'), local('Raleway-Thin'), url(raleway-thin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+body {
+    background-color: #bada55;
+}
+
+
 .svg-defs {
     position: absolute;
     z-index: -1;
 }
 .grid-overlay {
+    display: none;
     height: 100%;
     left: 0;
     position: absolute;
@@ -30,13 +45,41 @@ html, body, div, span, section, ul, li, h1, h2, h3, h4, h5 {
     width: 100%;
     z-index: 2;
 }
-.copy {
-    color: red;
-  font-size: 100px;
-  position: absolute;
-  z-index:2;
+.layer {
+    color: rgba( 100, 100, 150, 0.3 );
+    display: inline-block;
+    font-size: 50px;
+    letter-spacing: -3px;
+    margin: 100px 0 0 50px;
+    position: absolute;
+    -webkit-clip-path: circle(25.4% at 19% 21%);
+    position: absolute;
+    z-index: 2;
+    top: 5%;
+    left: 5%;
+}
+.circle {
+    border-radius: 50%;
+    background-color: red;
+    display: none;
+    left: 5%;
+    /* mix-blend-mode: exclusion; */
+    padding-top: 20%;
+    position: absolute;
+    top: 5%;
+    width: 20%;
 }
 </style>
+
+<div class="layer">
+    Color&nbsp;&nbsp;&nbsp;Focus
+    <div class="circle"></div>
+</div>
+
+<div class="layer">
+    Color&nbsp;&nbsp;&nbsp;Focus
+    <div class="circle"></div>
+</div>
 
 <script>
 
@@ -90,7 +133,7 @@ function draw(img) {
 
 </script>
 
-<div class="wrapper-"> 
+<div class="wrapper"> 
     <svg class="grid-overlay" xmlns="http://www.w3.org/2000/svg">
         <defs class="svg-defs">
             <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
@@ -100,9 +143,22 @@ function draw(img) {
         <rect width="100%" height="100%" fill="url(#smallGrid)" />
     </svg>
 </div>
-<p class="copy">
-    Color Focus
+
+<!-- <p class="copy">
+    Color&nbsp;&nbsp;&nbsp;Focus
 </p>
+<p class="copy">
+    Color&nbsp;&nbsp;&nbsp;Focus
+</p>
+<p class="copy">
+    Color&nbsp;&nbsp;&nbsp;Focus
+</p>
+<p class="copy">
+    Color&nbsp;&nbsp;&nbsp;Focus
+</p>
+<p class="copy">
+    Color&nbsp;&nbsp;&nbsp;Focus
+</p> -->
 
 <!-- <div id="wrapper">
     <canvas id="mask" height="820px" width="1476px"></canvas>
