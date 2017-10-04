@@ -12,7 +12,7 @@ Add choice and slide show controls and style
 \*/
 
  /* -------------------- INIT VARIABLES ---------------------*/
-var /*--------------------- ### DOM elements ### ---------------------*/
+const /*--------------------- ### DOM elements ### ---------------------*/
 $appWrapper = $( '#app-wrapper' ),
 $compareLink = $( '.navigation__compare' ),
 $favoritesLink = $( '.navigation__favorites' ),
@@ -30,19 +30,12 @@ $roomLower = $( '.room__wrapper--lower' ),
 $roomLowerB = $( '.room__wrapper--lower.room-b' ),
 //$wwwwwww = $( '.wwwwwww' ),
 
-chipStyleSheet = document.styleSheets[0],
-
-
-// colorFamilyred: #ff0000,
-// colorFamilyorange: #FFA500,
-// colorFamilyyellow: #FFFF00,
-// colorFamilygreen: #339935,
-// colorFamilyblue: #4D4AFD,
-// colorFamilypurple: #800080,
-// colorFamilyneutral: #B9A796,
+chipStyleSheet = document.styleSheets[0];
+// let cssVar = "display:block";
+// chipStyleSheet.insertRule( "body {"  + cssVar + "}", 1 );
 
 /*--------------------- ### App State ### ---------------------*/
-appState,    // state-intro    state-intro-hue   state-lower-room  state-color-preference   state-detail  state-transition state-app-primed
+let appState,    // state-intro    state-intro-hue   state-lower-room  state-color-preference   state-detail  state-transition state-app-primed
 
 /*--------------------- ### Animation Looping ### ---------------------*/
 animLoopIndex,
@@ -61,7 +54,7 @@ i;
 
 
 /* ------------------ ### wwwwwwww ### ------------------ */
-var funfunfun = function( event ) {
+const funfunfun = function( event ) {
     if ( readyToUpdate ) {
         for ( x = 0; x < 9; x++ ) {
         }
@@ -85,7 +78,7 @@ const updateState = function( el, classString, expireCurrent, duration, appClass
         thisExpiringEl.addClass( 'changing-from' ); 
     }
 
-    thisEl.removeClass().addClass( 'changing-to' + appClass );
+    thisEl.addClass( 'changing-to ' + classString );
     
     if ( appClass ) {
         $appWrapper.removeClass().addClass( appClass );
@@ -100,68 +93,43 @@ const updateState = function( el, classString, expireCurrent, duration, appClass
      }, thisDuration );
 };
 
-
-/* state-lower-room state-detail state-transition
-const updateState = function( el, classString, expireCurrent, duration, appClass ) {
-
-$appWrapper = $( '#app-wrapper' ),
-$compareLink = $( '.navigation__compare' ),
-$favoritesLink = $( '.navigation__favorites' ),
-$introReadyCTA = $( '.intro__message .button-link' ),
-$introMessage = $( '.intro__message' ),
-$introHue = $( '.intro__hue' ),
-$introLuminosity = $( '.intro__luminosity' ),
-$introSaturation = $( '.intro-pane intro__saturation' ),
-$introColorMasks = $( '.intro-pane-color-mask' ),
-$introColorsHue = $( '.intro__hue .intro-pane-color-mask' ),
-$introColorsLuminosity = $( '.intro__luminosity .intro-pane-color-mask' ),
-$introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
-*/
-
 /* ------------------ ### initDOM ### ------------------ */
 let loopState = "top";
 
 const initDOM = function( event ) {
-    window.setInterval( function(){
-        switch ( loopState ) {
-        case "top":
-            $appWrapper.attr( 'class', 'state-detail' );
-            loopState = 'detail';
-            break;
-        case "detail":
-            $appWrapper.attr( 'class', 'state-lower-room' );
-            loopState = 'lower';
-            break;
-        case "lower":
-            $appWrapper.attr( 'class', 'state-lower-room state-detail' );
-            loopState = 'bottomDetail';
-            break;
-        case "bottomDetail":
-            $appWrapper.attr( 'class', '' );
-            loopState = 'top';
-            break;
-        }
-
-        //$appWrapper.removeClass( 'state-transition' );
-    }, 2000);
-
-    
-    
-
-
 //wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 //wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 
     $introReadyCTA.click( function() {
         updateState ( $introHue, 'active', true, 500 );
     } );
+
+    $introHue.click( function() {
+        //updateState ( $introHue, 'active', true, 500 );
+    } );
+
+    /*
+    wwwwwwww.click( function() {
+        //updateState ( wwwwww, 'active', true, 500 );
+    } );
+
+    wwwwwwww.click( function() {
+        //updateState ( wwwwww, 'active', true, 500 );
+    } );
+
+    wwwwwwww.click( function() {
+        //updateState ( wwwwww, 'active', true, 500 );
+    } );
+
+    wwwwwwww.click( function() {
+        //updateState ( wwwwww, 'active', true, 500 );
+    } );
+
+    */
+
     return true;
 };
 
-
-
-var cssVar = "display:block";
-chipStyleSheet.insertRule( "body {"  + cssVar + "}", 1 );
 
 /* ------------------ ### wwwwwwww ### ------------------ */
 
@@ -175,79 +143,9 @@ chipStyleSheet.insertRule( "body {"  + cssVar + "}", 1 );
 
 $(document).ready( function(){
 
-/*
-state-transition
-state-favorites
-state-detail
-state-lower-room
-state-intro
-.state-app-primed
-*/
+    initDOM();
 
-// $appWrapper.click( function(){
-//     if ( !inDetailView ) {
-//         $appWrapper.addClass( 'state-lower-room' );
-//         window.setTimeout( function(){
-//             $appWrapper.addClass( 'state-transition' );
-//         }, 2050);
-//         inDetailView = true;
-//     } else {
-//         $appWrapper.removeClass( 'state-lower-room' );
-//         //$appWrapper.removeClass( 'state-detail' );
-//         window.setTimeout( function(){
-//             $appWrapper.removeClass( 'state-transition' );
-//         }, 2050);
-//         inDetailView = false;
-//     }
-// });
-
-/*
-
-$introMessage = $( '.intro__message' ),
-$introHue = $( '.intro__hue' ),
-$introLuminosity = $( '.intro__luminosity' ),
-$introSaturation = $( '.intro-pane intro__saturation' ),
-$introColorMasks = $( '.intro-pane-color-mask' ),
-$introColorsHue = $( '.intro__hue .intro-pane-color-mask' ),
-$introColorsLuminosity = $( '.intro__luminosity .intro-pane-color-mask' ),
-$introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
-
-*/
-
-// $( '.app-title' ).click( function(){
-//     $appWrapper.addClass( 'losing-active' );
-//     $appWrapper.addClass( 'losing-active' );
-//     window.setTimeout( function(){
-//         $appWrapper.removeClass( 'losing-active' );
-//      }, 500)
-// });
-
-// $( '.intro-pane-color-mask' ).click( function(){
-//     $appWrapper.toggleClass( 'state-test1' );
-// });
-
-// window.setTimeout( function(){
-//     $appWrapper.addClass( 'state-app-primed state-detail-' );
-// }, 100);
-
-// $( window ).resize(function() {
-//   handleResize();
-// });
-
-//class="state-intro-hue- state-lower-room- state-intro- state-color-preference state-zoom-room- state-detail- state-transition">
-
-initDOM();
-
-
-
-
-
-
-
-
-
-
-
+    $appWrapper.addClass().addClass( "state-detail" );
 
 
 });
@@ -259,6 +157,16 @@ initDOM();
 changeHue(rgb, degree)
 hslToRgb(h, s, l)
 rgbToHsl(r, g, b)
+
+
+
+// colorFamilyred: #ff0000,
+// colorFamilyorange: #FFA500,
+// colorFamilyyellow: #FFFF00,
+// colorFamilygreen: #339935,
+// colorFamilyblue: #4D4AFD,
+// colorFamilypurple: #800080,
+// colorFamilyneutral: #B9A796,
 
 temp color pairings
 1, 132, 152
@@ -321,4 +229,18 @@ var handleResize = function( event ) {
     })
     return true;
 };
+
+
+$( window ).resize(function() {
+  handleResize();
+});
+
+$introMessage = $( '.intro__message' ),
+$introHue = $( '.intro__hue' ),
+$introLuminosity = $( '.intro__luminosity' ),
+$introSaturation = $( '.intro-pane intro__saturation' ),
+$introColorMasks = $( '.intro-pane-color-mask' ),
+$introColorsHue = $( '.intro__hue .intro-pane-color-mask' ),
+$introColorsLuminosity = $( '.intro__luminosity .intro-pane-color-mask' ),
+$introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 */

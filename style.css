@@ -50,6 +50,8 @@ Stardew R: 166 G: 178 B: 181  Hex Value: #a6b2b5
   --color-intro-hue-v3: #462295;
   --color-intro-hue-v4: #fd45ca;
   --color-intro-hue-v5: #459aed;
+  --color-intro-hue-v6: #ccc;
+  --color-intro-hue-v7: #333;
 
   --scale-zoom-factor: 1.8;
   --scale-zoom-factor-s: scale(calc( 2 * var(--scale-zoom-factor) ));
@@ -175,11 +177,14 @@ ul, li {
 .room-image-natural,
 .room-image-tinted {
   object-fit: cover;
+  transition: opacity 1s;
+  will-change: opacity;
 }
 
 .room-image-tinted {
   filter: grayscale(100) brightness(0.85) contrast(1.75);
   mix-blend-mode: multiply;
+  /* transition-delay: 2s; */
   z-index: 2;
 }
 
@@ -189,7 +194,6 @@ ul, li {
 }
 
 .room-image-natural {
-  /* room-chair-mask-flat */
   -webkit-mask-image: url( './images/room-chair-mask-clean.png' );
   -webkit-mask-size: cover;
   -webkit-mask-position: 50% 50%;
@@ -244,6 +248,7 @@ ul, li {
   background-color: var( --room-color-left );
   opacity: 0;
   transition: opacity 2s;
+  /* transition-delay: 2s; */
   will-change: opacity;
   z-index: 1;
 }
@@ -266,23 +271,38 @@ ul, li {
   background-image: url( './images/room-chair.jpg' );
   background-position: 50% 50%;
   background-size: cover;
-  mix-blend-mode: multiply;
+
+  
+  mix-blend-mode: color-burn;
+  mix-blend-mode: color-dodge;
+  mix-blend-mode: luminosity;
+  mix-blend-mode: color-burn;
+  mix-blend-mode: soft-light;
 
   align-items: flex-start;
   display: flex;
   filter: brightness( 0.75 );
   flex-direction: column;
-  font-size: 30vw;
-  letter-spacing: -8vw;
+  /* font-size: 30vw; */
+  font-size: 17vw;
+  /* letter-spacing: -8vw; */
   line-height: 16vw;
   justify-content: center;
   margin: 0 1%;
   opacity: 0;
   text-align: left;
-  transition: font-size 2s, letter-spacing 2s, opacity 2s ease-out;
+  /* transition: font-size 2s, letter-spacing 2s, opacity 2s ease-out; */
+  transition: opacity 4s ease-in;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  will-change: font-size, letter-spacing, opacity;
+  /* will-change: font-size, letter-spacing, opacity; */
+  will-change: opacity;
+}
+
+.text-accent {
+  left: 1px;
+  position: absolute;
+  top: 1px;
 }
 
 .color-number {
@@ -326,7 +346,7 @@ ul, li {
   background-color: #eee;
   height: 100%;
   padding: calc( 3px + 1% );
-  z-index: 10;
+  z-index: 1;
 }
 
 .intro-pane,
@@ -348,7 +368,7 @@ ul, li {
 }
 
 .intro-pane__header {
-  font-size: calc( 16px + 3vw );
+  font-size: calc( 12px + 1vw );
   justify-content: flex-end;
   text-align: center;
   padding-bottom: 3vw;
@@ -369,32 +389,23 @@ ul, li {
   background-color: var( --color-white );
   border: 2px solid var( --color-white );
   flex-direction: row;
+  justify-content: space-between;
   overflow: hidden;
   position: absolute;
-  width: 90vw;
+  width: 91vw;
 }
 
-.intro-pane-colors__mask {
-  background-color: transparent;
-}
-
-.intro-pane-color,
 .intro-pane-color-mask {
-  display: block;
-  height: var( --intro-color-dot-size );
-  position: relative;
-  width: var( --intro-color-dot-size );
+  overflow: hidden;
 }
 
 .intro-pane-color {
-  background-color: #cde;
+  border-radius: 50%;
+  height: 12vw;
+  width: 12vw;
 }
 
-.intro-pane-color-mask {
-  overflow: hidden;
-}
-
-.intro-pane-color::after,
+/* .intro-pane-color::after,
 .intro-pane-color-mask::after {
   content: '';
   display: block;
@@ -424,7 +435,7 @@ ul, li {
 .state-test1 .intro-color--color-5::after {
   transform: scale( 16 );
   transform-origin: center;
-}
+} */
 
 .intro__message{
 }
@@ -456,31 +467,43 @@ ul, li {
 
 ------------------ ############ Intro Colors ############ ------------------ */
 .intro__hue .intro-color--color-1 {
-  color: var( --color-intro-hue-v1 );
+  /* color: var( --color-intro-hue-v1 ); */
   background-color: var( --color-intro-hue-v1 );
 }
 
 .intro__hue .intro-color--color-2 {
-  color: var( --color-intro-hue-v2 );
+  /* color: var( --color-intro-hue-v2 ); */
   background-color: var( --color-intro-hue-v2 );
 }
 
 .intro__hue .intro-color--color-3 {
-  color: var( --color-intro-hue-v3 );
+  /* color: var( --color-intro-hue-v3 ); */
   background-color: var( --color-intro-hue-v3 );
 }
 
 .intro__hue .intro-color--color-4 {
-  color: var( --color-intro-hue-v4 );
+  /* color: var( --color-intro-hue-v4 ); */
   background-color: var( --color-intro-hue-v4 );
   /* background-color: rgba( 230, 144, 255, 255 ); */
   /* z-index: 999; */
 }
 
 .intro__hue .intro-color--color-5 {
-  color: var( --color-intro-hue-v5 );
+  /* color: var( --color-intro-hue-v5 ); */
   background-color: var( --color-intro-hue-v5 );
   /* background-color: rgba( 30, 144, 255, 255 ); */
+}
+
+.intro__hue .intro-color--color-5 {
+  background-color: var( --color-intro-hue-v5 );
+}
+
+.intro__hue .intro-color--color-6 {
+  background-color: var( --color-intro-hue-v6 );
+}
+
+.intro__hue .intro-color--color-7 {
+  background-color: var( --color-intro-hue-v7 );
 }
 
 /* .intro__hue .intro-color--color-1 {
@@ -633,13 +656,13 @@ ul, li {
   z-index: 10
 } */
 
-.intro__message .button-link {
+/* .intro__message .button-link {
   display: block;
-}
+} */
 /* ------------------ ############ APP STATE - COLOR PREFERENCE ############ ------------------ */
-.state-color-preference {
+/* .state-color-preference {
   opacity: 1;
-}
+} */
 
 
 
@@ -649,30 +672,47 @@ ul, li {
   z-index: 9;
 }
 
-.state-detail .room__image--furniture {
+/* .state-detail .room__image--furniture {
+  opacity: 0;
+} */
+
+.state-detail .color-info {
+  /* font-size: 17vw;
+  letter-spacing: 0; */
+  opacity: 1;
+  z-index: 11;
+}
+
+/* .test-mask {
+  z-index: 99;
+  mix-blend-mode: color-burn;
+} */
+
+.state-detail .room-image-natural {
   opacity: 0;
 }
 
-.state-detail .color-info {
-  font-size: 17vw;
-  letter-spacing: 0;
-  opacity: 1;
-  z-index: 10;
+
+.state-detail .room-image-tinted {
+  /* filter: grayscale(100) brightness(0.85) contrast(1.75);
+  mix-blend-mode: multiply; */
+
+  /* -webkit-mask-image: url( './images/room-chair-mask-clean.png' );
+  -webkit-mask-size: cover;
+  -webkit-mask-position: 50% 50%;
+  mask-size: 200% 200%; */
+  /* z-index: 10; */
 }
 
-.state-transition .solid-overlay--top {
+/* .state-transition .solid-overlay--top {
   transition: opacity 0.5s;
   transition-delay: 0.5s;
 }
 
 .state-transition .color-name {
   transition-delay: 0s;
-}
+} */
 
-/*.state-transition .room__image--furniture {
-  transition: opacity 1s;
-  transition-delay: 1s;
-}*/
 
 /*
    ```    `` ``                                                    ``         ``  ``                                                                  
