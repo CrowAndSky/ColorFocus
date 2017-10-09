@@ -35,23 +35,24 @@ Stardew R: 166 G: 178 B: 181  Hex Value: #a6b2b5
   --shadow-transition-delay: 0.7s;
   --solid-transition-delay: 0.7s;
 
-  --room-color-left: #c65f47;
-  --room-color-right: #a56c4a;
-  --room-color-left-bottom: #35454e;
-  --room-color-right-bottom: #393437;
+  --room-color-left-bottom: hsl(32, 100%, 63%);  /* #ffa541; 35454e */
+  --room-color-left: hsl(11, 53%, 53%); /* #c65f47; */
+  --room-color-right-bottom: hsl(324, 5%, 21%); /* #393437 */
+  --room-color-right: hsl(184, 63%, 73%); /* #8edfe5  a56c4a */
 
   --shadow-transition-delay: 0.7s;
   --solid-transition-delay: 0.7s;
 
   --intro-color-dot-size: 18vw;
   --intro-color-dot-border-size: 7vw;
-  --color-intro-hue-v1: #a66255;
-  --color-intro-hue-v2: #369f47;
-  --color-intro-hue-v3: #462295;
-  --color-intro-hue-v4: #fd45ca;
-  --color-intro-hue-v5: #459aed;
-  --color-intro-hue-v6: #ccc;
-  --color-intro-hue-v7: #333;
+  --color-intro-hue-v1: #ff0000;
+  --color-intro-hue-v2: #FFA500;
+  --color-intro-hue-v3: #FFFF00;
+  --color-intro-hue-v4: #339935;
+  --color-intro-hue-v5: #4D4AFD;
+  --color-intro-hue-v6: #800080;
+  --color-intro-hue-v7: #B9A796;
+  
 
   --scale-zoom-factor: 1.8;
   --scale-zoom-factor-s: scale(calc( 2 * var(--scale-zoom-factor) ));
@@ -272,12 +273,7 @@ ul, li {
   background-position: 50% 50%;
   background-size: cover;
 
-  
-  mix-blend-mode: color-burn;
-  mix-blend-mode: color-dodge;
-  mix-blend-mode: luminosity;
-  mix-blend-mode: color-burn;
-  mix-blend-mode: soft-light;
+  mix-blend-mode: luminosity; /* make filter darker for mids and filter lighter for darks  */
 
   align-items: flex-start;
   display: flex;

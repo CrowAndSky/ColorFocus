@@ -1,14 +1,21 @@
 "use strict";
 
 /*\
-|*|
-|*|  :: wwwwwwwwww ::
-|*|
-|*|  :: wwwwwwwwww ::
-TO DO:
-Add global vars for colors and write them to CSS
 
-Add choice and slide show controls and style
+|*|  :: wwwwwwwwww ::
+|*|       TO DO:
+|*|  :: wwwwwwwwww ::
+
+Color-info stuff:
+    Make  brightness filter and font size values custom properties
+
+    Size copy dynamically
+
+    Animate opacity of words singly
+
+    Animate gradient fill in diagonally 
+
+
 \*/
 
  /* -------------------- INIT VARIABLES ---------------------*/
@@ -28,11 +35,18 @@ $introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 $roomB = $( '.room-b' ),
 $roomLower = $( '.room__wrapper--lower' ),
 $roomLowerB = $( '.room__wrapper--lower.room-b' ),
+$cnames = [ $( '.color-name:eq( 0 )' ), $( '.color-name:eq( 1 )' ), $( '.color-name:eq( 2 )' ), $( '.color-name:eq( 3 )' ) ],
+$cnumber1 = $( '.color-number:eq( 0 )' ),
+$cnumber2 = $( '.color-number:eq( 1 )' ),
+$cnumber3 = $( '.color-number:eq( 2 )' ),
+$cnumber4 = $( '.color-number:eq( 3 )' ),
+CSSpropRoomColors = [ "--room-color-left-bottom", "--room-color-left",  "--room-color-right-bottom", "--room-color-right" ],
+
 //$wwwwwww = $( '.wwwwwww' ),
 
-chipStyleSheet = document.styleSheets[0];
+styleSheet = document.styleSheets[0];
 // let cssVar = "display:block";
-// chipStyleSheet.insertRule( "body {"  + cssVar + "}", 1 );
+// styleSheet.insertRule( "body {"  + cssVar + "}", 1 );
 
 /*--------------------- ### App State ### ---------------------*/
 let appState,    // state-intro    state-intro-hue   state-lower-room  state-color-preference   state-detail  state-transition state-app-primed
@@ -52,6 +66,10 @@ DOMmutationObserverConfig = { childList: true },
 x,
 i;
 
+let loopState = "top",
+colorsAll = [ { cName : "Deep Forest Brown", cNumber: "SW-2450", cHex: "ssssss"}, { cName : "House Atriedes", cNumber: "SW-1970", cHex: "ssssss"}, { cName : "Rainstorm", cNumber: "SW-5633", cHex: "ssssss"}, { cName : "Bauhaus Buff", cNumber: "SW-6712", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"} ];
+
+colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 63%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
 
 /* ------------------ ### wwwwwwww ### ------------------ */
 const funfunfun = function( event ) {
@@ -63,6 +81,28 @@ const funfunfun = function( event ) {
         cancelAnimationFrame( mainRAFloop );
     }
 };
+
+/* ------------------ ### Get color presentation attributes ### ------------------ */
+const getColorPresentation = function( colorName, colorHSL ) {
+    const namePartsArr = colorName.split(' ');
+    var vwValue = 100 / namePartsArr.reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
+    var HSLpart = colorHSL.split( ',' )[2].slice( 0, -2 );
+    // HSLpart.slice( -2 )
+    console.log('########## ' + HSLpart ); 
+
+
+    /* make filter darker for mids and filter lighter for darks  */
+}
+
+/* ------------------ ### wwwwwwww ### ------------------ */
+const setColors = function( colorIndex, roomELindex ) {
+    // for ( var i = 0, len = 4; i < len; i++) {
+        var i = colorIndex * 3;
+        $cnames[ roomELindex ].val( colorsAll[ i ] );
+        getColorPresentation( colorsAll[ i ], colorsAll[ i + 2 ] );
+        //styleSheet.setProperty( CSSpropRoomColors[ roomELindex ], newValue);
+    //}
+}
 
 /* ------------------ ### changeActive ### ------------------ */
 const updateState = function( el, classString, expireCurrent, duration, appClass ) {
@@ -94,9 +134,11 @@ const updateState = function( el, classString, expireCurrent, duration, appClass
 };
 
 /* ------------------ ### initDOM ### ------------------ */
-let loopState = "top";
-
 const initDOM = function( event ) {
+
+    //for ( var i = 0, len = 4; i < len; i++) {}
+    
+    getColorPresentation( colorsAll[0], colorsAll[2] );
 //wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 //wwwwwwww.click( updateState ( wwww, 'wwww', true, 500 ) );
 
@@ -145,8 +187,9 @@ $(document).ready( function(){
 
     initDOM();
 
-    $appWrapper.addClass().addClass( "state-detail" );
+    $appWrapper.addClass( "state-detail" );
 
+    $appWrapper.click( function(){ $appWrapper.addClass( "state-lower-room" ); } );
 
 });
 
