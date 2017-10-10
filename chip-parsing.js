@@ -48,7 +48,9 @@ const $parserWrapper = $( '#parser-wrapper' ),
                 // console.log('########## thisRGB: ' + thisRGB);
 
                 //colorInHSL = rgbToHsl( r, g, b );
-                allColors[ index ] = [ color.colorNumber, color.name, r + ',' + g + ',' + b, index ];
+                //allColors[ index ] = [ color.colorNumber, color.name, r + ',' + g + ',' + b, index ];
+                // allColors.push( '"' + color.name + '"', '"' + color.colorNumber + '"', colorInHSL.h + ',' + colorInHSL.s * 100 + '%,' + colorInHSL.l * 100 + '%');
+                allColors.push( '"' + color.name + '"', '"' + color.colorNumber + '"', '"' + colorInHSL.h + ',' + colorInHSL.s * 100 + '%,' + colorInHSL.l * 100 + '%"');
             }
         });
 
@@ -56,8 +58,9 @@ const $parserWrapper = $( '#parser-wrapper' ),
         colorsByS.sort( sortByFirst );
         colorsByL.sort( sortByFirst );
 
-        _.each ( colorsByL, function( color, index ){
-            chips = chips + '<div class="chip" style="background:rgb(' + allColors[ color[1] ][ 2 ] + ')"></div>';
+        _.each ( colorsByH, function( color, index ){
+            //console.log( allColors[ color[ 1 ] * 3 + 2 ] );
+            //chips = chips + '<div class="chip" style="background:hsl(' + allColors[ color[ 1 ] * 3 + 2 ] + ')"></div>';
         });
         
         
@@ -65,14 +68,17 @@ const $parserWrapper = $( '#parser-wrapper' ),
         $parserWrapper.append(chips);
 
         console.log('########## H, S, L');
-        console.log(colorsByH);
-        console.log(colorsByS);
-        console.log(colorsByL);
+        // console.log(colorsByH);
+        // console.log(colorsByS);
+        // console.log(colorsByL);
     };
 
 $(document).ready( function(){
     parse();
-    //$( '#console1' ).text( allColors );
+    $( '#console1' ).text( allColors );
+    $( '#console2' ).text( colorsByH );
+    $( '#console3' ).text( colorsByS );
+    $( '#console4' ).text( colorsByL );
 });
 
 

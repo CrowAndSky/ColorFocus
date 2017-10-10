@@ -19,7 +19,7 @@ Gale Force R: 53 G: 69 B: 78 Hex Value: #35454e
 Stardew R: 166 G: 178 B: 181  Hex Value: #a6b2b5
 */
 
-:root{
+body {
   --blue-bright: #8edfe5;
   --blue-gray: #95a0b2;
   --blue-nav: #8edfe5; /*#c0f1f7 is lighter*/
@@ -40,6 +40,11 @@ Stardew R: 166 G: 178 B: 181  Hex Value: #a6b2b5
   --room-color-right-bottom: hsl(324, 5%, 21%); /* #393437 */
   --room-color-right: hsl(184, 63%, 73%); /* #8edfe5  a56c4a */
 
+  --room-color-left-bottom: hsl(32, 100%, 63%);  /* #ffa541; 35454e */
+  --room-color-left: hsl(11, 100%, 53%); /* #c65f47; */
+  --room-color-right-bottom: hsl(324, 5%, 21%); /* #393437 */
+  --room-color-right: hsl(124, 100%, 53%); /* #8edfe5  a56c4a */
+
   --shadow-transition-delay: 0.7s;
   --solid-transition-delay: 0.7s;
 
@@ -52,7 +57,16 @@ Stardew R: 166 G: 178 B: 181  Hex Value: #a6b2b5
   --color-intro-hue-v5: #4D4AFD;
   --color-intro-hue-v6: #800080;
   --color-intro-hue-v7: #B9A796;
-  
+
+  --color-info-brightness-1: brightness( 75% );
+  --color-info-brightness-2: brightness( 75% );
+  --color-info-brightness-3: brightness( 75% );
+  --color-info-brightness-4: brightness( 75% );
+
+  --color-info-fontSize-1: 17vw;
+  --color-info-fontSize-2: 17vw;
+  --color-info-fontSize-3: 17vw;
+  --color-info-fontSize-4: 17vw;
 
   --scale-zoom-factor: 1.8;
   --scale-zoom-factor-s: scale(calc( 2 * var(--scale-zoom-factor) ));
@@ -148,6 +162,7 @@ ul, li {
 .intro-pane,
 .solid-overlay,
 .navigation__wrapper {
+    /* display: none; */
     height: 100%;
     left: 0;
     position: absolute;
@@ -277,7 +292,7 @@ ul, li {
 
   align-items: flex-start;
   display: flex;
-  filter: brightness( 0.75 );
+  filter: var( --color-info-brightness-2 );
   flex-direction: column;
   /* font-size: 30vw; */
   font-size: 17vw;
@@ -293,6 +308,18 @@ ul, li {
   -webkit-background-clip: text;
   /* will-change: font-size, letter-spacing, opacity; */
   will-change: opacity;
+}
+
+.room__wrapper--lower .color-info {
+  filter: var( --color-info-brightness-1 );
+}
+
+.room-b .color-info {
+filter: var( --color-info-brightness-4 );
+}
+
+.room__wrapper--lower.room-b .color-info {
+filter: var( --color-info-brightness-3 );
 }
 
 .text-accent {
