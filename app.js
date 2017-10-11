@@ -8,14 +8,9 @@
 
 Color-info stuff:
     Make  brightness filter and font size values custom properties
-
     Size copy dynamically
-
     Animate opacity of words singly
-
     Animate gradient fill in diagonally 
-
-
 \*/
 
  /* -------------------- INIT VARIABLES ---------------------*/
@@ -37,19 +32,11 @@ $roomLower = $( '.room__wrapper--lower' ),
 $roomLowerB = $( '.room__wrapper--lower.room-b' ),
 $cnames = [ $( '.color-name:eq( 0 )' ), $( '.color-name:eq( 1 )' ), $( '.color-name:eq( 2 )' ), $( '.color-name:eq( 3 )' ) ],
 $cnumbers = [ $( '.color-number:eq( 0 )' ), $( '.color-number:eq( 1 )' ), $( '.color-number:eq( 2 )' ), $( '.color-number:eq( 3 )' ) ],
-// $cnumber1 = $( '.color-number:eq( 0 )' ),
-// $cnumber2 = $( '.color-number:eq( 1 )' ),
-// $cnumber3 = $( '.color-number:eq( 2 )' ),
-// $cnumber4 = $( '.color-number:eq( 3 )' ),
-CSSpropRoomColors = [ "--room-color-left-bottom", "--room-color-left",  "--room-color-right-bottom", "--room-color-right" ],
+-room-color-left",  "--room-color-right-bottom", "--room-color-right" ],
 CSSpropInfoBrightness = [ "--color-info-brightness-1", "--color-info-brightness-2", "--color-info-brightness-3", "--color-info-brightness-4" ],
 CSSpropInfoFontSize = [ "--color-info-fontSize-1", "--color-info-fontSize-2", "--color-info-fontSize-3", "--color-info-fontSize-4" ],
 
 //$wwwwwww = $( '.wwwwwww' ),
-
-styleSheet = document.styleSheets[0];
-// let cssVar = "display:block";
-// styleSheet.insertRule( "body {"  + cssVar + "}", 1 );
 
 /*--------------------- ### App State ### ---------------------*/
 let appState,    // state-intro    state-intro-hue   state-lower-room  state-color-preference   state-detail  state-transition state-app-primed
@@ -59,13 +46,6 @@ animLoopIndex,
 stillUpdatingDOM = false,
 readyToUpdate = true,
 mainRAFloop,
-DOMmutationObserver = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    stillUpdatingDOM = false;
-    stillExpiringChips = false;
-  });
-}),
-DOMmutationObserverConfig = { childList: true },
 x,
 i;
 
@@ -75,14 +55,18 @@ colorsAll = [ { cName : "Deep Forest Brown", cNumber: "SW-2450", cHex: "ssssss"}
 colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 63%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
 
 /* ------------------ ### wwwwwwww ### ------------------ */
-const funfunfun = function( event ) {
+const appLoop = function( event ) {
     if ( readyToUpdate ) {
+        console.log('########## loop');
+
         for ( x = 0; x < 9; x++ ) {
         }
         animLoopIndex += 2;
-        mainRAFloop = requestAnimationFrame( funfunfun );
+        
         cancelAnimationFrame( mainRAFloop );
     }
+
+    mainRAFloop = requestAnimationFrame( appLoop );
 };
 
 /* ------------------ ### Get color presentation attributes ### ------------------ */
@@ -181,6 +165,8 @@ const initDOM = function( event ) {
 
     */
 
+    mainRAFloop = requestAnimationFrame( appLoop );
+
     return true;
 };
 
@@ -278,6 +264,15 @@ var fooBar = bodyStyles.getPropertyValue('--foo-bar');
 will-change: transform, opacity;
 
 
+DOMmutationObserver = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    stillUpdatingDOM = false;
+    stillExpiringChips = false;
+  });
+}),
+DOMmutationObserverConfig = { childList: true },
+
+
 
  ------------------ ### Handle Resize ### ------------------ 
 var handleResize = function( event ) {
@@ -304,3 +299,13 @@ $introColorsHue = $( '.intro__hue .intro-pane-color-mask' ),
 $introColorsLuminosity = $( '.intro__luminosity .intro-pane-color-mask' ),
 $introColorsSaturation = $( '.intro__saturation .intro-pane-color-mask' ),
 */
+
+
+
+//styleSheet = document.styleSheets[0];
+// let cssVar = "display:block";
+// styleSheet.insertRule( "body {"  + cssVar + "}", 1 );
+// $cnumber1 = $( '.color-number:eq( 0 )' ),
+// $cnumber2 = $( '.color-number:eq( 1 )' ),
+// $cnumber3 = $( '.color-number:eq( 2 )' ),
+// $cnumber4 = $( '.color-number:eq( 3 )' ),
