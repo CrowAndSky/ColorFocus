@@ -54,13 +54,13 @@ body {
   --color-intro-hue-component: 152;
   --color-intro-luminosity-component: 30%;
 
-  --color-intro-hue-v1: #ff0000;
-  --color-intro-hue-v2: #FFA500;
-  --color-intro-hue-v3: #FFFF00;
-  --color-intro-hue-v4: #339935;
-  --color-intro-hue-v5: #4D4AFD;
-  --color-intro-hue-v6: #800080;
-  --color-intro-hue-v7: #B9A796;
+  --color-intro-hue-v1: hsl(0, 100%, 50%);
+  --color-intro-hue-v2: hsl(39, 100%, 50%);
+  --color-intro-hue-v3: hsl(60, 100%, 50%);
+  --color-intro-hue-v4: hsl(121, 50%, 40%);
+  --color-intro-hue-v5: hsl(241, 98%, 64%);
+  --color-intro-hue-v6: hsl(300, 100%, 25%);
+  --color-intro-hue-v7: hsl(29, 20%, 66%);
 
   --color-intro-luminosity-1: var( --color-intro-hue-component ), 100%, 10%;
   --color-intro-luminosity-2: var( --color-intro-hue-component ), 100%, 30%;
@@ -173,7 +173,7 @@ ul, li {
 .intro-pane,
 .solid-overlay,
 .navigation__wrapper {
-    display: none;
+    /* display: none; */
     height: 100%;
     left: 0;
     position: absolute;
@@ -185,6 +185,7 @@ ul, li {
 #testEL {
   background-color: hsl(var( --color-intro-hue-component ), 50%, 50% );
   background-color: hsl(var( --color-intro-saturation-1 ) );
+  display: none;
   height: 400px;
   widows:  400px;
 }

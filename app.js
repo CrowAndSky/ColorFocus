@@ -7,10 +7,11 @@
 |*|  :: wwwwwwwwww ::
 
 Color-info stuff:
-    Make  brightness filter and font size values custom properties
-    Size copy dynamically
-    Animate opacity of words singly
     Animate gradient fill in diagonally 
+
+Scene digest:
+    Create animation on current colors
+    When choosing is ready, create faux series of clicks?
 \*/
 
  /* -------------------- INIT VARIABLES ---------------------*/
@@ -32,9 +33,9 @@ $roomLower = $( '.room__wrapper--lower' ),
 $roomLowerB = $( '.room__wrapper--lower.room-b' ),
 $cnames = [ $( '.color-name:eq( 0 )' ), $( '.color-name:eq( 1 )' ), $( '.color-name:eq( 2 )' ), $( '.color-name:eq( 3 )' ) ],
 $cnumbers = [ $( '.color-number:eq( 0 )' ), $( '.color-number:eq( 1 )' ), $( '.color-number:eq( 2 )' ), $( '.color-number:eq( 3 )' ) ],
--room-color-left",  "--room-color-right-bottom", "--room-color-right" ],
+CSSpropRoomColors = [ "--room-color-left-bottom", "--room-color-left",  "--room-color-right-bottom", "--room-color-right" ],
 CSSpropInfoBrightness = [ "--color-info-brightness-1", "--color-info-brightness-2", "--color-info-brightness-3", "--color-info-brightness-4" ],
-CSSpropInfoFontSize = [ "--color-info-fontSize-1", "--color-info-fontSize-2", "--color-info-fontSize-3", "--color-info-fontSize-4" ],
+CSSpropInfoFontSize = [ "--color-info-fontSize-1", "--color-info-fontSize-2", "--color-info-fontSize-3", "--color-info-fontSize-4" ];
 
 //$wwwwwww = $( '.wwwwwww' ),
 
@@ -44,7 +45,7 @@ let appState,    // state-intro    state-intro-hue   state-lower-room  state-col
 /*--------------------- ### Animation Looping ### ---------------------*/
 animLoopIndex,
 stillUpdatingDOM = false,
-readyToUpdate = true,
+readyToUpdate = false,
 mainRAFloop,
 x,
 i;
@@ -65,25 +66,27 @@ const appLoop = function( event ) {
         
         cancelAnimationFrame( mainRAFloop );
     }
-
     mainRAFloop = requestAnimationFrame( appLoop );
 };
 
 /* ------------------ ### Get color presentation attributes ### ------------------ */
 const getColorPresentation = function( colorName, colorHSL ) {
     const namePartsArr = colorName.split(' ');
-    var alphaAdjustment,
+    var adjustedAlpha,
         vwValue = 100 / namePartsArr.reduce(function (a, b) { return a.length > b.length ? a : b; }).length,
         luminance = parseInt( colorHSL.split( ',' )[2].slice( 0, -2 ), 10);
+        console.log('########## luminance: ' + luminance);
     
     /* make filter darker for mids and filter lighter for darks  */
     if ( luminance < 34 ) {
-        alphaAdjustment = -1 * luminance;
-    } else if ( luminance < 80) {
-        alphaAdjustment = -luminance + ( Math.abs( luminance - 50 ) * 2 );
+        adjustedAlpha = "brightness(" + ( 1 + -1 * luminance ) + ")";
+    // } else if ( luminance < 80) {
+    } else {
+        // adjustedAlpha = -luminance + ( Math.abs( luminance - 50 ) * 2 );
+        adjustedAlpha = "brightness(" + ( 1 - 0.008 * luminance ) + ")";
     }
 
-    return { newVW: vwValue, newAlpha: alphaAdjustment }
+    return { newVW: vwValue, newAlpha: adjustedAlpha }
 }
 
 /* ------------------ ### Change all the color attributes for a room scene ### ------------------ */
@@ -91,12 +94,19 @@ const setColors = function( colorIndex, roomELindex ) {
     var i = colorIndex * 3,
         colorSpecificAdjustments = getColorPresentation( colorsAll[ i ], colorsAll[ i + 2 ] );
 
-    $cnames[ roomELindex ].val( colorsAll[ i ] );
-    $cnumbers[ roomELindex ].val( colorsAll[ i + 1 ] );
+    $cnames[ roomELindex ].text( colorsAll[ i ] );
+    $cnumbers[ roomELindex ].text( colorsAll[ i + 1 ] );
+
+    console.log('########## CSSpropInfoBrightness[ roomELindex ]: ' + CSSpropInfoBrightness[ roomELindex ]);
     
     document.body.style.setProperty( CSSpropRoomColors[ roomELindex ], colorsAll[ i + 2 ] );
     document.body.style.setProperty( CSSpropInfoFontSize[ roomELindex ], colorSpecificAdjustments.newVW );
     document.body.style.setProperty( CSSpropInfoBrightness[ roomELindex ], colorSpecificAdjustments.newAlpha );
+    console.log('########## colorSpecificAdjustments.newAlpha: ' + colorSpecificAdjustments.newAlpha);
+    //document.body.style.setProperty( CSSpropInfoBrightness[ roomELindex ], "brightness(" + ( 1 + colorSpecificAdjustments.newAlpha + ")" );
+    // var test = "--color-info-brightness-" + "4";
+    // console.log('########## test: ' + test);
+    //document.body.style.setProperty( test, "brightness(2)" );
 }
 
 /* ------------------ ### changeActive ### ------------------ */
@@ -127,6 +137,39 @@ const updateState = function( el, classString, expireCurrent, duration, appClass
         }
      }, thisDuration );
 };
+
+const setHueComponent = function( choiceIndex ) {
+    switch ( choiceIndex ) {
+        case 0:
+            document.body.style.setProperty( --color-intro-hue-component, 0 );            
+            break;
+        case 1:
+            document.body.style.setProperty( --color-intro-hue-component, 39 );            
+            break;
+        case 2:
+            document.body.style.setProperty( --color-intro-hue-component, 60 );            
+            break;
+        case 3:
+            document.body.style.setProperty( --color-intro-hue-component, 121 );            
+            break;
+        case 4:
+            document.body.style.setProperty( --color-intro-hue-component, 241 );            
+            break;
+        case 5:
+            document.body.style.setProperty( --color-intro-hue-component, 300 );            
+            break;
+        case 6:
+            document.body.style.setProperty( --color-intro-hue-component, 29 );
+            
+            //Will need additional stuff for neutrals
+            break;
+    
+        default:
+            break;
+    }
+}
+
+//  --color-intro-luminosity-component: 30%;
 
 /* ------------------ ### initDOM ### ------------------ */
 const initDOM = function( event ) {
