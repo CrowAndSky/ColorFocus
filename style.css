@@ -276,8 +276,8 @@ ul, li {
 ------------------ ############ SOLID COLOR OVERLAYS ############ ------------------ */
 .solid-overlay {
   background-color: var( --room-color-left );
-  -webkit-mask-image: linear-gradient(135deg, black 0%, transparent 100%); 
-  mask-image: linear-gradient(135deg, black 0%, transparent 100%); 
+  /* -webkit-mask-image: linear-gradient(135deg, black 0%, transparent 100%); 
+  mask-image: linear-gradient(135deg, black 0%, transparent 100%);  */
   opacity: 0;
   transition: opacity 2s;
   /* transition-delay: 2s; */
@@ -308,13 +308,13 @@ ul, li {
   display: flex;
   filter: var( --color-info-brightness-2 );
   flex-direction: column;
-  font-size: 17vw;
-  line-height: 16vw;
+  font-size: var( --color-info-fontSize-2 );
+  /* line-height: 16vw; */
   justify-content: center;
   margin: 0 1%;
   opacity: 0;
   text-align: left;
-  transition: opacity 4s ease-in;
+  /* transition: opacity 4s ease-in; */
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   /* will-change: font-size, letter-spacing, opacity; */
@@ -323,14 +323,17 @@ ul, li {
 
 .room__wrapper--lower .color-info {
   filter: var( --color-info-brightness-1 );
+  font-size: var( --color-info-fontSize-1 );
 }
 
 .room-b .color-info {
-filter: var( --color-info-brightness-4 );
+  filter: var( --color-info-brightness-4 );
+  font-size: var( --color-info-fontSize-4 );
 }
 
 .room__wrapper--lower.room-b .color-info {
-filter: var( --color-info-brightness-3 );
+  filter: var( --color-info-brightness-3 );
+  font-size: var( --color-info-fontSize-3 );
 }
 
 .text-accent {
@@ -341,13 +344,14 @@ filter: var( --color-info-brightness-3 );
 
 .color-number {
   font-family: 'Raleway Thin';
-  font-size: 10vw;
-  letter-spacing: -1vw;
+  font-size: 0.7em;
+  letter-spacing: -0.03em;
 }
 
 .color-name {
   font-family: 'Alfa Slab One', sans-serif;
-  letter-spacing: -0.2vw;
+  letter-spacing: -0.01em;
+  line-height: 0.9em;
 }
 
 /* 

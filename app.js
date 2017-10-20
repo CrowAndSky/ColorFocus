@@ -8,6 +8,8 @@
 
 Color-info stuff:
     Animate gradient fill in diagonally 
+    Set max size for pairs of color names so that they are the same
+        And, if there are three words, shrink it more
 
 Scene digest:
     Create animation on current colors
@@ -51,9 +53,9 @@ x,
 i;
 
 let loopState = "top",
-colorsAll = [ { cName : "Deep Forest Brown", cNumber: "SW-2450", cHex: "ssssss"}, { cName : "House Atriedes", cNumber: "SW-1970", cHex: "ssssss"}, { cName : "Rainstorm", cNumber: "SW-5633", cHex: "ssssss"}, { cName : "Bauhaus Buff", cNumber: "SW-6712", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"} ];
-
-colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 63%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
+// colorsAll = [ { cName : "Deep Forest Brown", cNumber: "SW-2450", cHex: "ssssss"}, { cName : "House Atriedes", cNumber: "SW-1970", cHex: "ssssss"}, { cName : "Rainstorm", cNumber: "SW-5633", cHex: "ssssss"}, { cName : "Bauhaus Buff", cNumber: "SW-6712", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"} ];
+// colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 63%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
+colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 83%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
 
 /* ------------------ ### wwwwwwww ### ------------------ */
 const appLoop = function( event ) {
@@ -73,20 +75,25 @@ const appLoop = function( event ) {
 const getColorPresentation = function( colorName, colorHSL ) {
     const namePartsArr = colorName.split(' ');
     var adjustedAlpha,
-        vwValue = 100 / namePartsArr.reduce(function (a, b) { return a.length > b.length ? a : b; }).length,
+        longestWord = namePartsArr.reduce(function (a, b) { return a.length > b.length ? a : b; }).length,
+        adjustedVW = 150 / longestWord + "vw",
         luminance = parseInt( colorHSL.split( ',' )[2].slice( 0, -2 ), 10);
         console.log('########## luminance: ' + luminance);
+        console.log('########## longestWord: ' + longestWord);
+        console.log('########## adjustedVW: ' + adjustedVW);
     
     /* make filter darker for mids and filter lighter for darks  */
     if ( luminance < 34 ) {
-        adjustedAlpha = "brightness(" + ( 1 + -1 * luminance ) + ")";
-    // } else if ( luminance < 80) {
+        // adjustedAlpha = "brightness(" + ( 1 + -0.004 * luminance ) + ")";
+        adjustedAlpha = "contrast( 0.75 ) brightness(" + ( 1 + 0.005 * ( 100 - luminance ) ) + ")";
+    } else if ( luminance < 75 ) {
+        adjustedAlpha = "brightness(" + ( -0.025 * ( 100 - luminance ) + 1.5  ) + ")";
     } else {
         // adjustedAlpha = -luminance + ( Math.abs( luminance - 50 ) * 2 );
-        adjustedAlpha = "brightness(" + ( 1 - 0.008 * luminance ) + ")";
+        adjustedAlpha = "brightness(" + ( 1 - 0.008 * ( 100 - luminance ) ) + ")";
     }
 
-    return { newVW: vwValue, newAlpha: adjustedAlpha }
+    return { newVW: adjustedVW, newAlpha: adjustedAlpha }
 }
 
 /* ------------------ ### Change all the color attributes for a room scene ### ------------------ */
@@ -179,7 +186,9 @@ const initDOM = function( event ) {
     window.setTimeout( function(){
         setColors( 0, 1 );
         setColors( 1, 3 );
-    }, 2500);
+        setColors( 2, 0 );
+        setColors( 3, 2 );
+    }, 250);
 
     $introReadyCTA.click( function() {
         updateState ( $introHue, 'active', true, 500 );
