@@ -43,6 +43,8 @@ CSSpropInfoFontSize = [ "--color-info-fontSize-1", "--color-info-fontSize-2", "-
 
 /*--------------------- ### App State ### ---------------------*/
 let appState,    // state-intro    state-intro-hue   state-lower-room  state-color-preference   state-detail  state-transition state-app-primed
+maxFontSize = 150,
+individualMaxFontSize = [ 150, 150, 150, 150 ],
 
 /*--------------------- ### Animation Looping ### ---------------------*/
 animLoopIndex,
@@ -72,15 +74,22 @@ const appLoop = function( event ) {
 };
 
 /* ------------------ ### Get color presentation attributes ### ------------------ */
-const getColorPresentation = function( colorName, colorHSL ) {
+const getColorPresentation = function( colorName, colorHSL, roomELindex ) {
     const namePartsArr = colorName.split(' ');
     var adjustedAlpha,
         longestWord = namePartsArr.reduce(function (a, b) { return a.length > b.length ? a : b; }).length,
-        adjustedVW = 150 / longestWord + "vw",
+        adjustedVW = 170 / longestWord,
         luminance = parseInt( colorHSL.split( ',' )[2].slice( 0, -2 ), 10);
         console.log('########## luminance: ' + luminance);
         console.log('########## longestWord: ' + longestWord);
         console.log('########## adjustedVW: ' + adjustedVW);
+
+    individualMaxFontSize[ roomELindex ] = adjustedVW;
+
+    if ( maxFontSize > adjustedVW ) {
+        // update max - check if current is max holder, then update all, set all to the same size
+        
+    }
     
     /* make filter darker for mids and filter lighter for darks  */
     if ( luminance < 34 ) {
@@ -93,13 +102,13 @@ const getColorPresentation = function( colorName, colorHSL ) {
         adjustedAlpha = "brightness(" + ( 1 - 0.008 * ( 100 - luminance ) ) + ")";
     }
 
-    return { newVW: adjustedVW, newAlpha: adjustedAlpha }
+    return { newVW: adjustedVW + "vw", newAlpha: adjustedAlpha }
 }
 
 /* ------------------ ### Change all the color attributes for a room scene ### ------------------ */
 const setColors = function( colorIndex, roomELindex ) {
     var i = colorIndex * 3,
-        colorSpecificAdjustments = getColorPresentation( colorsAll[ i ], colorsAll[ i + 2 ] );
+        colorSpecificAdjustments = getColorPresentation( colorsAll[ i ], colorsAll[ i + 2 ], roomELindex );
 
     $cnames[ roomELindex ].text( colorsAll[ i ] );
     $cnumbers[ roomELindex ].text( colorsAll[ i + 1 ] );
@@ -110,6 +119,7 @@ const setColors = function( colorIndex, roomELindex ) {
     document.body.style.setProperty( CSSpropInfoFontSize[ roomELindex ], colorSpecificAdjustments.newVW );
     document.body.style.setProperty( CSSpropInfoBrightness[ roomELindex ], colorSpecificAdjustments.newAlpha );
     console.log('########## colorSpecificAdjustments.newAlpha: ' + colorSpecificAdjustments.newAlpha);
+
     //document.body.style.setProperty( CSSpropInfoBrightness[ roomELindex ], "brightness(" + ( 1 + colorSpecificAdjustments.newAlpha + ")" );
     // var test = "--color-info-brightness-" + "4";
     // console.log('########## test: ' + test);
