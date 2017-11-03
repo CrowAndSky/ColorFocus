@@ -79,10 +79,17 @@ body {
   --color-info-brightness-3: brightness( 75% );
   --color-info-brightness-4: brightness( 75% );
 
-  --color-info-fontSize-1: 17vw;
+  --color-info-overlay-color-1: transparent;
+  --color-info-overlay-color-2: transparent;
+  --color-info-overlay-color-3: transparent;
+  --color-info-overlay-color-4: transparent;
+
+  /* --color-info-fontSize-1: 17vw;
   --color-info-fontSize-2: 17vw;
   --color-info-fontSize-3: 17vw;
-  --color-info-fontSize-4: 17vw;
+  --color-info-fontSize-4: 17vw; */
+
+  --color-info-maxFontSize: 34vw;
 }
 
 /* ------------------ ############ RESETS ############ ------------------ */
@@ -275,7 +282,9 @@ ul, li {
 
 ------------------ ############ SOLID COLOR OVERLAYS ############ ------------------ */
 .solid-overlay {
-  background-color: var( --room-color-left );
+  background-image: var( --color-info-overlay-color-2 );
+  background-size: 100% 400%;
+  background-position: center 0%;
   /* -webkit-mask-image: linear-gradient(135deg, black 0%, transparent 100%); 
   mask-image: linear-gradient(135deg, black 0%, transparent 100%);  */
   opacity: 0;
@@ -286,15 +295,15 @@ ul, li {
 }
 
 .room-b .solid-overlay {
-  background-color: var( --room-color-right );
+  background-image: var( --color-info-overlay-color-4 );
 }
 
 .room__wrapper--lower .solid-overlay {
-  background-color: var( --room-color-left-bottom );
+  background-image: var( --color-info-overlay-color-1 );
 }
 
 .room__wrapper--lower.room-b .solid-overlay {
-  background-color: var( --room-color-right-bottom );
+  background-image: var( --color-info-overlay-color-3 );
 }
 
 /* ------------------ ############ COLOR DETAILS ############ ------------------ */
@@ -308,7 +317,7 @@ ul, li {
   display: flex;
   filter: var( --color-info-brightness-2 );
   flex-direction: column;
-  font-size: var( --color-info-fontSize-2 );
+  font-size: var( --color-info-maxFontSize );
   /* line-height: 16vw; */
   justify-content: center;
   margin: 0 1%;
@@ -323,17 +332,17 @@ ul, li {
 
 .room__wrapper--lower .color-info {
   filter: var( --color-info-brightness-1 );
-  font-size: var( --color-info-fontSize-1 );
+  /* font-size: var( --color-info-fontSize-1 ); */
 }
 
 .room-b .color-info {
   filter: var( --color-info-brightness-4 );
-  font-size: var( --color-info-fontSize-4 );
+  /* font-size: var( --color-info-fontSize-4 ); */
 }
 
 .room__wrapper--lower.room-b .color-info {
   filter: var( --color-info-brightness-3 );
-  font-size: var( --color-info-fontSize-3 );
+  /* font-size: var( --color-info-fontSize-3 ); */
 }
 
 .text-accent {

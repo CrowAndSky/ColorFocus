@@ -35,16 +35,18 @@ $roomLower = $( '.room__wrapper--lower' ),
 $roomLowerB = $( '.room__wrapper--lower.room-b' ),
 $cnames = [ $( '.color-name:eq( 0 )' ), $( '.color-name:eq( 1 )' ), $( '.color-name:eq( 2 )' ), $( '.color-name:eq( 3 )' ) ],
 $cnumbers = [ $( '.color-number:eq( 0 )' ), $( '.color-number:eq( 1 )' ), $( '.color-number:eq( 2 )' ), $( '.color-number:eq( 3 )' ) ],
+individualMaxFontSize = [ 150, 150, 150, 150 ],
 CSSpropRoomColors = [ "--room-color-left-bottom", "--room-color-left",  "--room-color-right-bottom", "--room-color-right" ],
 CSSpropInfoBrightness = [ "--color-info-brightness-1", "--color-info-brightness-2", "--color-info-brightness-3", "--color-info-brightness-4" ],
-CSSpropInfoFontSize = [ "--color-info-fontSize-1", "--color-info-fontSize-2", "--color-info-fontSize-3", "--color-info-fontSize-4" ];
-
+// CSSpropInfoFontSize = [ "--color-info-fontSize-1", "--color-info-fontSize-2", "--color-info-fontSize-3", "--color-info-fontSize-4" ];
+CSSpropInfoGradients = [ "--color-info-overlay-color-1", "--color-info-overlay-color-2", "--color-info-overlay-color-3", "--color-info-overlay-color-4" ];
 //$wwwwwww = $( '.wwwwwww' ),
 
 /*--------------------- ### App State ### ---------------------*/
 let appState,    // state-intro    state-intro-hue   state-lower-room  state-color-preference   state-detail  state-transition state-app-primed
-maxFontSize = 150,
-individualMaxFontSize = [ 150, 150, 150, 150 ],
+maxFontSize = 100000, /* impossibly large */
+smallestFontIndex,
+//individualMaxFontSize = [ 150, 150, 150, 150 ],
 
 /*--------------------- ### Animation Looping ### ---------------------*/
 animLoopIndex,
@@ -55,8 +57,6 @@ x,
 i;
 
 let loopState = "top",
-// colorsAll = [ { cName : "Deep Forest Brown", cNumber: "SW-2450", cHex: "ssssss"}, { cName : "House Atriedes", cNumber: "SW-1970", cHex: "ssssss"}, { cName : "Rainstorm", cNumber: "SW-5633", cHex: "ssssss"}, { cName : "Bauhaus Buff", cNumber: "SW-6712", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"}, { cName : "sssss", cNumber: "sssssss", cHex: "ssssss"} ];
-// colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 63%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
 colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 83%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
 
 /* ------------------ ### wwwwwwww ### ------------------ */
@@ -78,31 +78,26 @@ const getColorPresentation = function( colorName, colorHSL, roomELindex ) {
     const namePartsArr = colorName.split(' ');
     var adjustedAlpha,
         longestWord = namePartsArr.reduce(function (a, b) { return a.length > b.length ? a : b; }).length,
-        adjustedVW = 170 / longestWord,
+        adjustedVW = 155 / longestWord,
         luminance = parseInt( colorHSL.split( ',' )[2].slice( 0, -2 ), 10);
-        console.log('########## luminance: ' + luminance);
-        console.log('########## longestWord: ' + longestWord);
-        console.log('########## adjustedVW: ' + adjustedVW);
 
     individualMaxFontSize[ roomELindex ] = adjustedVW;
 
-    if ( maxFontSize > adjustedVW ) {
-        // update max - check if current is max holder, then update all, set all to the same size
-        
+    if ( maxFontSize > adjustedVW || ( roomELindex === smallestFontIndex && maxFontSize < adjustedVW ) ) {
+        maxFontSize = adjustedVW;
+        document.body.style.setProperty( '--color-info-maxFontSize', maxFontSize + "vw");
     }
-    
-    /* make filter darker for mids and filter lighter for darks  */
+
     if ( luminance < 34 ) {
-        // adjustedAlpha = "brightness(" + ( 1 + -0.004 * luminance ) + ")";
-        adjustedAlpha = "contrast( 0.75 ) brightness(" + ( 1 + 0.005 * ( 100 - luminance ) ) + ")";
+        adjustedAlpha = "contrast( 0.85 ) brightness(" + ( 1 + 0.0035 * ( 100 - luminance ) ) + ")";
     } else if ( luminance < 75 ) {
-        adjustedAlpha = "brightness(" + ( -0.025 * ( 100 - luminance ) + 1.5  ) + ")";
+        adjustedAlpha = "brightness(" + ( -0.021 * ( 100 - luminance ) + 1.5  ) + ")";
     } else {
-        // adjustedAlpha = -luminance + ( Math.abs( luminance - 50 ) * 2 );
         adjustedAlpha = "brightness(" + ( 1 - 0.008 * ( 100 - luminance ) ) + ")";
     }
 
-    return { newVW: adjustedVW + "vw", newAlpha: adjustedAlpha }
+    // return { newVW: adjustedVW + "vw", newAlpha: adjustedAlpha }
+    return { newAlpha: adjustedAlpha };
 }
 
 /* ------------------ ### Change all the color attributes for a room scene ### ------------------ */
@@ -112,18 +107,13 @@ const setColors = function( colorIndex, roomELindex ) {
 
     $cnames[ roomELindex ].text( colorsAll[ i ] );
     $cnumbers[ roomELindex ].text( colorsAll[ i + 1 ] );
-
-    console.log('########## CSSpropInfoBrightness[ roomELindex ]: ' + CSSpropInfoBrightness[ roomELindex ]);
-    
     document.body.style.setProperty( CSSpropRoomColors[ roomELindex ], colorsAll[ i + 2 ] );
-    document.body.style.setProperty( CSSpropInfoFontSize[ roomELindex ], colorSpecificAdjustments.newVW );
+    //document.body.style.setProperty( CSSpropInfoFontSize[ roomELindex ], colorSpecificAdjustments.newVW );
     document.body.style.setProperty( CSSpropInfoBrightness[ roomELindex ], colorSpecificAdjustments.newAlpha );
-    console.log('########## colorSpecificAdjustments.newAlpha: ' + colorSpecificAdjustments.newAlpha);
-
-    //document.body.style.setProperty( CSSpropInfoBrightness[ roomELindex ], "brightness(" + ( 1 + colorSpecificAdjustments.newAlpha + ")" );
-    // var test = "--color-info-brightness-" + "4";
-    // console.log('########## test: ' + test);
-    //document.body.style.setProperty( test, "brightness(2)" );
+    //hsla(0, 0%, 0%, 0)
+    var currentHSLtrimmed = colorsAll[ i + 2 ].slice(4, -1);
+    //console.log('########## currentHSLtrimmed: ' + currentHSLtrimmed);
+    document.body.style.setProperty( CSSpropInfoGradients[ roomELindex ], "linear-gradient( hsla(" + currentHSLtrimmed + ",1) 0%, linear-gradient( hsla(" + currentHSLtrimmed + ",1) 25%, hsla(" + currentHSLtrimmed + ", 0) 100%" );
 }
 
 /* ------------------ ### changeActive ### ------------------ */
@@ -179,6 +169,7 @@ const setHueComponent = function( choiceIndex ) {
             document.body.style.setProperty( --color-intro-hue-component, 29 );
             
             //Will need additional stuff for neutrals
+            //  --color-intro-luminosity-component: 30%;
             break;
     
         default:
@@ -186,19 +177,17 @@ const setHueComponent = function( choiceIndex ) {
     }
 }
 
-//  --color-intro-luminosity-component: 30%;
-
 /* ------------------ ### initDOM ### ------------------ */
 const initDOM = function( event ) {
 
     //for ( var i = 0, len = 4; i < len; i++) {}
 
-    window.setTimeout( function(){
+    //window.setTimeout( function(){
         setColors( 0, 1 );
         setColors( 1, 3 );
         setColors( 2, 0 );
         setColors( 3, 2 );
-    }, 250);
+    //}, 250);
 
     $introReadyCTA.click( function() {
         updateState ( $introHue, 'active', true, 500 );

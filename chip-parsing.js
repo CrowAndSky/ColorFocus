@@ -1,13 +1,73 @@
 "use strict";
 
 let allColors = [],
+colorDiff,
 //allColorsRGB = [],
-colorsByH = [],
-colorsByS = [],
-colorsByL = [],
+firstColor = [ 2849, 331.15384615384613, 41.26984126984129, 50.588235294117645 ],
+//331.15384615384613
+// colorsByH = [],
+// colorsByS = [],
+// colorsByL = [],
 chips = '',
 colorInHSL;
 
+
+
+const $parserWrapper = $( '#parser-wrapper' ),
+recommendColors = function() {
+    // for( var i = 1; i < colorsByH.length; i += 2 ) {
+    //     if ( colorsByH[ i ] === 0 ) {
+    //         console.log('########## should be 331.15384615384613: ' + colorsByH[ i - 1 ]);
+    //         console.log('########## i: ' + i);
+    //     }
+    // }
+
+    
+
+    for( var i = 0; i < 100; i += 2 ) {
+        //console.log('########## colorsByS[ 2848 + i ]: ' + colorsByS[ 2848 + i ]);
+        var indexOfNextHue = colorsByH[ 2849 + i ];
+        //console.log('########## indexOfNextHue: ' + indexOfNextHue);
+        var indexOfNextMaster = indexOfNextHue * 5 + 3;
+        console.log('########## indexOfNextMaster: ' + indexOfNextMaster);
+        console.log('########## next saturation: ' + colorsAll2[ parseInt( 305, 10 ) ]);
+        colorDiff = Math.abs( 41.26984126984129% - ( colorsAll2[ indexOfNextHue * 5 + 3 ] ) );     //slice(0, -1);
+        //console.log('########## colorDiff: ' + colorDiff);
+        // firstColor[ 0 ]
+        // if ( colorsByH[ i ] === 0 ) {
+        //     console.log('########## should be 331.15384615384613: ' + colorsByH[ i - 1 ]);
+        //     console.log('########## i: ' + i);
+        // }
+    }
+
+}
+
+
+/*
+TO DO HERE:
+Unwrap HSL values to individual array items .
+Will need to put them back together when displaying
+*/
+
+//"38.82352941176471","87.93103448275865%","77.25490196078431%"
+
+    
+
+$(document).ready( function(){
+  
+});
+
+
+/*
+
+############################################################################################
+########################    NOTES   ########################
+############################################################################################
+
+
+
+
+------------------ ### original parsing code that I built the lists with ### ------------------
 class ColorDetail {
     constructor( number, name, index ) {
         this._name = name;
@@ -29,64 +89,60 @@ const sortByFirst = function( a, b ) {
     }
 }
 
-const $parserWrapper = $( '#parser-wrapper' ),
-    parse = function() {
-        _.each ( allColorsLong, function( color, index ){
-            if ( !color.archived) {
-                var r = Math.floor( color.rgb / 65536 );
-                var g = Math.floor( ( color.rgb % 65536 ) / 256 );
-                var b = color.rgb - r * 65536 - g * 256;
-                //chips = chips + '<div class="chip" style="background:rgb(' + r + ',' + g + ',' + b + ')"></div>';
-                let colorInHSL = tinycolor( "rgb " + r + " " + g + " " + b).toHsl();
-                // console.log('########## colorInHSL: ');
-                // console.log(colorInHSL);
+parse = function() {
+    _.each ( allColorsLong, function( color, index ){
+        if ( !color.archived) {
+            var r = Math.floor( color.rgb / 65536 );
+            var g = Math.floor( ( color.rgb % 65536 ) / 256 );
+            var b = color.rgb - r * 65536 - g * 256;
+            //chips = chips + '<div class="chip" style="background:rgb(' + r + ',' + g + ',' + b + ')"></div>';
+            let colorInHSL = tinycolor( "rgb " + r + " " + g + " " + b).toHsl();
+            // console.log('########## colorInHSL: ');
+            // console.log(colorInHSL);
 
-                colorsByH.push( [ colorInHSL.h, index ] );
-                colorsByS.push( [ colorInHSL.s, index ] );
-                colorsByL.push( [ colorInHSL.l, index ] );
-                // var thisRGB = r + ',' + g + ',' + b;
-                // console.log('########## thisRGB: ' + thisRGB);
+            colorsByH.push( [ colorInHSL.h, index ] );
+            colorsByS.push( [ colorInHSL.s, index ] );
+            colorsByL.push( [ colorInHSL.l, index ] );
+            // var thisRGB = r + ',' + g + ',' + b;
+            // console.log('########## thisRGB: ' + thisRGB);
 
-                //colorInHSL = rgbToHsl( r, g, b );
-                //allColors[ index ] = [ color.colorNumber, color.name, r + ',' + g + ',' + b, index ];
-                // allColors.push( '"' + color.name + '"', '"' + color.colorNumber + '"', colorInHSL.h + ',' + colorInHSL.s * 100 + '%,' + colorInHSL.l * 100 + '%');
-                allColors.push( '"' + color.name + '"', '"' + color.colorNumber + '"', '"' + colorInHSL.h + ',' + colorInHSL.s * 100 + '%,' + colorInHSL.l * 100 + '%"');
-            }
-        });
+            //colorInHSL = rgbToHsl( r, g, b );
+            //allColors[ index ] = [ color.colorNumber, color.name, r + ',' + g + ',' + b, index ];
+            // allColors.push( '"' + color.name + '"', '"' + color.colorNumber + '"', colorInHSL.h + ',' + colorInHSL.s * 100 + '%,' + colorInHSL.l * 100 + '%');
+            allColors.push( '"' + color.name + '"', '"' + color.colorNumber + '"', '"' + colorInHSL.h + ',' + colorInHSL.s * 100 + '%,' + colorInHSL.l * 100 + '%"');
+        }
+    });
 
-        colorsByH.sort( sortByFirst );
-        colorsByS.sort( sortByFirst );
-        colorsByL.sort( sortByFirst );
+    colorsByH.sort( sortByFirst );
+    colorsByS.sort( sortByFirst );
+    colorsByL.sort( sortByFirst );
 
-        _.each ( colorsByH, function( color, index ){
-            //console.log( allColors[ color[ 1 ] * 3 + 2 ] );
-            //chips = chips + '<div class="chip" style="background:hsl(' + allColors[ color[ 1 ] * 3 + 2 ] + ')"></div>';
-        });
-        
-        
+    _.each ( colorsByH, function( color, index ){
+        //console.log( allColors[ color[ 1 ] * 3 + 2 ] );
+        //chips = chips + '<div class="chip" style="background:hsl(' + allColors[ color[ 1 ] * 3 + 2 ] + ')"></div>';
+    });
+    
+    
 
-        $parserWrapper.append(chips);
+    $parserWrapper.append(chips);
 
-        console.log('########## H, S, L');
-        // console.log(colorsByH);
-        // console.log(colorsByS);
-        // console.log(colorsByL);
-    };
+    console.log('########## H, S, L');
+    // console.log(colorsByH);
+    // console.log(colorsByS);
+    // console.log(colorsByL);
+};
 
-$(document).ready( function(){
-    parse();
-    $( '#console1' ).text( allColors );
-    $( '#console2' ).text( colorsByH );
-    $( '#console3' ).text( colorsByS );
-    $( '#console4' ).text( colorsByL );
-});
+parse();
+$( '#console1' ).text( allColors );
+$( '#console2' ).text( colorsByH );
+$( '#console3' ).text( colorsByS );
+$( '#console4' ).text( colorsByL );
 
 
-/*
 
-############################################################################################
-########################    NOTES   ########################
-############################################################################################
+
+
+
 ------------------ ### write to canvas ### ------------------
 var canvasBlockIndex = 0,
 canvasPreviousBlockChipCount = 0,
