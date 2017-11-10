@@ -57,7 +57,8 @@ x,
 i;
 
 let loopState = "top",
-colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 83%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
+//colorsAll = [ "Deep Forest Brown", "SW-2450", "hsl(32, 100%, 83%)", "House Atriedes", "SW-1970", "hsl(11, 53%, 53%)", "Rainstorm", "SW-5633", "hsl(324, 5%, 21%)", "Bauhaus Buff", "SW-6712", "hsl(184, 63%, 73%)" ];
+colorsAll = [ "Deep Forest Brown", "2450", "32.0001", "99.98998848%", "83.002387%", "House Atriedes", "1970", "11.02301", "53.0004346724%", "53.002438%", "Rainstorm", "5633", "324.0029943", "5.000843842%", "21%", "Bauhaus Buff", "6712", "184.0078787", "63.00008899%", "73%" ];
 
 /* ------------------ ### wwwwwwww ### ------------------ */
 const appLoop = function( event ) {
@@ -74,12 +75,12 @@ const appLoop = function( event ) {
 };
 
 /* ------------------ ### Get color presentation attributes ### ------------------ */
-const getColorPresentation = function( colorName, colorHSL, roomELindex ) {
+const getColorPresentation = function( colorName, luminance, roomELindex ) {
     const namePartsArr = colorName.split(' ');
     var adjustedAlpha,
         longestWord = namePartsArr.reduce(function (a, b) { return a.length > b.length ? a : b; }).length,
-        adjustedVW = 155 / longestWord,
-        luminance = parseInt( colorHSL.split( ',' )[2].slice( 0, -2 ), 10);
+        adjustedVW = 155 / longestWord;
+        // luminance = parseInt( colorHSL.split( ',' )[2].slice( 0, -2 ), 10);
 
     individualMaxFontSize[ roomELindex ] = adjustedVW;
 
@@ -102,18 +103,23 @@ const getColorPresentation = function( colorName, colorHSL, roomELindex ) {
 
 /* ------------------ ### Change all the color attributes for a room scene ### ------------------ */
 const setColors = function( colorIndex, roomELindex ) {
-    var i = colorIndex * 3,
-        colorSpecificAdjustments = getColorPresentation( colorsAll[ i ], colorsAll[ i + 2 ], roomELindex );
+    var i = colorIndex * 5,
+        luminance = parseInt( colorsAll[ i + 4 ].slice( 0, -1 ) ),
+        colorSpecificAdjustments = getColorPresentation( colorsAll[ i ], luminance, roomELindex );
+
+    console.log('########## luminance: ' + luminance);
 
     $cnames[ roomELindex ].text( colorsAll[ i ] );
-    $cnumbers[ roomELindex ].text( colorsAll[ i + 1 ] );
-    document.body.style.setProperty( CSSpropRoomColors[ roomELindex ], colorsAll[ i + 2 ] );
+    $cnumbers[ roomELindex ].text( "SW-" + colorsAll[ i + 1 ] );
+    // document.body.style.setProperty( CSSpropRoomColors[ roomELindex ], colorsAll[ i + 2 ] );
     //document.body.style.setProperty( CSSpropInfoFontSize[ roomELindex ], colorSpecificAdjustments.newVW );
     document.body.style.setProperty( CSSpropInfoBrightness[ roomELindex ], colorSpecificAdjustments.newAlpha );
     //hsla(0, 0%, 0%, 0)
-    var currentHSLtrimmed = colorsAll[ i + 2 ].slice(4, -1);
+    // var currentHSLtrimmed = colorsAll[ i + 2 ].slice(4, -1);
+    var currentHSLtrimmed = colorsAll[ i + 2 ] + ", " + colorsAll[ i + 3 ] + ", " + colorsAll[ i + 4 ];
+    document.body.style.setProperty( CSSpropRoomColors[ roomELindex ], "hsl(" + currentHSLtrimmed + ")" );
     //console.log('########## currentHSLtrimmed: ' + currentHSLtrimmed);
-    document.body.style.setProperty( CSSpropInfoGradients[ roomELindex ], "linear-gradient( hsla(" + currentHSLtrimmed + ",1) 0%, linear-gradient( hsla(" + currentHSLtrimmed + ",1) 25%, hsla(" + currentHSLtrimmed + ", 0) 100%" );
+    document.body.style.setProperty( CSSpropInfoGradients[ roomELindex ], "linear-gradient( hsla(" + currentHSLtrimmed + ",1) 0%, hsla(" + currentHSLtrimmed + ",1) 25%, hsla(" + currentHSLtrimmed + ", 0) 100% )" );
 }
 
 /* ------------------ ### changeActive ### ------------------ */
@@ -248,6 +254,7 @@ colorsByH
 colorsByS
 colorsByL
 
+luminance = parseInt( colorsAll[ i + 4 ].split( ',' )[2].slice( 0, -2 ), 10);
 
 //DOMmutationObserver.observe( $chipWrapper, DOMmutationObserverConfig);
 

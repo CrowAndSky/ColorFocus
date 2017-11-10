@@ -3,7 +3,7 @@
 let allColors = [],
 colorDiff,
 //allColorsRGB = [],
-firstColor = [ 2849, 331.15384615384613, 41.26984126984129, 50.588235294117645 ],
+firstColor = [ 1424, 331.15384615384613, 41.26984126984129, 50.588235294117645 ],
 //331.15384615384613
 // colorsByH = [],
 // colorsByS = [],
@@ -23,21 +23,22 @@ recommendColors = function() {
     // }
 
     
-
+    // colorsByHue is listed by hue first, master index second
     for( var i = 0; i < 100; i += 2 ) {
         //console.log('########## colorsByS[ 2848 + i ]: ' + colorsByS[ 2848 + i ]);
-        var indexOfNextHue = colorsByH[ 2849 + i ];
+        var indexOfNextHue = colorsByH[ 1424 + i ]; // This gives you the next master index of the next hue indexed color
         //console.log('########## indexOfNextHue: ' + indexOfNextHue);
         var indexOfNextMaster = indexOfNextHue * 5 + 3;
         console.log('########## indexOfNextMaster: ' + indexOfNextMaster);
-        console.log('########## next saturation: ' + colorsAll2[ parseInt( 305, 10 ) ]);
+        //console.log('########## colorsAll2[ 305 ]: ' + colorsAll2[ 305 ]);
+        console.log('########## next saturation: ' + parseInt( colorsAll2[ indexOfNextHue * 5 + 3 ], 10) );
         colorDiff = Math.abs( 41.26984126984129% - ( colorsAll2[ indexOfNextHue * 5 + 3 ] ) );     //slice(0, -1);
-        //console.log('########## colorDiff: ' + colorDiff);
-        // firstColor[ 0 ]
-        // if ( colorsByH[ i ] === 0 ) {
-        //     console.log('########## should be 331.15384615384613: ' + colorsByH[ i - 1 ]);
-        //     console.log('########## i: ' + i);
-        // }
+        console.log('########## colorDiff: ' + colorDiff);
+        firstColor[ 0 ]
+        if ( colorsByH[ i ] === 0 ) {
+            console.log('########## should be 331.15384615384613: ' + colorsByH[ i - 1 ]);
+            console.log('########## i: ' + i);
+        }
     }
 
 }
@@ -54,6 +55,7 @@ Will need to put them back together when displaying
     
 
 $(document).ready( function(){
+    recommendColors();
   
 });
 
