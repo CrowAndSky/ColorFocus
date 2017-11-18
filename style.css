@@ -281,16 +281,20 @@ ul, li {
       `...`    `..`   ..   `..`   ..       .....`    `...   `..` ..``.` .` `.`     
 
 ------------------ ############ SOLID COLOR OVERLAYS ############ ------------------ */
+/* horiontal / vertical */
 .solid-overlay {
   background-image: var( --color-info-overlay-color-2 );
   background-size: 100% 400%;
-  background-position: center 0%;
+  background-position: 0% 200%;
+  background-repeat: no-repeat;
   /* -webkit-mask-image: linear-gradient(135deg, black 0%, transparent 100%); 
   mask-image: linear-gradient(135deg, black 0%, transparent 100%);  */
-  opacity: 0;
-  transition: opacity 2s;
+  /* opacity: 0; */
+  /* transition: opacity 2s; */
   /* transition-delay: 2s; */
-  will-change: opacity;
+  /* will-change: opacity; */
+  transition: background-position 2s;
+  will-change: background-position;
   z-index: 1;
 }
 
@@ -720,7 +724,8 @@ ul, li {
 
 /* ------------------ ############ APP STATE - ROOM DETAIL ############ ------------------ */
 .state-detail .solid-overlay {
-  opacity: 1;
+  background-position: 0% 0%;
+  /* opacity: 1; */
   z-index: 9;
 }
 
@@ -793,11 +798,11 @@ ul, li {
     }
 
     .color-number {
-      font-size: 0.5em;
+      font-size: 0.45em;
     }
 
     .color-name {
-      font-size: 0.5em;
+      font-size: 0.62em;
     }
 }
 
