@@ -31,7 +31,6 @@ body {
   --color-title: #ffa541;  /*#c65f47*/
   --color-white: #fff;
 
-
   --shadow-transition-delay: 0.7s;
   --solid-transition-delay: 0.7s;
 
@@ -83,6 +82,8 @@ body {
   --color-info-overlay-color-2: transparent;
   --color-info-overlay-color-3: transparent;
   --color-info-overlay-color-4: transparent;
+
+  --color-detail-anim-period: 4s;
 
   /* --color-info-fontSize-1: 17vw;
   --color-info-fontSize-2: 17vw;
@@ -293,7 +294,7 @@ ul, li {
   /* transition: opacity 2s; */
   /* transition-delay: 2s; */
   /* will-change: opacity; */
-  transition: background-position 2s;
+  transition: background-position 4s;
   will-change: background-position;
   z-index: 1;
 }
@@ -327,7 +328,7 @@ ul, li {
   margin: 0 1%;
   opacity: 0;
   text-align: left;
-  /* transition: opacity 4s ease-in; */
+  transition: opacity 2s;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   /* will-change: font-size, letter-spacing, opacity; */
@@ -363,6 +364,7 @@ ul, li {
 
 .color-name {
   font-family: 'Alfa Slab One', sans-serif;
+  font-size: 0.9em;
   letter-spacing: -0.01em;
   line-height: 0.9em;
 }
@@ -798,11 +800,11 @@ ul, li {
     }
 
     .color-number {
-      font-size: 0.45em;
+      font-size: 0.35em;
     }
 
     .color-name {
-      font-size: 0.62em;
+      font-size: 0.48em;
     }
 }
 
