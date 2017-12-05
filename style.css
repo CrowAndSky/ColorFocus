@@ -39,10 +39,13 @@ body {
   --room-color-right-bottom: hsl(324, 5%, 21%); /* #393437 */
   --room-color-right: hsl(184, 63%, 73%); /* #8edfe5  a56c4a */
 
-  --room-color-left-bottom: hsl(32, 100%, 63%);  /* #ffa541; 35454e */
-  --room-color-left: hsl(11, 100%, 53%); /* #c65f47; */
-  --room-color-right-bottom: hsl(324, 5%, 21%); /* #393437 */
-  --room-color-right: hsl(124, 100%, 53%); /* #8edfe5  a56c4a */
+
+/*
+  --room-color-left-bottom: hsl(32, 100%, 63%); 
+  --room-color-left: hsl(11, 100%, 53%); 
+  --room-color-right-bottom: hsl(324, 5%, 21%);
+  --room-color-right: hsl(124, 100%, 53%);
+*/
 
   --shadow-transition-delay: 0.7s;
   --solid-transition-delay: 0.7s;

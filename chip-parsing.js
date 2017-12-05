@@ -22,29 +22,28 @@ recommendColors = function() {
     //     }
     // }
 
-    console.log( colorsByH[ 2849 ] );
-    console.log( colorsByH[ 1426 ] );
-    console.log( colorsByH[ 1428 ] );
-    console.log( colorsAll2[ 0 ] );
+    // console.log( colorsByH[ 2849 ] );
+    // console.log( colorsByH[ 1426 ] );
+    // console.log( colorsByH[ 1428 ] );
+    // console.log( colorsAll2[ 0 ] );
 
     /* */
     
     // colorsByHue is listed by hue first, master index second
     for( var i = 0; i < 100; i += 2 ) {
-        //console.log('########## colorsByS[ 2848 + i ]: ' + colorsByS[ 2848 + i ]);
         var indexOfNextHue = colorsByH[ 2849 + i ]; // This gives you the next master index of the next hue indexed color
-        //console.log('########## indexOfNextHue: ' + indexOfNextHue);
-        // var indexOfNextMaster = indexOfNextHue * 5 + 3;
-        // console.log('########## indexOfNextMaster: ' + indexOfNextMaster);
-        //console.log('########## colorsAll2[ 305 ]: ' + colorsAll2[ 305 ]);
-        //console.log('########## next saturation: ' + parseInt( colorsAll2[ indexOfNextHue * 5 + 3 ], 10) );
-        colorDiff = Math.abs( 41.26984126984129 - parseFloat( colorsAll2[ indexOfNextHue * 5 + 3 ], 10) );     //slice(0, -1);
-        console.log('########## colorDiff: ' + colorDiff);
+        var satDiff = Math.abs( 41.26984126984129 - parseFloat( colorsAll2[ indexOfNextHue * 5 + 3 ], 10) );     //slice(0, -1);
+        var lumDiff = Math.abs( 50.588235294117645 - parseFloat( colorsAll2[ indexOfNextHue * 5 + 4 ], 10) );     //slice(0, -1);
+        console.log('########## satDiff: ' + satDiff);
+        console.log('########## lumDiff: ' + lumDiff);
         // firstColor[ 0 ]
         // if ( colorsByH[ i ] === 0 ) {
         //     console.log('########## should be 331.15384615384613: ' + colorsByH[ i - 1 ]);
         //     console.log('########## i: ' + i);
         // }
+
+
+        allColors.push( '"' + color.name + '"', '"' + color.colorNumber + '"', '"' + colorInHSL.h + ',' + colorInHSL.s * 100 + '%,' + colorInHSL.l * 100 + '%"');
     }
 
     /*

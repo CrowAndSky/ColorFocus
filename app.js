@@ -119,7 +119,7 @@ const setColors = function( colorIndex, roomELindex ) {
     var currentHSLtrimmed = colorsAll[ i + 2 ] + ", " + colorsAll[ i + 3 ] + ", " + colorsAll[ i + 4 ];
     document.body.style.setProperty( CSSpropRoomColors[ roomELindex ], "hsl(" + currentHSLtrimmed + ")" );
     //console.log('########## currentHSLtrimmed: ' + currentHSLtrimmed);
-    document.body.style.setProperty( CSSpropInfoGradients[ roomELindex ], "linear-gradient(-20deg, hsla(" + currentHSLtrimmed + ",0) 0%, hsla(" + currentHSLtrimmed + ",0.25) 18%, hsla(" + currentHSLtrimmed + ",0.25) 36%, hsla(" + currentHSLtrimmed + ",0.48) 38%, hsla(" + currentHSLtrimmed + ",0.48) 58%, hsla(" + currentHSLtrimmed + ",0.35) 60%, hsla(" + currentHSLtrimmed + ",0.35) 62%, hsla(" + currentHSLtrimmed + ",0.88) 76%, hsla(" + currentHSLtrimmed + ",0.88) 78%, hsla(" + currentHSLtrimmed + ",0.8) 81%, hsla(" + currentHSLtrimmed + ",0.8) 83%, hsla(" + currentHSLtrimmed + ",0.95) 85%, hsla(" + currentHSLtrimmed + ", 1) 100% )" );
+    document.body.style.setProperty( CSSpropInfoGradients[ roomELindex ], "linear-gradient(-15deg, hsla(" + currentHSLtrimmed + ",0) 0%, hsla(" + currentHSLtrimmed + ",0.25) 18%, hsla(" + currentHSLtrimmed + ",0.25) 36%, hsla(" + currentHSLtrimmed + ",0.48) 38%, hsla(" + currentHSLtrimmed + ",0.48) 58%, hsla(" + currentHSLtrimmed + ",0.35) 60%, hsla(" + currentHSLtrimmed + ",0.35) 62%, hsla(" + currentHSLtrimmed + ",0.88) 76%, hsla(" + currentHSLtrimmed + ",0.88) 78%, hsla(" + currentHSLtrimmed + ",0.8) 81%, hsla(" + currentHSLtrimmed + ",0.8) 83%, hsla(" + currentHSLtrimmed + ",0.95) 85%, hsla(" + currentHSLtrimmed + ", 1) 100% )" );
 }
 
 /* ------------------ ### changeActive ### ------------------ */
@@ -242,9 +242,11 @@ $(document).ready( function(){
 
     initDOM();
 
-    $appWrapper.addClass( "state-detail" );
+    //$appWrapper.addClass( "state-detail" );
 
-    $appWrapper.click( function(){ $appWrapper.addClass( "state-lower-room" ); } );
+    $appWrapper.click( function(){ $appWrapper.toggleClass( "state-lower-room" ); } );
+
+    $appWrapper.dblclick( function(){ $appWrapper.toggleClass( "state-detail" ); } );
 
 });
 
