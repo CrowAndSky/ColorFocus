@@ -45,7 +45,7 @@ body {
   --room-color-left: hsl(11, 100%, 53%); 
   --room-color-right-bottom: hsl(324, 5%, 21%);
   --room-color-right: hsl(124, 100%, 53%);
-  */
+*/
 
   --shadow-transition-delay: 0.7s;
   --solid-transition-delay: 0.7s;
@@ -230,16 +230,27 @@ ul, li {
 .room-image-tinted {
   filter: grayscale(100) brightness(0.85) contrast(1.75);
   mix-blend-mode: multiply;
-  /* transition-delay: 2s; */
-  z-index: 2;
+
+  
+
+  /* z-index: 2; */
+  z-index: 3;
+}
+
+.test-room {
+  mask-size: cover;
+  -webkit-mask-image: url( './images/sw.png' );
+  -webkit-mask-size: cover;
+  -webkit-mask-position: 50% 50%;
 }
 
 .room-image-natural {
-  -webkit-mask-image: url( './images/room-chair-mask-clean.png' );
+  /* -webkit-mask-image: url( './images/sw.png' );
   -webkit-mask-size: cover;
-  -webkit-mask-position: 50% 50%;
-  mask-size: cover;
-  z-index: 3;
+  -webkit-mask-position: 50% 50%; */
+  /* mask-size: cover; */
+  z-index: 2;
+  /* z-index: 3; */
 }
 
 .room-b {
